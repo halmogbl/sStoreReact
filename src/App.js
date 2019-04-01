@@ -1,28 +1,45 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from "react";
+import { Switch, Route, Redirect, withRouter } from "react-router-dom";
+
+import Welcome from "./components/Welcome";
+
+import { connect } from "react-redux";
+
+// Actions
+import * as actionCreators from "./store/actions";
 
 class App extends Component {
+  componentDidMount() {
+    this.props.fetchCategories();
+  }
+
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
+      <div className="content-wrapper col-12">
+        <Switch>
+          <Route path="/welcome" component={Welcome} />
+          <Redirect to="/welcome" />
+        </Switch>
       </div>
     );
   }
 }
 
-export default App;
+const mapStateToProps = state => {
+  return {
+    categories: state.categoriesReducer.categories,
+    loading: state.categoriesReducer.loading
+  };
+};
+
+const mapDispatchToProps = dispatch => {
+  return {
+    fetchCategories: () => dispatch(actionCreators.fetchCategories())
+  };
+};
+export default withRouter(
+  connect(
+    mapStateToProps,
+    mapDispatchToProps
+  )(App)
+);
