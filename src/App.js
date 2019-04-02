@@ -7,6 +7,10 @@ import { connect } from "react-redux";
 import Home from "./Components/Home";
 import NavBar from "./Components/Navigation";
 import Footer from "./Components/Footer";
+import Profile from "./Components/Profile";
+import Shop from "./Components/Shop";
+import Login from "./Components/Login";
+import Signup from "./Components/Signup";
 
 // Actions
 import * as actionCreators from "./store/actions";
@@ -26,6 +30,11 @@ class App extends Component {
         <NavBar />
         <Switch>
           <Route path="/home" component={Home} />
+          <Route path="/profile" component={Profile} />
+          <Route path="/shop" component={Shop} />
+          <Route path="/login" component={Login} />
+          <Route path="/signup" component={Signup} />
+
           <Redirect to="/home" />
         </Switch>
         <Footer />
