@@ -1,11 +1,11 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 
-class Shop extends Component {
+class Login extends Component {
   render() {
     return (
       <div className="col-12">
-        <h1>Shop</h1>
+        <h1>Login</h1>
       </div>
     );
   }
@@ -15,4 +15,4 @@ const mapStateToProps = state => {
   return {};
 };
 
-export default connect(null)(Shop);
+export default connect(null)(Login);
