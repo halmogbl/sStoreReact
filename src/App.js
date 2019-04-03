@@ -26,6 +26,7 @@ import "./assets/css/Custom.css";
 class App extends Component {
   componentDidMount() {
     this.props.fetchCategories();
+    this.props.fetchProfile();
   }
 
   render() {
@@ -56,7 +57,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    fetchCategories: () => dispatch(actionCreators.fetchCategories())
+    fetchCategories: () => dispatch(actionCreators.fetchCategories()),
+    fetchProfile: () => dispatch(actionCreators.fetchProfile())
   };
 };
 export default withRouter(
