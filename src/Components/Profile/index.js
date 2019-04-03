@@ -1,7 +1,9 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import Addresses from "./Addresses";
+import AddressesBody from "./AddressesBody";
 import * as actionCreators from "../../store/actions";
+import AddressesHeader from "./AddressesHeader";
+import imageNotFound from "../../assets/images/notfound.png";
 
 class Profile extends Component {
   componentDidMount() {
@@ -51,8 +53,10 @@ class Profile extends Component {
   render() {
     if (this.props.profile) {
       const addresses = this.props.profile.addresses.map(address => (
-        <Addresses address={address} key={address.id} />
+        <AddressesBody address={address} key={address.id} />
       ));
+      console.log(this.props.profile.profile_image);
+      let image = this.props.profile.profile_image;
       return (
         <div className="col-12">
           <h1>Profile</h1>
@@ -62,7 +66,7 @@ class Profile extends Component {
           <div>last name: {this.props.profile.user.last_name}</div>
           <div>email: {this.props.profile.user.email}</div>
           <div>phone number: {this.props.profile.phone_number}</div>
-          <div>image : {this.props.profile.profile_image}</div>
+          {image ? <img src={image} /> : <img src={imageNotFound} />}
           <div className="col-12 my-3 border border-primary border-top  ">
             Addresses:{" "}
             <table
@@ -70,14 +74,7 @@ class Profile extends Component {
               style={{ textAlign: "center" }}
             >
               <thead>
-                <tr>
-                  <th>id</th>
-                  <th>name</th>
-                  <th>street 1</th>
-                  <th>street 2</th>
-                  <th>city</th>
-                  <th>postal code</th>
-                </tr>
+                <AddressesHeader />
               </thead>
               <tbody>{addresses}</tbody>
             </table>
