@@ -1,6 +1,11 @@
 import React, { Component } from "react";
 import { Switch, Route, Redirect, withRouter } from "react-router-dom";
 
+// import Welcome from "./components/Welcome";
+// import RegistrationForm from "./components/RegistrationForm";
+import Login from "./components/Login.js";
+
+
 import { connect } from "react-redux";
 
 //Components
@@ -29,10 +34,13 @@ class App extends Component {
       <div className="content-wrapper col-12">
         <NavBar />
         <Switch>
+
+          <Route path="/Login" component={Login} />
+         
           <Route path="/home" component={Home} />
           <Route path="/profile" component={Profile} />
           <Route path="/shop" component={Shop} />
-          <Route path="/login" component={Login} />
+//           <Route path="/login" component={Login} />
           <Route path="/signup" component={Signup} />
 
           <Redirect to="/home" />
