@@ -1,2 +1,3 @@
 export { setErrors } from "./errors";
-export { fetchCategories, filterCategories } from "./categories";
+export { fetchCategories } from "./categories";
+export { fetchItemDetail } from "./items";

@@ -4,8 +4,10 @@ import { combineReducers } from "redux";
 
 import errorReducer from "./errors";
 import categoriesReducer from "./categories";
+import itemReducer from "./items";
 
 export default combineReducers({
   errors: errorReducer,
-  categoriesReducer: categoriesReducer
+  categoriesReducer: categoriesReducer,
+  itemReducer: itemReducer
 });

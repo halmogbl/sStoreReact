@@ -5,7 +5,7 @@ class Login extends Component {
   render() {
     return (
       <div className="col-12">
-        <h1>Login</h1>
+        <h1 className="text-warning">Login</h1>
       </div>
     );
   }
