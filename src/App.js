@@ -3,8 +3,7 @@ import { Switch, Route, Redirect, withRouter } from "react-router-dom";
 
 // import Welcome from "./components/Welcome";
 // import RegistrationForm from "./components/RegistrationForm";
-import Login from "./components/Login.js";
-
+// import Login from "./Components/Login/Login.js/index.js";
 
 import { connect } from "react-redux";
 
@@ -14,7 +13,7 @@ import NavBar from "./Components/Navigation";
 import Footer from "./Components/Footer";
 import Profile from "./Components/Profile";
 import Shop from "./Components/Shop";
-import Login from "./Components/Login";
+import Login from "./Components/Login/Login";
 import Signup from "./Components/Signup";
 
 // Actions
@@ -34,15 +33,12 @@ class App extends Component {
       <div className="content-wrapper col-12">
         <NavBar />
         <Switch>
-
           <Route path="/Login" component={Login} />
-         
           <Route path="/home" component={Home} />
           <Route path="/profile" component={Profile} />
           <Route path="/shop" component={Shop} />
-//           <Route path="/login" component={Login} />
+          {/* // <Route path="/login" component={Login} /> */}
           <Route path="/signup" component={Signup} />
-
           <Redirect to="/home" />
         </Switch>
         <Footer />
