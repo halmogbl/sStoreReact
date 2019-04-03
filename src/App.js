@@ -1,6 +1,10 @@
 import React, { Component } from "react";
 import { Switch, Route, Redirect, withRouter } from "react-router-dom";
 
+// import Welcome from "./components/Welcome";
+// import RegistrationForm from "./components/RegistrationForm";
+// import Login from "./Components/Login/Login.js/index.js";
+
 import { connect } from "react-redux";
 
 //Components
@@ -9,7 +13,7 @@ import NavBar from "./Components/Navigation";
 import Footer from "./Components/Footer";
 import Profile from "./Components/Profile";
 import Shop from "./Components/Shop";
-import Login from "./Components/Login";
+import Login from "./Components/Login/Login";
 import Signup from "./Components/Signup";
 import CategoryItems from "./Components/CategoryItems";
 import ItemDetail from "./Components/ItemDetail";
@@ -24,6 +28,7 @@ import "./assets/css/Custom.css";
 class App extends Component {
   componentDidMount() {
     this.props.fetchCategories();
+    // this.props.checkForExpiredToken();
   }
 
   render() {
@@ -31,13 +36,16 @@ class App extends Component {
       <div className="content-wrapper col-12">
         <NavBar />
         <Switch>
+          <Route path="/Login" component={Login} />
           <Route path="/home" component={Home} />
           <Route path="/profile" component={Profile} />
           <Route path="/shop" component={Shop} />
-          <Route path="/login" component={Login} />
+          {/* // <Route path="/login" component={Login} /> */}
           <Route path="/signup" component={Signup} />
+
           <Route path="/item/:itemID" component={ItemDetail} />
           <Route path="/category/:categoryID" component={CategoryItems} />
+
           <Redirect to="/home" />
         </Switch>
         <Footer />
@@ -56,6 +64,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     fetchCategories: () => dispatch(actionCreators.fetchCategories())
+    // checkForExpiredToken: () => dispatch(actionCreators.checkForExpiredToken())
   };
 };
 export default withRouter(
