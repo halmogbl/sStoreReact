@@ -12,7 +12,7 @@ class ItemDetail extends Component {
     const item = this.props.item;
     const loading = this.props.loading;
 
-    console.log(itemID);
+    console.log(item.item_image);
 
     if (loading) {
       return (
