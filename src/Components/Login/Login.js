@@ -2,7 +2,7 @@ import React, { Component } from "react";
 
 import { Input } from "react-input-component";
 import { connect } from "react-redux";
-import * as actionCreators from "../store/actions";
+import * as actionCreators from "../../store/actions";
 
 class Login extends Component {
   state = {
