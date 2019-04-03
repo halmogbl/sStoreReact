@@ -1,7 +1,9 @@
 import React, { Component } from "react";
 import { Switch, Route, Redirect, withRouter } from "react-router-dom";
 
-import Welcome from "./components/Welcome";
+// import Welcome from "./components/Welcome";
+// import RegistrationForm from "./components/RegistrationForm";
+import Login from "./components/Login";
 
 import { connect } from "react-redux";
 
@@ -17,8 +19,8 @@ class App extends Component {
     return (
       <div className="content-wrapper col-12">
         <Switch>
-          <Route path="/welcome" component={Welcome} />
-          <Redirect to="/welcome" />
+          <Route path="/Login" component={Login} />
+          <Redirect to="/Login" />
         </Switch>
       </div>
     );
