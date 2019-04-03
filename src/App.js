@@ -26,7 +26,7 @@ import "./assets/css/Custom.css";
 class App extends Component {
   componentDidMount() {
     this.props.fetchCategories();
-    this.props.fetchProfile();
+    // this.props.checkForExpiredToken();
   }
 
   render() {
@@ -57,8 +57,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    fetchCategories: () => dispatch(actionCreators.fetchCategories()),
-    fetchProfile: () => dispatch(actionCreators.fetchProfile())
+    fetchCategories: () => dispatch(actionCreators.fetchCategories())
+    // checkForExpiredToken: () => dispatch(actionCreators.checkForExpiredToken())
   };
 };
 export default withRouter(

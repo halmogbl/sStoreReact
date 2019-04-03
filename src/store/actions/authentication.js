@@ -13,58 +13,86 @@ const setAuthToken = token => {
     localStorage.setItem("token", token);
     axios.defaults.headers.common.Authorization = `JWT ${token}`;
   } else {
-    delete axios.defaults.headers.common.Authorization;
     localStorage.removeItem("token");
+    delete axios.defaults.headers.common.Authorization;
   }
 };
 
 export const checkForExpiredToken = () => {
-  const token = localStorage.getItem("token");
-  if (token) {
-    const currentTime = Date.now() / 1000;
-
-    const user = jwt_decode(token);
-
-    if (user.exp >= currentTime) {
-      setAuthToken(token);
-      return setCurrentUser(user);
+  return dispatch => {
+    // Get token
+    const token = localStorage.getItem("token");
+    if (token) {
+      const currentTime = Date.now() / 1000;
+      // Decode token and get user info
+      const user = jwt_decode(token);
+      // Check token expiration
+      if (user.exp >= currentTime) {
+        // Set auth token header although its not needed here because this is not a new login this
+        // get the token from the local storage and checks for it's expiry date
+        setAuthToken(token);
+        //to store the user locally in the reducer
+        dispatch(setCurrentUser(user));
+      } else {
+        dispatch(logout());
+      }
     }
-  }
-  return logout();
+  };
 };
 
-export const login = (userData, history) => {
+export const login = (userData, history, fetch) => {
   return async dispatch => {
     try {
       let response = await instance.post("login/", userData);
       let user = response.data;
+      console.log(user);
       setAuthToken(user.token);
       dispatch(setCurrentUser(jwt_decode(user.token)));
-      history.push("");
-    } catch (error) {
-      console.error(error.response.data);
-      //   alert("Wrong User Name Or password, Try Agaien Or Signup");
+      history.push("/profile");
+      fetch();
+    } catch (err) {
+      console.error(err.response);
+      setErrors(err.response);
     }
   };
 };
 
-export const signup = (userData, history) => {
-  return dispatch => {
-    instance
-      .post("register/", userData)
-      .then(res => res.data)
-      .then(user => {
-        const decodedUser = jwt_decode(user.token);
-        setAuthToken(user.token);
-        dispatch(setCurrentUser(decodedUser));
-        // history.push("");
-      })
-      .catch(err => dispatch(setErrors(err.response.data)));
+// export const signup = (userData, history) => {
+//   return dispatch => {
+//     instance
+//       .post("register/", userData)
+//       .then(res => res.data)
+//       .then(user => {
+//         const decodedUser = jwt_decode(user.token);
+//         setAuthToken(user.token);
+//         dispatch(setCurrentUser(decodedUser));
+//         // history.push("");
+//       })
+//       .catch(err => dispatch(setErrors(err.response.data)));
+//   };
+// };
+
+export const signup = (userData, history, fetch) => {
+  return async dispatch => {
+    try {
+      let response = await instance.post("register/", userData);
+      let user = response.data;
+      let decodedUser = jwt_decode(user.token);
+      setAuthToken(user.token);
+      dispatch(setCurrentUser(decodedUser));
+      history.push("/profile");
+      console.log(user.token);
+      fetch();
+    } catch (err) {
+      console.error(err.response);
+      setErrors(err.response);
+    }
   };
 };
 
-export const logout = () => {
+export const logout = history => {
   setAuthToken();
+  history.push("/login");
   return setCurrentUser();
 };
 
