@@ -1,6 +1,4 @@
 import * as actionTypes from "./actionTypes";
-
-// AC
 // import { setErrors } from "./errors";
 
 import axios from "axios";
@@ -9,18 +7,19 @@ const instance = axios.create({
   baseURL: "http://127.0.0.1:8000/api/"
 });
 
-export const fetchCategories = () => {
+export const fetchItemDetail = id => {
   return async dispatch => {
     try {
       // to fetch from api
-      let response = await instance.get("category/list/");
+      let response = await instance.get(`item/${id}/detail/`);
       // to get data from object reponse
-      let categories = response.data;
+      let item = response.data;
       //to send to reducer
       // console.log(categories);
+
       dispatch({
-        type: actionTypes.FETCH_CATEGORIES,
-        payload: categories
+        type: actionTypes.FETCH_ITEM_DETAIL,
+        payload: item
       });
     } catch (error) {
       //incase there is an error

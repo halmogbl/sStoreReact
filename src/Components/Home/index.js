@@ -15,4 +15,4 @@ const mapStateToProps = state => {
   return {};
 };
 
-export default connect(null)(Home);
+export default connect(mapStateToProps)(Home);
