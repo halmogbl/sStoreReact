@@ -1,10 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 
-function mapStateToProps(state) {
-  return {};
-}
-
 class AddressesHeader extends Component {
   render() {
     return (
@@ -19,5 +15,12 @@ class AddressesHeader extends Component {
     );
   }
 }
+
+const mapStateToProps = state => {
+  return {
+    profile: state.profileReducer.profile,
+    loading: state.profileReducer.loading
+  };
+};
 
 export default connect(mapStateToProps)(AddressesHeader);
