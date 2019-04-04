@@ -5,3 +5,5 @@ export { fetchItemDetail } from "./items";
 export { fetchCategories } from "./categories";
 export { fetchProfile, putProfile } from "./profile";
 export { fetchBrands } from "./brands";
+export { fetchVariatons } from "./variatons";
+

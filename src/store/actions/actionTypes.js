@@ -10,3 +10,4 @@ export const PUT_PROFILE = "PUT_PROFILE";
 
 export const SET_CURRENT_USER = "SET_CURRENT_USER";
 export const FETCH_BRANDS = "FETCH_BRANDS";
+export const FETCH_VARIATONS = "FETCH_VARIATONS";

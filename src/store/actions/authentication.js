@@ -57,7 +57,6 @@ export const login = (userData, history, fetch) => {
   };
 };
 
-
 export const signup = (userData, history, fetch) => {
   return async dispatch => {
     try {
