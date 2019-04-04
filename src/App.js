@@ -15,6 +15,7 @@ import Profile from "./Components/Profile";
 import Shop from "./Components/Shop";
 import Login from "./Components/Login/Login";
 import Signup from "./Components/Signup/RegistrationForm";
+import UpdateProfileForm from "./Components/Profile/UpdateProfileForm";
 
 // import Signup from "./Components/Signup";
 import CategoryItems from "./Components/CategoryItems";
@@ -40,6 +41,7 @@ class App extends Component {
         <Switch>
           <Route path="/Login" component={Login} />
           <Route path="/home" component={Home} />
+          <Route path="/profile/update" component={UpdateProfileForm} />
           <Route path="/profile" component={Profile} />
           <Route path="/shop" component={Shop} />
           {/* // <Route path="/login" component={Login} /> */}

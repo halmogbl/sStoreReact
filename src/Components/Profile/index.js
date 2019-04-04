@@ -6,65 +6,27 @@ import AddressesHeader from "./AddressesHeader";
 import imageNotFound from "../../assets/images/notfound.png";
 import UserInfoHeader from "./UserInfoHeader";
 import UserInfoBody from "./UserInfoBody";
+import UpdateProfileForm from "./UpdateProfileForm";
 
 class Profile extends Component {
   componentDidMount() {
     this.props.fetchProfile();
     console.log("fetching profile", this.props.profile);
   }
-  state = {
-    profile: {
-      id: 1,
-      user: {
-        id: 1,
-        username: "hamadalala",
-        first_name: "hamad",
-        last_name: "almogbl",
-        email: "almohama7788@gmail.com"
-      },
-      phone_number: "3462283050",
-      profile_image: null,
-      addresses: [
-        {
-          id: 1,
-          name: "the morgan",
-          street_1: "2401 westridge st, Apt#3101",
-          street_2: "2401 westridge st, Apt#3101",
-          city: "Houston",
-          postal_code: 77054
-        },
-        {
-          id: 3,
-          name: "the morgan",
-          street_1: "2401 westridge st, Apt#3101",
-          street_2: "2401 westridge st, Apt#3101",
-          city: "Houston",
-          postal_code: 77054
-        },
-        {
-          id: 4,
-          name: "the morgan",
-          street_1: "2401 westridge st, Apt#3101",
-          street_2: "2401 westridge st, Apt#3101",
-          city: "Houston",
-          postal_code: 77054
-        }
-      ]
-    }
-  };
+
   render() {
     if (this.props.profile) {
       const addresses = this.props.profile.addresses.map(address => (
         <AddressesBody address={address} key={address.id} />
       ));
-      console.log(this.props.profile.profile_image);
-      // let image = this.props.profile.profile_image;
-      //
+
       return (
-        <div className="col-12 ">
-          {/* card start */}
+        <div className="col-12 my-3 border border-primary border-top  ">
+          <a href="profile/update/" className="btn btn-primary">
+            Update Profile
+          </a>
           <div
-            className=" card border-primary "
+            className="col-12 "
             style={{
               justifyContent: "center",
               alignItems: "center"
@@ -72,44 +34,41 @@ class Profile extends Component {
           >
             {this.props.profile.profile_image ? (
               <img
-                className="card-img-top col-12  "
+                className="col-12  "
+                style={{
+                  width: "fit-content",
+                  justifyContent: "center"
+                }}
+                src={this.props.profile.profile_image}
+                alt={imageNotFound}
+              />
+            ) : (
+              <img
                 style={{
                   width: "fit-content",
                   justifyContent: "center",
                   alignItems: "center"
                 }}
-                src={this.props.profile.profile_image}
-                alt={this.props.profile.profile_image}
+                src={imageNotFound}
+                alt={imageNotFound}
               />
-            ) : (
-              <img src={imageNotFound} alt={imageNotFound} />
             )}
-            <div className="card-body  ">
-              <div className="col-12 my-3 border border-primary border-top  ">
-                <h5 className="card-title">Profile</h5>
-                <table
-                  className="table border   "
-                  style={{
-                    textAlign: "center",
-                    width: "-webkit-fill-available"
-                  }}
-                >
-                  <thead>
-                    <UserInfoHeader />
-                  </thead>
-                  <tbody>
-                    <UserInfoBody />
-                  </tbody>
-                </table>
-              </div>
-              <a href="#" className="btn btn-primary">
-                Update Profile
-              </a>
-            </div>
-          </div>
-          {/* end of card */}
+            <h5>Profile</h5>
+            <table
+              className="table border   "
+              style={{
+                textAlign: "center",
+                width: "-webkit-fill-available"
+              }}
+            >
+              <thead>
+                <UserInfoHeader />
+              </thead>
+              <tbody>
+                <UserInfoBody />
+              </tbody>
+            </table>
 
-          <div className="col-12 my-3 border border-primary border-top  ">
             <h5>Addresses</h5>
             <table
               className="table table-striped "
