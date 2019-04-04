@@ -59,13 +59,25 @@ class Profile extends Component {
       ));
       console.log(this.props.profile.profile_image);
       // let image = this.props.profile.profile_image;
+      //
       return (
-        <div className="col-12">
+        <div className="col-12 ">
           {/* card start */}
-          <div className="card border-primary " style={{ width: "auto" }}>
+          <div
+            className=" card border-primary "
+            style={{
+              justifyContent: "center",
+              alignItems: "center"
+            }}
+          >
             {this.props.profile.profile_image ? (
               <img
-                className="card-img-top "
+                className="card-img-top col-12  "
+                style={{
+                  width: "fit-content",
+                  justifyContent: "center",
+                  alignItems: "center"
+                }}
                 src={this.props.profile.profile_image}
                 alt={this.props.profile.profile_image}
               />
@@ -76,8 +88,11 @@ class Profile extends Component {
               <div className="col-12 my-3 border border-primary border-top  ">
                 <h5 className="card-title">Profile</h5>
                 <table
-                  className="table border  "
-                  style={{ textAlign: "center", width: "max-content" }}
+                  className="table border   "
+                  style={{
+                    textAlign: "center",
+                    width: "-webkit-fill-available"
+                  }}
                 >
                   <thead>
                     <UserInfoHeader />
@@ -87,8 +102,8 @@ class Profile extends Component {
                   </tbody>
                 </table>
               </div>
-              <a href="#" class="btn btn-primary">
-                Go somewhere
+              <a href="#" className="btn btn-primary">
+                Update Profile
               </a>
             </div>
           </div>
@@ -98,7 +113,7 @@ class Profile extends Component {
             <h5>Addresses</h5>
             <table
               className="table table-striped "
-              style={{ textAlign: "center", width: "max-content" }}
+              style={{ textAlign: "center", width: "-webkit-fill-available" }}
             >
               <thead>
                 <AddressesHeader />
