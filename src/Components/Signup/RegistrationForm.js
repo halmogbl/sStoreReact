@@ -7,20 +7,57 @@ import * as actionCreators from "../../store/actions";
 class RegistationForm extends Component {
   state = {
     username: "",
-    // firstname: "",
-    // lastname: "",
-    password: ""
-    // confirmpassword: "",
-    // email: ""
+    firstname: "",
+    lastname: "",
+    password: "",
+    confirmpassword: "",
+    email: "",
+    alertUsername: false,
+    alertPassword: false
+    // alertEmail: false
   };
 
   changeHandler = e => {
     this.setState({ [e.target.name]: e.target.value });
   };
 
-  submitHandler = e => {
+  submitHandler = async e => {
     e.preventDefault();
-    this.props.signup(this.state, this.props.history);
+    if (
+      this.state.password &&
+      this.state.password === this.state.confirmpassword &&
+      this.state.username
+    ) {
+      let userData = {
+        username: this.state.username,
+        password: this.state.password
+        // email: this.state.email
+      };
+      await this.setState({
+        alertPassword: false,
+        alertUsername: false
+        // alertEmail: false
+      });
+      this.props.signup(userData, this.props.history);
+    } else {
+      if (this.state.username) {
+        this.setState({ alertUsername: false });
+        if (this.state.password) {
+          if (this.state.password !== this.state.confirmpassword) {
+            this.setState({ alertPassword: true });
+          }
+          // if (this.state.email) {
+          //   this.setState({ alertEmail: false });
+          // } else {
+          //   this.setState({ alertEmail: true });
+          // }
+        } else {
+          this.setState({ alertPassword: true });
+        }
+      } else {
+        this.setState({ alertUsername: true, alertPassword: false });
+      }
+    }
   };
   // HERE
 
@@ -61,53 +98,84 @@ class RegistationForm extends Component {
           <h1>Create account</h1>
           <p>YOUR INFORMATION.</p>
           <form onSubmit={this.submitHandler}>
+            {this.state.alertUsername ? (
+              <div class="alert alert-danger" role="alert">
+                Please input a username
+              </div>
+            ) : (
+              <></>
+            )}
             <Input
-              text="User Name"
+              placeholder="User Name"
               name="username"
               value={this.state.username}
               onChange={this.changeHandler}
-              emptyMessage="User Name can't be empty"
+              className="form-control"
             />
-            {/* <Input
-              text="First Name"
+            <Input
+              placeholder="First Name"
               name="firstname"
               value={this.state.firstname}
               onChange={this.changeHandler}
-              emptyMessage="First Name can't be empty"
+              className="form-control"
             />
 
             <Input
-              text="Last Name"
+              placeholder="Last Name"
               name="lastname"
               value={this.state.lastname}
               onChange={this.changeHandler}
-              emptyMessage="Last Name can't be empty"
-            /> */}
+              className="form-control"
+            />
 
-            {/* <Input
-              text="Email Address"
+            {/* {this.state.alertEmail ? (
+              <div class="alert alert-danger" role="alert">
+                Please input an Email
+              </div>
+            ) : (
+              <></>
+            )} */}
+            <Input
+              placeholder="Email Address"
               name="email"
-              type="text"
+              type="email"
               value={this.state.email}
               onChange={this.handleEmailInput}
-              errorMessage="Email is invalid"
-              emptyMessage="Email can't be empty"
-            /> */}
-
+              className="form-control"
+            />
+            {this.state.alertPassword ? (
+              <div class="alert alert-danger" role="alert">
+                Passwords dont match or no password inputed
+              </div>
+            ) : (
+              <></>
+            )}
             <Input
-              text="Password"
+              placeholder="Password"
               type="password"
               name="password"
+              className="form-control"
               // validator="true"
               // minCharacters="8"
               // requireCapitals="1"
               // requireNumbers="1"
               value={this.state.passsword}
-              emptyMessage="Password is invalid"
+              onChange={this.changeHandler}
+            />
+            <Input
+              placeholder="Confirm Password"
+              type="password"
+              name="confirmpassword"
+              // validator="true"
+              // minCharacters="8"
+              // requireCapitals="1"
+              // requireNumbers="1"
+              className="form-control"
+              value={this.state.confirmpasssword}
               onChange={this.changeHandler}
             />
 
-            <button type="submit" className="button button_wide">
+            <button type="submit" className="button ">
               CREATE ACCOUNT
             </button>
           </form>
