@@ -23,12 +23,13 @@ class Login extends Component {
     return (
       <div className="create_account_screen">
         <div className="create_account_form">
-          <h1>Login</h1>
+          <h3>Login</h3>
           <form onSubmit={this.submitHandler}>
             <Input
               text="User Name"
               name="username"
               value={this.state.username}
+              className="form-control"
               onChange={this.changeHandler}
               //   emptyMessage="User Name can't be empty"
             />
@@ -39,10 +40,11 @@ class Login extends Component {
               name="password"
               value={this.state.passsword}
               //   emptyMessage="Password is invalid"
+              className="form-control"
               onChange={this.changeHandler}
             />
 
-            <button type="submit" className="button button_wide">
+            <button type="submit" className="button">
               Login
             </button>
           </form>

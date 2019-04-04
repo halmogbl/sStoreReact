@@ -14,7 +14,7 @@ import Footer from "./Components/Footer";
 import Profile from "./Components/Profile";
 import Shop from "./Components/Shop";
 import Login from "./Components/Login/Login";
-import Signup from "./Components/Signup";
+import Signup from "./Components/Signup/RegistrationForm";
 
 // Actions
 import * as actionCreators from "./store/actions";
