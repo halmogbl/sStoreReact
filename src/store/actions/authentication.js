@@ -57,20 +57,6 @@ export const login = (userData, history, fetch) => {
   };
 };
 
-// export const signup = (userData, history) => {
-//   return dispatch => {
-//     instance
-//       .post("register/", userData)
-//       .then(res => res.data)
-//       .then(user => {
-//         const decodedUser = jwt_decode(user.token);
-//         setAuthToken(user.token);
-//         dispatch(setCurrentUser(decodedUser));
-//         // history.push("");
-//       })
-//       .catch(err => dispatch(setErrors(err.response.data)));
-//   };
-// };
 
 export const signup = (userData, history, fetch) => {
   return async dispatch => {

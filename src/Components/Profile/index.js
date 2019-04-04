@@ -1,7 +1,11 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import Addresses from "./Addresses";
+import AddressesBody from "./AddressesBody";
 import * as actionCreators from "../../store/actions";
+import AddressesHeader from "./AddressesHeader";
+import imageNotFound from "../../assets/images/notfound.png";
+import UserInfoHeader from "./UserInfoHeader";
+import UserInfoBody from "./UserInfoBody";
 
 class Profile extends Component {
   componentDidMount() {
@@ -51,35 +55,70 @@ class Profile extends Component {
   render() {
     if (this.props.profile) {
       const addresses = this.props.profile.addresses.map(address => (
-        <Addresses address={address} key={address.id} />
+        <AddressesBody address={address} key={address.id} />
       ));
+      console.log(this.props.profile.profile_image);
+      // let image = this.props.profile.profile_image;
+      //
       return (
-        <div className="col-12">
-          <h1>Profile</h1>
-          <div>id:{this.props.profile.id}</div>
-          <div>username: {this.props.profile.user.username}</div>
-          <div>first name: {this.props.profile.user.first_name}</div>
-          <div>last name: {this.props.profile.user.last_name}</div>
-          <div>email: {this.props.profile.user.email}</div>
-          <div>phone number: {this.props.profile.phone_number}</div>
-          <div>image : {this.props.profile.profile_image}</div>
+        <div className="col-12 ">
+          {/* card start */}
+          <div
+            className=" card border-primary "
+            style={{
+              justifyContent: "center",
+              alignItems: "center"
+            }}
+          >
+            {this.props.profile.profile_image ? (
+              <img
+                className="card-img-top col-12  "
+                style={{
+                  width: "fit-content",
+                  justifyContent: "center",
+                  alignItems: "center"
+                }}
+                src={this.props.profile.profile_image}
+                alt={this.props.profile.profile_image}
+              />
+            ) : (
+              <img src={imageNotFound} alt={imageNotFound} />
+            )}
+            <div className="card-body  ">
+              <div className="col-12 my-3 border border-primary border-top  ">
+                <h5 className="card-title">Profile</h5>
+                <table
+                  className="table border   "
+                  style={{
+                    textAlign: "center",
+                    width: "-webkit-fill-available"
+                  }}
+                >
+                  <thead>
+                    <UserInfoHeader />
+                  </thead>
+                  <tbody>
+                    <UserInfoBody />
+                  </tbody>
+                </table>
+              </div>
+              <a href="#" className="btn btn-primary">
+                Update Profile
+              </a>
+            </div>
+          </div>
+          {/* end of card */}
+
           <div className="col-12 my-3 border border-primary border-top  ">
-            Addresses:{" "}
+            <h5>Addresses</h5>
             <table
-              className="col-12 table border "
-              style={{ textAlign: "center" }}
+              className="table table-striped "
+              style={{ textAlign: "center", width: "-webkit-fill-available" }}
             >
               <thead>
-                <tr>
-                  <th>id</th>
-                  <th>name</th>
-                  <th>street 1</th>
-                  <th>street 2</th>
-                  <th>city</th>
-                  <th>postal code</th>
-                </tr>
+                <AddressesHeader />
               </thead>
-              <tbody>{addresses}</tbody>
+              <tbody className="">{addresses}</tbody>
             </table>
           </div>
         </div>

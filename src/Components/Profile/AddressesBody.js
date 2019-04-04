@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-class Addresses extends Component {
+class AddressesBody extends Component {
   render() {
     return (
       <tr>
@@ -14,4 +14,4 @@ class Addresses extends Component {
   }
 }
 
-export default Addresses;
+export default AddressesBody;
