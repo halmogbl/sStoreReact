@@ -1,15 +1,15 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import * as actionCreators from "../../store/actions";
-import brandsList from "./brandsList";
+import BrandsList from "./BrandsList";
 
 class Brands extends Component {
-  componentDidMount() {
-    let test = this.props.fetchBrands();
-    console.log("brands", test);
-  }
   render() {
-    return <div className="col-12">{<brandsList />}</div>;
+    return (
+      <div className="col-12">
+        <BrandsList />
+      </div>
+    );
   }
 }
 
@@ -17,9 +17,7 @@ const mapStateToProps = state => {
   return {};
 };
 
-const mapDispatchToProps = dispatch => ({
-  fetchBrands: () => dispatch(actionCreators.fetchBrands())
-});
+const mapDispatchToProps = dispatch => ({});
 
 export default connect(
   mapStateToProps,
