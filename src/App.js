@@ -16,6 +16,10 @@ import Shop from "./Components/Shop";
 import Login from "./Components/Login/Login";
 import Signup from "./Components/Signup/RegistrationForm";
 
+// import Signup from "./Components/Signup";
+import CategoryItems from "./Components/CategoryItems";
+import ItemDetail from "./Components/ItemDetail";
+
 // Actions
 import * as actionCreators from "./store/actions";
 
@@ -26,7 +30,7 @@ import "./assets/css/Custom.css";
 class App extends Component {
   componentDidMount() {
     this.props.fetchCategories();
-    this.props.fetchProfile();
+    // this.props.checkForExpiredToken();
   }
 
   render() {
@@ -40,6 +44,10 @@ class App extends Component {
           <Route path="/shop" component={Shop} />
           {/* // <Route path="/login" component={Login} /> */}
           <Route path="/signup" component={Signup} />
+
+          <Route path="/item/:itemID" component={ItemDetail} />
+          <Route path="/category/:categoryID" component={CategoryItems} />
+
           <Redirect to="/home" />
         </Switch>
         <Footer />
@@ -57,8 +65,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    fetchCategories: () => dispatch(actionCreators.fetchCategories()),
-    fetchProfile: () => dispatch(actionCreators.fetchProfile())
+    fetchCategories: () => dispatch(actionCreators.fetchCategories())
+    // checkForExpiredToken: () => dispatch(actionCreators.checkForExpiredToken())
   };
 };
 export default withRouter(

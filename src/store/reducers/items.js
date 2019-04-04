@@ -1,17 +1,16 @@
 import * as actionTypes from "../actions/actionTypes";
 
 const initialState = {
-  categories: [],
-  // filteredCategories: [],
+  item: [],
   loading: true
 };
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
-    case actionTypes.FETCH_CATEGORIES:
+    case actionTypes.FETCH_ITEM_DETAIL:
       return {
         ...state,
-        categories: action.payload,
+        item: action.payload,
         loading: false
       };
 
