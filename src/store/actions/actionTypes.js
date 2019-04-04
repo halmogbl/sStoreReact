@@ -8,4 +8,4 @@ export const POST_CATEGORY = "POST_CATEGORY";
 export const FETCH_PROFILE = "FETCH_PROFILE";
 
 export const SET_CURRENT_USER = "SET_CURRENT_USER";
-
+export const FETCH_BRANDS = "FETCH_BRANDS";
