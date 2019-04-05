@@ -2,8 +2,24 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import * as actionCreators from "../../store/actions";
 import imageNotFound from "../../assets/images/notfound.png";
+import { Link } from "react-router-dom";
 
 class UpdateProfileForm extends Component {
+  componentDidMount() {
+    this.setState({
+      profile_image: this.props.profile.profile_image,
+      phone_number: this.props.profile.phone_number
+    });
+  }
+
+  componentDidUpdate(prevState) {
+    if (prevState.profile !== this.props.profile) {
+      this.setState({
+        profile_image: this.props.profile.profile_image,
+        phone_number: this.props.profile.phone_number
+      });
+    }
+  }
   state = {
     phone_number: "",
     profile_image: null
@@ -20,9 +36,7 @@ class UpdateProfileForm extends Component {
     this.setState({ [event.target.name]: event.target.value });
 
   onImageChange = () => {
-    console.log("Hi");
     let filesSelected = document.getElementById("inputFileToLoad").files;
-    console.log(filesSelected);
     if (filesSelected.length > 0) {
       let fileToLoad = filesSelected[0];
       this.setState({ profile_image: fileToLoad });
@@ -34,7 +48,13 @@ class UpdateProfileForm extends Component {
 
   render() {
     console.log(this.props.user);
-    console.log(this.props.profile.profile_image);
+    console.log("from props", this.props.profile.profile_image);
+    console.log(
+      "from the state",
+      this.state.profile_image,
+      "Phone Number from State",
+      this.state.phone_number
+    );
 
     return (
       <div className="container">
@@ -49,14 +69,14 @@ class UpdateProfileForm extends Component {
             {/* <!-- left column --> */}
             <div className="col-md-3">
               <div className="text-center">
-                {this.props.profile.profile_image ? (
+                {this.state.profile_image ? (
                   <img
                     className="col-12  "
                     style={{
                       width: "fit-content",
                       justifyContent: "center"
                     }}
-                    src={this.props.profile.profile_image}
+                    src={this.state.profile_image}
                     alt={imageNotFound}
                   />
                 ) : (
@@ -75,8 +95,8 @@ class UpdateProfileForm extends Component {
 
                 <input
                   type="file"
-                  //   className="form-control"
-                  //   name="profile_image"
+                  // className="form-control"
+                  name="profile_image"
                   //   value={this.state.profile_image}
                   onChange={this.onImageChange}
                   id="inputFileToLoad"
@@ -105,6 +125,7 @@ class UpdateProfileForm extends Component {
                     name="phone_number"
                     value={this.state.phone_number}
                     onChange={this.onTextchange}
+                    placeholder={"+966"}
                   />
                 </div>
               </div>
@@ -112,20 +133,13 @@ class UpdateProfileForm extends Component {
               <div className="form-group">
                 <label className="col-md-3 control-label" />
                 <div className="col-md-8">
-                  <a
-                    href="profile/"
-                    className="btn btn-primary"
-                    type="submit"
-                    onClick={this.submitChannel}
-                  >
+                  <button className="btn btn-primary" type="submit">
                     Save Changes
-                  </a>
-                  <input
-                    type="reset"
-                    className="btn btn-default"
-                    value="Cancel"
-                    onClick={this.resetForm}
-                  />
+                  </button>
+
+                  <button className="btn btn-danger" onClick={this.resetForm}>
+                    Reset All fields
+                  </button>
                 </div>
               </div>
             </div>

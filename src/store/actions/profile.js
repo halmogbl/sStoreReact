@@ -33,7 +33,7 @@ export const putProfile = (profile, reset, history) => {
   const formData = new FormData();
   formData.append("phone_number", profile.phone_number);
   formData.append("profile_image", profile.profile_image);
-  console.log(profile);
+  // console.log(profile);
   return async dispatch => {
     try {
       const res = await instance.put("profile/update/", formData);
@@ -43,7 +43,7 @@ export const putProfile = (profile, reset, history) => {
         payload: updatedProfile
       });
       reset();
-      history.push("profile/");
+      history.push("/profile");
     } catch (error) {
       if (error.response) dispatch(setErrors(error.response.data));
       else console.error(error);

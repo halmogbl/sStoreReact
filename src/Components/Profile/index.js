@@ -7,6 +7,7 @@ import imageNotFound from "../../assets/images/notfound.png";
 import UserInfoHeader from "./UserInfoHeader";
 import UserInfoBody from "./UserInfoBody";
 import UpdateProfileForm from "./UpdateProfileForm";
+import { Link } from "react-router-dom";
 
 class Profile extends Component {
   componentDidMount() {
@@ -22,9 +23,9 @@ class Profile extends Component {
 
       return (
         <div className="col-12 my-3 border border-primary border-top  ">
-          <a href="profile/update/" className="btn btn-primary">
+          <Link to="/profile/update/" className="btn btn-primary">
             Update Profile
-          </a>
+          </Link>
           <div
             className="col-12 "
             style={{
