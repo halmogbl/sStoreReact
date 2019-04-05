@@ -67,7 +67,7 @@ class UpdateProfileForm extends Component {
                       justifyContent: "center",
                       alignItems: "center"
                     }}
-                    src={this.onImageChange}
+                    src={imageNotFound}
                     alt={imageNotFound}
                   />
                 )}
