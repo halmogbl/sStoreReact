@@ -7,7 +7,7 @@ import { Link } from "react-router-dom";
 class UpdateProfileForm extends Component {
   componentDidMount() {
     this.setState({
-      profile_image: this.props.profile.profile_image,
+      image: this.props.profile.profile_image,
       phone_number: this.props.profile.phone_number
     });
   }
@@ -15,31 +15,36 @@ class UpdateProfileForm extends Component {
   componentDidUpdate(prevState) {
     if (prevState.profile !== this.props.profile) {
       this.setState({
-        profile_image: this.props.profile.profile_image,
+        image: this.props.profile.profile_image,
         phone_number: this.props.profile.phone_number
       });
     }
   }
   state = {
     phone_number: "",
-    profile_image: null
+    profile_image: "",
+    image: "",
+    alertUpload: false
   };
 
   submitChannel = event => {
     event.preventDefault();
-    this.props.putProfile(this.state, this.resetForm, this.props.history);
+    this.props.updateProfile(this.state, this.resetForm, this.props.history);
   };
 
   resetForm = () => this.setState({ phone_number: "", profile_image: "" });
 
   onTextchange = event =>
     this.setState({ [event.target.name]: event.target.value });
-
   onImageChange = () => {
     let filesSelected = document.getElementById("inputFileToLoad").files;
     if (filesSelected.length > 0) {
       let fileToLoad = filesSelected[0];
-      this.setState({ profile_image: fileToLoad });
+      this.setState({
+        profile_image: fileToLoad,
+        alertUpload: true,
+        image: URL.createObjectURL(fileToLoad)
+      });
       var fileReader = new FileReader();
 
       fileReader.readAsDataURL(fileToLoad);
@@ -47,15 +52,6 @@ class UpdateProfileForm extends Component {
   };
 
   render() {
-    console.log(this.props.user);
-    console.log("from props", this.props.profile.profile_image);
-    console.log(
-      "from the state",
-      this.state.profile_image,
-      "Phone Number from State",
-      this.state.phone_number
-    );
-
     return (
       <div className="container">
         <form
@@ -69,14 +65,14 @@ class UpdateProfileForm extends Component {
             {/* <!-- left column --> */}
             <div className="col-md-3">
               <div className="text-center">
-                {this.state.profile_image ? (
+                {this.state.image ? (
                   <img
                     className="col-12  "
                     style={{
                       width: "fit-content",
                       justifyContent: "center"
                     }}
-                    src={this.state.profile_image}
+                    src={this.state.image}
                     alt={imageNotFound}
                   />
                 ) : (
@@ -106,14 +102,17 @@ class UpdateProfileForm extends Component {
 
             {/* <!-- edit form column --> */}
             <div className="col-md-9 personal-info">
-              <div className="alert alert-info alert-dismissable">
-                <a className="panel-close close" data-dismiss="alert">
-                  ×
-                </a>
-                <i className="fa fa-coffee" />
-                This is an <strong>.alert</strong>. Use this to show important
-                messages to the user.
-              </div>
+              {this.state.alertUpload ? (
+                <div className="alert alert-info alert-dismissable">
+                  <a className="panel-close close" data-dismiss="alert">
+                    ×
+                  </a>
+                  <i className="fa fa-coffee" />
+                  Image <strong>Uploaded</strong> press save
+                </div>
+              ) : (
+                <></>
+              )}
               <h3>Personal info</h3>
 
               <div className="form-group">
@@ -159,8 +158,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    putProfile: (updatedProfile, reset, history) =>
-      dispatch(actionCreators.putProfile(updatedProfile, reset, history)),
+    updateProfile: (updatedProfile, reset, history) =>
+      dispatch(actionCreators.updateProfile(updatedProfile, reset, history)),
     setErrors: () => dispatch(actionCreators.setErrors({}))
   };
 };

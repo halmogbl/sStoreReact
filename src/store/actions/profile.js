@@ -29,17 +29,19 @@ export const fetchProfile = () => {
   };
 };
 
-export const putProfile = (profile, reset, history) => {
+export const updateProfile = (profile, reset, history) => {
   const formData = new FormData();
   formData.append("phone_number", profile.phone_number);
-  formData.append("profile_image", profile.profile_image);
+  if (profile.profile_image !== "") {
+    formData.append("profile_image", profile.profile_image);
+  }
   // console.log(profile);
   return async dispatch => {
     try {
       const res = await instance.put("profile/update/", formData);
       const updatedProfile = res.data;
       dispatch({
-        type: actionTypes.PUT_PROFILE,
+        type: actionTypes.UPDATE_PROFILE,
         payload: updatedProfile
       });
       reset();
