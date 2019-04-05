@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import * as actionCreators from "../../store/actions";
+import imageNotFound from "../../assets/images/notfound.png";
 
 class UpdateProfileForm extends Component {
   state = {
@@ -33,6 +34,7 @@ class UpdateProfileForm extends Component {
 
   render() {
     console.log(this.props.user);
+    console.log(this.props.profile.profile_image);
 
     return (
       <div className="container">
@@ -47,18 +49,35 @@ class UpdateProfileForm extends Component {
             {/* <!-- left column --> */}
             <div className="col-md-3">
               <div className="text-center">
-                <img
-                  src={this.state.profile_image}
-                  className="avatar img-circle"
-                  alt="avatar"
-                />
+                {this.props.profile.profile_image ? (
+                  <img
+                    className="col-12  "
+                    style={{
+                      width: "fit-content",
+                      justifyContent: "center"
+                    }}
+                    src={this.props.profile.profile_image}
+                    alt={imageNotFound}
+                  />
+                ) : (
+                  <img
+                    className="col-12 "
+                    style={{
+                      width: "fit-content",
+                      justifyContent: "center",
+                      alignItems: "center"
+                    }}
+                    src={imageNotFound}
+                    alt={imageNotFound}
+                  />
+                )}
                 <h6>Upload a different photo...</h6>
 
                 <input
                   type="file"
                   //   className="form-control"
                   //   name="profile_image"
-                  //   //   value={this.state.profile_image}
+                  //   value={this.state.profile_image}
                   onChange={this.onImageChange}
                   id="inputFileToLoad"
                 />
@@ -93,11 +112,14 @@ class UpdateProfileForm extends Component {
               <div className="form-group">
                 <label className="col-md-3 control-label" />
                 <div className="col-md-8">
-                  <input
-                    type="submit"
+                  <a
+                    href="profile/"
                     className="btn btn-primary"
-                    value="Save Changes"
-                  />
+                    type="submit"
+                    onClick={this.submitChannel}
+                  >
+                    Save Changes
+                  </a>
                   <input
                     type="reset"
                     className="btn btn-default"
@@ -116,7 +138,8 @@ class UpdateProfileForm extends Component {
 
 const mapStateToProps = state => {
   return {
-    user: state.auth.user
+    user: state.auth.user,
+    profile: state.profileReducer.profile
   };
 };
 

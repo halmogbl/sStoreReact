@@ -31,6 +31,7 @@ import "./assets/css/Custom.css";
 class App extends Component {
   componentDidMount() {
     this.props.fetchCategories();
+    this.props.fetchProfile();
     // this.props.checkForExpiredToken();
   }
 
@@ -67,7 +68,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    fetchCategories: () => dispatch(actionCreators.fetchCategories())
+    fetchCategories: () => dispatch(actionCreators.fetchCategories()),
+    fetchProfile: () => dispatch(actionCreators.fetchProfile())
     // checkForExpiredToken: () => dispatch(actionCreators.checkForExpiredToken())
   };
 };
