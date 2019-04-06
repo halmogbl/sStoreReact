@@ -23,9 +23,15 @@ class Profile extends Component {
 
       return (
         <div className="col-12 my-3 border border-primary border-top  ">
-          <Link to="/profile/update/" className="btn btn-primary">
-            Update Profile
-          </Link>
+          <div className="">
+            <Link to="/profile/update/" className="btn btn-primary">
+              Update Profile
+            </Link>
+            <Link to="/address/create/'" className="btn btn-primary">
+              add new addresss
+            </Link>
+          </div>
+
           <div
             className="col-12 "
             style={{
@@ -33,14 +39,14 @@ class Profile extends Component {
               alignItems: "center"
             }}
           >
-            {this.props.profile.profile_image ? (
+            {this.props.profile.image ? (
               <img
                 className="col-12  "
                 style={{
                   width: "fit-content",
                   justifyContent: "center"
                 }}
-                src={this.props.profile.profile_image}
+                src={this.props.profile.image}
                 alt={imageNotFound}
               />
             ) : (

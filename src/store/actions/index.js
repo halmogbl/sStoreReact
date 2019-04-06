@@ -3,6 +3,11 @@ export { setErrors } from "./errors";
 
 export { fetchItemDetail } from "./items";
 export { fetchCategories } from "./categories";
-export { fetchProfile, updateProfile } from "./profile";
 export { fetchBrands } from "./brands";
 export { fetchVariatons } from "./variatons";
+export {
+  fetchProfile,
+  updateProfile,
+  postAddress,
+  updateAddress
+} from "./profile";

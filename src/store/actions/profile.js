@@ -29,11 +29,11 @@ export const fetchProfile = () => {
   };
 };
 
-export const updateProfile = (profile, reset, history) => {
+export const updateProfile = (profile, history) => {
   const formData = new FormData();
   formData.append("phone_number", profile.phone_number);
-  if (profile.profile_image !== "") {
-    formData.append("profile_image", profile.profile_image);
+  if (profile.profile_image_file !== "") {
+    formData.append("image", profile.profile_image_file);
   }
   // console.log(profile);
   return async dispatch => {
@@ -44,8 +44,47 @@ export const updateProfile = (profile, reset, history) => {
         type: actionTypes.UPDATE_PROFILE,
         payload: updatedProfile
       });
-      reset();
-      history.push("/profile");
+
+      history.push("/profile/");
+    } catch (error) {
+      if (error.response) dispatch(setErrors(error.response.data));
+      else console.error(error);
+    }
+  };
+};
+
+export const postAddress = (address, history) => {
+  return async dispatch => {
+    try {
+      const res = await instance.post("address/create/", address);
+      const newAddress = res.data;
+      dispatch({
+        type: actionTypes.POST_ADDRESS,
+        payload: newAddress
+      });
+      history.push("/profile/");
+    } catch (error) {
+      if (error.response) dispatch(setErrors(error.response.data));
+      else console.error(error);
+    }
+  };
+};
+
+export const updateAddress = (address, history, addressID) => {
+  address = {
+    ...address,
+    address: [addressID]
+  };
+  return async dispatch => {
+    try {
+      const res = await instance.put(`address/${addressID}/update/`, address);
+      const updatedAddress = res.data;
+      dispatch({
+        type: actionTypes.UPDATE_ADDRESS,
+        payload: updatedAddress
+      });
+
+      history.push("/profile/");
     } catch (error) {
       if (error.response) dispatch(setErrors(error.response.data));
       else console.error(error);

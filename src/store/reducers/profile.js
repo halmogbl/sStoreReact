@@ -2,7 +2,8 @@ import * as actionTypes from "../actions/actionTypes";
 
 const initialState = {
   profile: "",
-  loading: true
+  loading: true,
+  addresses: []
 };
 
 const reducer = (state = initialState, action) => {
@@ -18,6 +19,19 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         profile: action.payload,
+        loading: false
+      };
+
+    case actionTypes.POST_ADDRESS:
+      return {
+        ...state,
+        addresses: action.payload,
+        loading: false
+      };
+    case actionTypes.UPDATE_ADDRESS:
+      return {
+        ...state,
+        addresses: action.payload,
         loading: false
       };
 
