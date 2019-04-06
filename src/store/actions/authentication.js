@@ -57,7 +57,6 @@ export const login = (userData, history, fetch) => {
   };
 };
 
-
 export const signup = (userData, history, fetch) => {
   return async dispatch => {
     try {
@@ -78,7 +77,7 @@ export const signup = (userData, history, fetch) => {
 
 export const logout = history => {
   setAuthToken();
-  history.push("/login");
+  history.push("/Login");
   return setCurrentUser();
 };
 

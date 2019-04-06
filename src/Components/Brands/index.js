@@ -6,7 +6,7 @@ import brandsList from "./brandsList";
 class Brands extends Component {
   componentDidMount() {
     let test = this.props.fetchBrands();
-    console.log("brands", test);
+    console.log(test);
   }
   render() {
     return <div className="col-12">{<brandsList />}</div>;

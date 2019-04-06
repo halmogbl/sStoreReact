@@ -3,6 +3,12 @@ import { NavLink } from "react-router-dom";
 import { connect } from "react-redux";
 import * as actionCreators from "../../store/actions";
 import Loading from "../../Components/Loading";
+import * as categoryStyle from "./categoryStyle";
+import { library } from "@fortawesome/fontawesome-svg-core";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faIgloo } from "@fortawesome/free-solid-svg-icons";
+library.add(faIgloo);
+
 class Menu extends Component {
   componentDidMount() {
     this.props.fetchCategories();
@@ -13,11 +19,18 @@ class Menu extends Component {
       return <Loading />;
     } else {
       return (
-        <div className="col-12">
-          <ul>
+        <div style={{}} className="col-12">
+          <ul
+            className="col-12"
+            style={{ listStyle: "none", display: "flex", overflowY: "scroll" }}
+          >
             {categories.map(category => (
               <li>
-                <NavLink to={`/category/${category.id}`} key={category.id}>
+                <NavLink
+                  to={`/category/${category.id}`}
+                  key={category.id}
+                  style={categoryStyle.circleStyle}
+                >
                   {category.category_name}
                 </NavLink>
               </li>
