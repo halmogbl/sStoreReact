@@ -3,7 +3,22 @@ import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import * as actionCreators from "../../store/actions";
 
-class CreateAddress extends Component {
+class UpdateAddress extends Component {
+  // componentDidMount() {
+  //   this.setState({
+  //     image: this.props.profile.image,
+  //     phone_number: this.props.profile.phone_number
+  //   });
+  // }
+
+  // componentDidUpdate(prevProps) {
+  //   if (prevProps.profile !== this.props.profile) {
+  //     this.setState({
+  //       image: this.props.profile.image,
+  //       phone_number: this.props.profile.phone_number
+  //     });
+  //   }
+  // }
   state = {
     name: "",
     street_1: "",
@@ -26,8 +41,6 @@ class CreateAddress extends Component {
     this.setState({ [event.target.name]: event.target.value });
 
   render() {
-    let addressID = this.props.match.params.addressID;
-
     return (
       <div className="container">
         <form
@@ -140,10 +153,7 @@ class CreateAddress extends Component {
 }
 
 const mapStateToProps = state => {
-  return {
-    user: state.auth.user,
-    profile: state.profileReducer.profile
-  };
+  return {};
 };
 
 const mapDispatchToProps = dispatch => {
@@ -155,4 +165,4 @@ const mapDispatchToProps = dispatch => {
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(CreateAddress);
+)(UpdateAddress);
