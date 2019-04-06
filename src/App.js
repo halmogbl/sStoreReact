@@ -46,6 +46,7 @@ class App extends Component {
           <Route path="/home" component={Home} />
           <Route path="/profile/update" component={UpdateProfileForm} />
           <Route path="/address/:addressID/update" component={UpdateAddress} />
+
           <Route path="/address/create/" component={CreateAddress} />
           <Route path="/profile" component={Profile} />
           <Route path="/shop" component={Shop} />

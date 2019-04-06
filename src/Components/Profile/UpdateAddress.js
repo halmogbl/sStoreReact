@@ -4,21 +4,6 @@ import { Link } from "react-router-dom";
 import * as actionCreators from "../../store/actions";
 
 class UpdateAddress extends Component {
-  // componentDidMount() {
-  //   this.setState({
-  //     image: this.props.profile.image,
-  //     phone_number: this.props.profile.phone_number
-  //   });
-  // }
-
-  // componentDidUpdate(prevProps) {
-  //   if (prevProps.profile !== this.props.profile) {
-  //     this.setState({
-  //       image: this.props.profile.image,
-  //       phone_number: this.props.profile.phone_number
-  //     });
-  //   }
-  // }
   state = {
     name: "",
     street_1: "",
@@ -28,6 +13,41 @@ class UpdateAddress extends Component {
     alertUpload: true
   };
 
+  componentDidMount() {
+    if (this.props.profile) {
+      let addressID = this.props.match.params.addressID;
+      let myAddress =
+        this.props.profile.addresses.find(
+          address => address.id === +addressID
+        ) || {};
+      this.setState({
+        name: myAddress.name,
+        street_1: myAddress.street_1,
+        street_2: myAddress.street_2,
+        city: myAddress.city,
+        postal_code: myAddress.postal_code
+      });
+    }
+  }
+
+  componentDidUpdate(prevProps) {
+    if (prevProps.profile !== this.props.profile) {
+      let addressID = this.props.match.params.addressID;
+      let myAddress =
+        this.props.profile.addresses.find(
+          address => address.id === +addressID
+        ) || {};
+      console.log(myAddress);
+
+      this.setState({
+        name: myAddress.name,
+        street_1: myAddress.street_1,
+        street_2: myAddress.street_2,
+        city: myAddress.city,
+        postal_code: myAddress.postal_code
+      });
+    }
+  }
   submitAddress = async event => {
     event.preventDefault();
     this.props.updateAddress(
@@ -48,14 +68,13 @@ class UpdateAddress extends Component {
           role="form"
           onSubmit={this.submitAddress}
         >
-          <h1>My addresses</h1>
+          <h1>Update My Address</h1>
 
           <div className="row">
             {/* <!-- left column --> */}
-            <div className="col-md-3" />
 
             {/* <!-- edit form column --> */}
-            <div className="col-md-9 personal-info">
+            <div className="col-md-12 personal-info">
               {this.state.alertUpload ? (
                 <div className="alert alert-info alert-dismissable">
                   <a className="panel-close close" data-dismiss="alert">
@@ -67,7 +86,6 @@ class UpdateAddress extends Component {
               ) : (
                 <></>
               )}
-              <h3>Add new address</h3>
 
               <div className="form-group">
                 <label className="col-lg-3 control-label">
@@ -153,7 +171,9 @@ class UpdateAddress extends Component {
 }
 
 const mapStateToProps = state => {
-  return {};
+  return {
+    profile: state.profileReducer.profile
+  };
 };
 
 const mapDispatchToProps = dispatch => {

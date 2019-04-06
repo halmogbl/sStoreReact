@@ -14,6 +14,8 @@ class UpdateProfileForm extends Component {
 
   componentDidUpdate(prevProps) {
     if (prevProps.profile !== this.props.profile) {
+      console.log("show your self", this.props.profile.image);
+
       this.setState({
         image: this.props.profile.image,
         phone_number: this.props.profile.phone_number

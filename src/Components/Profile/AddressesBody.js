@@ -1,7 +1,5 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-import { connect } from "react-redux";
-import * as actionCreators from "../../store/actions";
 
 class AddressesBody extends Component {
   render() {
@@ -21,17 +19,4 @@ class AddressesBody extends Component {
   }
 }
 
-const mapStateToProps = state => {
-  return {};
-};
-
-const mapDispatchToProps = dispatch => {
-  return {
-    updateAddress: (newAddress, history, addressID) =>
-      dispatch(actionCreators.updateAddress(newAddress, history, addressID))
-  };
-};
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(AddressesBody);
+export default AddressesBody;
