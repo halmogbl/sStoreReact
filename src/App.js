@@ -36,7 +36,7 @@ class App extends Component {
 
   render() {
     return (
-      <div className="content-wrapper col-12">
+      <div className="content-wrapper col-12" style={{ top: 50 }}>
         <NavBar />
         <Switch>
           <Route path="/Login" component={Login} />

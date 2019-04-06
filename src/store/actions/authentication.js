@@ -77,7 +77,7 @@ export const signup = (userData, history, fetch) => {
 
 export const logout = history => {
   setAuthToken();
-  history.push("/login");
+  history.push("/Login");
   return setCurrentUser();
 };
 
