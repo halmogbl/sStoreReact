@@ -48,7 +48,7 @@ export const login = (userData, history, fetch) => {
       console.log(user);
       setAuthToken(user.token);
       dispatch(setCurrentUser(jwt_decode(user.token)));
-      history.push("/profile");
+      history.push("/home");
       fetch();
     } catch (err) {
       console.error(err.response);
@@ -65,7 +65,7 @@ export const signup = (userData, history, fetch) => {
       let decodedUser = jwt_decode(user.token);
       setAuthToken(user.token);
       dispatch(setCurrentUser(decodedUser));
-      history.push("/profile");
+      history.push("/home");
       console.log(user.token);
       fetch();
     } catch (err) {
@@ -77,7 +77,7 @@ export const signup = (userData, history, fetch) => {
 
 export const logout = history => {
   setAuthToken();
-  history.push("/login");
+  history.push("/Login");
   return setCurrentUser();
 };
 

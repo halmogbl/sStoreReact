@@ -1,8 +1,14 @@
 import React, { Component } from "react";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import { connect } from "react-redux";
 import * as actionCreators from "../../store/actions";
 import Loading from "../../Components/Loading";
+import * as categoryStyle from "./categoryStyle";
+import { library } from "@fortawesome/fontawesome-svg-core";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faIgloo } from "@fortawesome/free-solid-svg-icons";
+library.add(faIgloo);
+
 class Menu extends Component {
   componentDidMount() {
     this.props.fetchCategories();
@@ -13,13 +19,35 @@ class Menu extends Component {
       return <Loading />;
     } else {
       return (
-        <div className="col-12">
-          <ul>
+        <div style={{}} className="col-12">
+          <button
+            class="btn btn-default dropdown-toggle col-lg-2 col-sm-6"
+            type="button"
+            data-toggle="dropdown"
+            data-hover="dropdown"
+          >
+            Category <span class="caret" />
+          </button>
+          <NavLink
+            className="col-lg-2 col-sm-6"
+            to={`/shop`}
+            style={{ textAlign: "center" }}
+          >
+            Shop
+          </NavLink>
+          <ul
+            className="col-lg-4 col-md-3 col-sm-2 dropdown-menu dropdown-menu-right"
+            style={{ borderRadius: 20 }}
+          >
             {categories.map(category => (
-              <li>
-                <NavLink to={`/category/${category.id}`} key={category.id}>
-                  {category.category_name}
-                </NavLink>
+              <li style={{ padding: 10 }}>
+                <Link
+                  to={`/category/${category.id}`}
+                  key={category.id}
+                  style={categoryStyle.circleStyle}
+                >
+                  {category.name}
+                </Link>
               </li>
             ))}
           </ul>

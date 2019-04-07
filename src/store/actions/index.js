@@ -8,3 +8,13 @@ export { fetchVariatons } from "./variatons";
 export { fetchProfile, updateProfile } from "./profile";
 
 export { postAddress, updateAddress, deleteAddress } from "./addresses";
+
+export {
+  getBrand,
+  getColor,
+  getSize,
+  getPriceFrom,
+  getPriceTo,
+  applyFilter,
+  categoriesItems
+} from "./filterItems";

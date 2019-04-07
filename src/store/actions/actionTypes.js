@@ -9,6 +9,7 @@ export const SET_CURRENT_USER = "SET_CURRENT_USER";
 export const FETCH_BRANDS = "FETCH_BRANDS";
 export const FETCH_VARIATONS = "FETCH_VARIATONS";
 
+
 export const FETCH_PROFILE = "FETCH_PROFILE";
 export const UPDATE_PROFILE = "UPDATE_PROFILE";
 
@@ -17,3 +18,11 @@ export const UPDATE_ADDRESS = "UPDATE_ADDRESS";
 export const DELETE_ADDRESS = "DELETE_ADDRESS";
 
 export const UPDATE_USER = "UPDATE_USER";
+
+export const GETBRAND = "GETBRAND";
+export const GETCOLOR = "GETCOLOR";
+export const GETSIZE = "GETSIZE";
+export const GETPRICEFROM = "GETPRICEFROM";
+export const GETPRICETO = "GETPRICETO";
+export const APPLYFILTER = "APPLYFILTER";
+export const CATEGORIESITEMS = "CATEGORIESITEMS";
