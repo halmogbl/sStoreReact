@@ -6,19 +6,26 @@ import { Link } from "react-router-dom";
 
 class UpdateProfileForm extends Component {
   componentDidMount() {
-    this.setState({
-      image: this.props.profile.image,
-      phone_number: this.props.profile.phone_number
-    });
+    this.props.profile &&
+      this.setState({
+        image: this.props.profile.image,
+        phone_number: this.props.profile.phone_number,
+        first_name: this.props.profile.user.first_name,
+        last_name: this.props.profile.user.last_name,
+        email: this.props.profile.user.email
+      });
   }
 
   componentDidUpdate(prevProps) {
     if (prevProps.profile !== this.props.profile) {
-      console.log("show your self", this.props.profile.image);
+      console.log("show your self", this.props.profile.user.first_name);
 
       this.setState({
         image: this.props.profile.image,
-        phone_number: this.props.profile.phone_number
+        phone_number: this.props.profile.phone_number,
+        first_name: this.props.profile.user.first_name,
+        last_name: this.props.profile.user.last_name,
+        email: this.props.profile.user.email
       });
     }
   }
@@ -26,6 +33,9 @@ class UpdateProfileForm extends Component {
     phone_number: "",
     profile_image_file: "",
     image: "",
+    first_name: "",
+    last_name: "",
+    email: "",
     alertUpload: false
   };
 
@@ -121,6 +131,42 @@ class UpdateProfileForm extends Component {
                     value={this.state.phone_number}
                     onChange={this.onTextchange}
                     placeholder={"+966"}
+                  />
+                </div>
+              </div>
+              <div className="form-group">
+                <label className="col-lg-3 control-label">first name:</label>
+                <div className="col-lg-8">
+                  <input
+                    className="form-control"
+                    type="text"
+                    name="first_name"
+                    value={this.state.first_name}
+                    onChange={this.onTextchange}
+                  />
+                </div>
+              </div>
+              <div className="form-group">
+                <label className="col-lg-3 control-label">last name:</label>
+                <div className="col-lg-8">
+                  <input
+                    className="form-control"
+                    type="text"
+                    name="last_name"
+                    value={this.state.last_name}
+                    onChange={this.onTextchange}
+                  />
+                </div>
+              </div>
+              <div className="form-group">
+                <label className="col-lg-3 control-label">email:</label>
+                <div className="col-lg-8">
+                  <input
+                    className="form-control"
+                    type="text"
+                    name="email"
+                    value={this.state.email}
+                    onChange={this.onTextchange}
                   />
                 </div>
               </div>

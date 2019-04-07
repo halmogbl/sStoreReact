@@ -35,14 +35,25 @@ export const updateProfile = (profile, history) => {
   if (profile.profile_image_file !== "") {
     formData.append("image", profile.profile_image_file);
   }
+  const formDataU = new FormData();
+  formDataU.append("first_name", profile.first_name);
+  formDataU.append("last_name", profile.last_name);
+  formDataU.append("email", profile.email);
+
   // console.log(profile);
   return async dispatch => {
     try {
       const res = await instance.put("profile/update/", formData);
+      const resUser = await instance.put(`user/update/`, formDataU);
       const updatedProfile = res.data;
+      const updatedUser = resUser.data;
       dispatch({
         type: actionTypes.UPDATE_PROFILE,
         payload: updatedProfile
+      });
+      dispatch({
+        type: actionTypes.UPDATE_USER,
+        payload: updatedUser
       });
 
       history.push("/profile/");
@@ -53,18 +64,18 @@ export const updateProfile = (profile, history) => {
   };
 };
 
-export const updateUser = (user, userID) => {
-  return async dispatch => {
-    try {
-      const res = await instance.put(`user/${userID}/update/`, user);
-      const updatedUser = res.data;
-      dispatch({
-        type: actionTypes.UPDATE_USER,
-        payload: updatedUser
-      });
-    } catch (error) {
-      if (error.response) dispatch(setErrors(error.response.data));
-      else console.error(error);
-    }
-  };
-};
+// export const updateUser = (user, userID) => {
+//   return async dispatch => {
+//     try {
+//       const res = await instance.put(`user/${userID}/update/`, user);
+//       const updatedUser = res.data;
+//       dispatch({
+//         type: actionTypes.UPDATE_USER,
+//         payload: updatedUser
+//       });
+//     } catch (error) {
+//       if (error.response) dispatch(setErrors(error.response.data));
+//       else console.error(error);
+//     }
+//   };
+// };
