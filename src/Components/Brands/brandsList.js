@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { NavLink } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import Loading from "../Loading";
 import * as actionCreators from "../../store/actions";
@@ -28,6 +28,7 @@ export class BrandsList extends Component {
           <h4>Brands</h4>
           <div className="form-check col-12">
             {brands.map(brand => (
+
               <label className="form-check-label col-12">
                 <input
                   className="form-check-input col-10"
@@ -39,6 +40,13 @@ export class BrandsList extends Component {
                 />
                 <span className="col-10"> {brand.name}</span>
               </label>
+
+//               <li>
+//                 <Link to={`/brand/list/${brand.id}`} key={brand.id}>
+//                   {brand.name}
+//                 </Link>
+//               </li>
+
             ))}
           </div>
         </div>
