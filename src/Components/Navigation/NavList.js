@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 import * as actionCreators from "../../store/actions";
 import { withRouter } from "react-router-dom";
 import * as navStyle from "./categoryStyle";
+import Search from "./Search";
 
 class NavList extends Component {
   render() {
@@ -11,88 +12,84 @@ class NavList extends Component {
       <div
         className="col-12"
         style={{
-          background: "#2d2b33",
+          background: "#343f48",
           color: "#fff",
-          position: "fixed",
+          //position: "fixed",
           top: 0,
           left: 0,
-          right: 0
+          right: 0,
+          padding: 10
         }}
       >
-        <div className="col-10" style={{ padding: 0 }}>
-          <div>
-            <ul
-              className="navbar-nav "
-              style={{ listStyle: "none", display: "-webkit-box" }}
-            >
-              <li className="nav-item" style={navStyle.navli}>
-                <NavLink
-                  style={{ color: "#fff" }}
-                  className="nav-link"
-                  to={`/home`}
-                >
-                  Home
-                </NavLink>
-              </li>
-
-              <li className="nav-item" style={navStyle.navli}>
-                <NavLink
-                  style={{ color: "#fff" }}
-                  className="nav-link"
-                  to={`/shop`}
-                >
-                  Shop
-                </NavLink>
-              </li>
-              {!this.props.user ? (
-                <>
-                  <li className="nav-item" style={navStyle.navli}>
-                    <NavLink
-                      style={{ color: "#fff" }}
-                      className="nav-link"
-                      to={`/login`}
-                    >
-                      Login
-                    </NavLink>
-                  </li>
-                  <li className="nav-item" style={navStyle.navli}>
-                    <NavLink
-                      style={{ color: "#fff" }}
-                      className="nav-link"
-                      to={`/signup`}
-                    >
-                      Signup
-                    </NavLink>
-                  </li>
-                </>
-              ) : (
-                <>
-                  <li className="nav-item" style={navStyle.navli}>
-                    <NavLink
-                      style={{ color: "#fff" }}
-                      className="nav-link"
-                      to={`/profile`}
-                    >
-                      Profile
-                    </NavLink>
-                  </li>
-                  <li className="nav-item" style={navStyle.navli}>
-                    <button
-                      onClick={() => this.props.logout(this.props.history)}
-                      className="btn btn-danger"
-                    >
-                      logout
-                    </button>
-                  </li>
-                </>
-              )}
-            </ul>
-          </div>
+        <div
+          className="col-lg-1 col-md-3 col-sm-4"
+          style={{ textAlign: "center", padding: 6 }}
+        >
+          <NavLink style={{ color: "#fff" }} className="" to={`/home`}>
+            Home
+          </NavLink>
         </div>
-        <div className="col-2">
-          <span style={{ fontSize: 20, float: "right" }}>
-            <i style={{ margin: 2 }} className="fas fa-shopping-cart" />0
-          </span>
+        <div className="col-lg-8 col-md-5 col-sm-4">
+          <Search />
+        </div>
+        <div className=" col-lg-3 col-md-4 col-sm-4 ">
+          <div className=" col-lg-9 col-md-9 col-sm-9">
+            {!this.props.user ? (
+              <>
+                <div
+                  className="col-6"
+                  style={{ textAlign: "center", padding: 5 }}
+                >
+                  <NavLink style={{ color: "#fff" }} className="" to={`/login`}>
+                    Login
+                  </NavLink>
+                </div>
+                <div
+                  className="col-6"
+                  style={{ textAlign: "center", padding: 5 }}
+                >
+                  <NavLink style={{ color: "#fff" }} className="" to={`/login`}>
+                    Signup
+                  </NavLink>
+                </div>
+              </>
+            ) : (
+              <>
+                <div
+                  className="col-6"
+                  style={{ textAlign: "center", padding: 5 }}
+                >
+                  <NavLink
+                    style={{ color: "#fff" }}
+                    className=""
+                    to={`/profile`}
+                  >
+                    Profile
+                  </NavLink>
+                </div>
+                <div
+                  className="col-6"
+                  style={{ textAlign: "center", padding: 5 }}
+                >
+                  <a
+                    onClick={() => this.props.logout(this.props.history)}
+                    className=""
+                    style={{}}
+                  >
+                    logout
+                  </a>
+                </div>
+              </>
+            )}
+          </div>
+          <div
+            className="col-4 col-lg-3 col-md-3 col-sm-3"
+            style={{ textAlign: "center", padding: 5 }}
+          >
+            <span style={{ fontSize: 20 }}>
+              <i style={{ margin: 2 }} className="fas fa-shopping-cart" />0
+            </span>
+          </div>
         </div>
       </div>
     );

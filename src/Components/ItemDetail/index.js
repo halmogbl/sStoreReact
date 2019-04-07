@@ -12,7 +12,7 @@ class ItemDetail extends Component {
     const item = this.props.item;
     const loading = this.props.loading;
 
-    console.log(item.item_image);
+    console.log(item.image);
 
     if (loading) {
       return (
@@ -23,18 +23,14 @@ class ItemDetail extends Component {
     } else {
       return (
         <div className="col-12">
-          <h1>{item.item_name}</h1>
-          {item.item_image ? (
-            <img src={item.item_image} />
-          ) : (
-            <img src={imageNotFound} />
-          )}
+          <h1>{item.name}</h1>
+          {item.image ? <img src={item.image} /> : <img src={imageNotFound} />}
 
           <h4>{item.item_description}</h4>
           <h4>{item.item_brand.brand_name}</h4>
           <div>
             {item.variaton_items.map(varaite => (
-              <h5>{varaite.variaton_price}</h5>
+              <h5>{varaite.price}</h5>
             ))}
           </div>
         </div>

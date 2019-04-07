@@ -10,6 +10,7 @@ import itemReducer from "./items";
 import profileReducer from "./profile";
 import brandsReducer from "./brands";
 import variatonsReducer from "./variatons";
+import filterVariablesReducer from "./filterItems";
 
 export default combineReducers({
   auth: authReducer,
@@ -18,5 +19,6 @@ export default combineReducers({
   itemReducer: itemReducer,
   profileReducer: profileReducer,
   brandsReducer: brandsReducer,
-  variatonsReducer: variatonsReducer
+  variatonsReducer: variatonsReducer,
+  filterVariablesReducer: filterVariablesReducer
 });
