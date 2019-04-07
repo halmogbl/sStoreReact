@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { NavLink } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import Loading from "../Loading";
 import * as actionCreators from "../../store/actions";
@@ -17,23 +17,23 @@ export class Variatons extends Component {
         <div className="col-12">
           <ul>
             {variatons.map(variaton => (
-              <NavLink to={`/variaton/list/${variaton.id}`} key={variaton.id}>
+              <Link to={`/variaton/list/${variaton.id}`} key={variaton.id}>
                 <li>{variaton.variaton_color}</li>
-              </NavLink>
+              </Link>
             ))}
           </ul>
           <ul>
             {variatons.map(variaton => (
-              <NavLink to={`/variaton/list/${variaton.id}`} key={variaton.id}>
+              <Link to={`/variaton/list/${variaton.id}`} key={variaton.id}>
                 <li>{variaton.variaton_size}</li>
-              </NavLink>
+              </Link>
             ))}
           </ul>
           <ul>
             {variatons.map(variaton => (
-              <NavLink to={`/variaton/list/${variaton.id}`} key={variaton.id}>
+              <Link to={`/variaton/list/${variaton.id}`} key={variaton.id}>
                 <li>{variaton.variaton_price}</li>
-              </NavLink>
+              </Link>
             ))}
           </ul>
         </div>

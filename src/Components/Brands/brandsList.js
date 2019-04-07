@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { NavLink } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import Loading from "../Loading";
 import * as actionCreators from "../../store/actions";
@@ -18,9 +18,9 @@ export class BrandsList extends Component {
           <ul>
             {brands.map(brand => (
               <li>
-                <NavLink to={`/brand/list/${brand.id}`} key={brand.id}>
-                  {brand.brand_name}
-                </NavLink>
+                <Link to={`/brand/list/${brand.id}`} key={brand.id}>
+                  {brand.name}
+                </Link>
               </li>
             ))}
           </ul>

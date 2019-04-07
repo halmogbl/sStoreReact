@@ -3,6 +3,7 @@ import React, { Component } from "react";
 import { Input } from "react-input-component";
 import { connect } from "react-redux";
 import * as actionCreators from "../../store/actions";
+import "../../assets/css/Auth.css";
 
 class RegistationForm extends Component {
   state = {
@@ -30,8 +31,10 @@ class RegistationForm extends Component {
     ) {
       let userData = {
         username: this.state.username,
-        password: this.state.password
-        // email: this.state.email
+        password: this.state.password,
+        email: this.state.email,
+        first_name: this.state.firstname,
+        last_name: this.state.lastname
       };
       await this.setState({
         alertPassword: false,
@@ -105,28 +108,33 @@ class RegistationForm extends Component {
             ) : (
               <></>
             )}
+            <label htmlFor="userName">User Name</label>
             <Input
-              placeholder="User Name"
               name="username"
               value={this.state.username}
               onChange={this.changeHandler}
               className="form-control"
             />
-            <Input
-              placeholder="First Name"
-              name="firstname"
-              value={this.state.firstname}
-              onChange={this.changeHandler}
-              className="form-control"
-            />
 
-            <Input
-              placeholder="Last Name"
-              name="lastname"
-              value={this.state.lastname}
-              onChange={this.changeHandler}
-              className="form-control"
-            />
+            <div className="firstName">
+              <label htmlFor="firstName">First Name</label>
+              <Input
+                name="firstname"
+                value={this.state.firstname}
+                onChange={this.changeHandler}
+                className="form-control"
+              />
+            </div>
+
+            <div className="lastName">
+              <label htmlFor="LastName">Last Name</label>
+              <Input
+                name="lastname"
+                value={this.state.lastname}
+                onChange={this.changeHandler}
+                className="form-control"
+              />
+            </div>
 
             {/* {this.state.alertEmail ? (
               <div class="alert alert-danger" role="alert">
@@ -135,14 +143,17 @@ class RegistationForm extends Component {
             ) : (
               <></>
             )} */}
-            <Input
-              placeholder="Email Address"
-              name="email"
-              type="email"
-              value={this.state.email}
-              onChange={this.handleEmailInput}
-              className="form-control"
-            />
+            <div className="email">
+              <label htmlFor="email">Email</label>
+
+              <Input
+                name="email"
+                type="email"
+                value={this.state.email}
+                onChange={this.handleEmailInput}
+                className="form-control"
+              />
+            </div>
             {this.state.alertPassword ? (
               <div class="alert alert-danger" role="alert">
                 Passwords dont match or no password inputed
@@ -150,20 +161,23 @@ class RegistationForm extends Component {
             ) : (
               <></>
             )}
+            <div className="password">
+              <label htmlFor="password">Password</label>
+              <Input
+                type="password"
+                name="password"
+                className="form-control"
+                // validator="true"
+                // minCharacters="8"
+                // requireCapitals="1"
+                // requireNumbers="1"
+                value={this.state.passsword}
+                onChange={this.changeHandler}
+              />
+            </div>
+
+            <label htmlFor="ConfirmPassword">Confirm Password</label>
             <Input
-              placeholder="Password"
-              type="password"
-              name="password"
-              className="form-control"
-              // validator="true"
-              // minCharacters="8"
-              // requireCapitals="1"
-              // requireNumbers="1"
-              value={this.state.passsword}
-              onChange={this.changeHandler}
-            />
-            <Input
-              placeholder="Confirm Password"
               type="password"
               name="confirmpassword"
               // validator="true"
@@ -174,10 +188,11 @@ class RegistationForm extends Component {
               value={this.state.confirmpasssword}
               onChange={this.changeHandler}
             />
-
-            <button type="submit" className="button ">
-              CREATE ACCOUNT
-            </button>
+            <div className="createAccount">
+              <button type="submit" className="button ">
+                CREATE ACCOUNT
+              </button>
+            </div>
           </form>
         </div>
       </div>
