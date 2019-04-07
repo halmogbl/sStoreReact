@@ -74,7 +74,6 @@ export class Variatons extends Component {
       return <Loading />;
     } else {
       return (
-
         <div className="col-12 form-check " style={{ padding: 10 }}>
           <label className="form-check-label" for="inlineFormCustomSelect">
             Color
@@ -128,7 +127,7 @@ export class Variatons extends Component {
             {PriceOptions}
           </select>
 
-        <div className="col-12">
+          {/* <div className="col-12">
 //           <ul>
 //             {variatons.map(variaton => (
 //               <Link to={`/variaton/list/${variaton.id}`} key={variaton.id}>
@@ -150,7 +149,7 @@ export class Variatons extends Component {
 //               </Link>
 //             ))}
 //           </ul>
-
+*/}
         </div>
       );
     }
