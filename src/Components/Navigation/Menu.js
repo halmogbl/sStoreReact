@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import { connect } from "react-redux";
 import * as actionCreators from "../../store/actions";
 import Loading from "../../Components/Loading";
@@ -20,19 +20,34 @@ class Menu extends Component {
     } else {
       return (
         <div style={{}} className="col-12">
+          <button
+            class="btn btn-default dropdown-toggle col-lg-2 col-sm-6"
+            type="button"
+            data-toggle="dropdown"
+            data-hover="dropdown"
+          >
+            Category <span class="caret" />
+          </button>
+          <NavLink
+            className="col-lg-2 col-sm-6"
+            to={`/shop`}
+            style={{ textAlign: "center" }}
+          >
+            Shop
+          </NavLink>
           <ul
-            className="col-12"
-            style={{ listStyle: "none", display: "flex", overflowY: "scroll" }}
+            className="col-lg-4 col-md-3 col-sm-2 dropdown-menu dropdown-menu-right"
+            style={{ borderRadius: 20 }}
           >
             {categories.map(category => (
-              <li>
-                <NavLink
+              <li style={{ padding: 10 }}>
+                <Link
                   to={`/category/${category.id}`}
                   key={category.id}
                   style={categoryStyle.circleStyle}
                 >
-                  {category.category_name}
-                </NavLink>
+                  {category.name}
+                </Link>
               </li>
             ))}
           </ul>

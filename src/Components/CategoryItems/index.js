@@ -22,7 +22,7 @@ class CategoryItems extends Component {
           <NavLink to={`/item/${item.id}`} key={item.id}>
             <img src={itemImage} className="card-img-top" alt="..." />
             <div className="card-body">
-              <h5 className="card-title">{item.item_name}</h5>
+              <h5 className="card-title">{item.name}</h5>
             </div>
           </NavLink>
           <a href="#" className="btn btn-primary" style={{ width: "100%" }}>
