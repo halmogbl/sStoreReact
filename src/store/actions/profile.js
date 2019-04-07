@@ -29,21 +29,33 @@ export const fetchProfile = () => {
   };
 };
 
-export const putProfile = (profile, reset, history) => {
-  const formData = new FormData();
-  formData.append("phone_number", profile.phone_number);
-  formData.append("profile_image", profile.profile_image);
-  console.log(profile);
+export const updateProfile = (profile, history) => {
+  const formDataProfile = new FormData();
+  formDataProfile.append("phone_number", profile.phone_number);
+  if (profile.profile_image_file !== "") {
+    formDataProfile.append("image", profile.profile_image_file);
+  }
+  const formDataUser = new FormData();
+  formDataUser.append("first_name", profile.first_name);
+  formDataUser.append("last_name", profile.last_name);
+  formDataUser.append("email", profile.email);
+
   return async dispatch => {
     try {
-      const res = await instance.put("profile/update/", formData);
-      const updatedProfile = res.data;
+      const resProfile = await instance.put("profile/update/", formDataProfile);
+      const resUser = await instance.put(`user/update/`, formDataUser);
+      const updatedProfile = resProfile.data;
+      const updatedUser = resUser.data;
       dispatch({
-        type: actionTypes.PUT_PROFILE,
+        type: actionTypes.UPDATE_PROFILE,
         payload: updatedProfile
       });
-      reset();
-      history.push("profile/");
+      dispatch({
+        type: actionTypes.UPDATE_USER,
+        payload: updatedUser
+      });
+
+      history.push("/profile/");
     } catch (error) {
       if (error.response) dispatch(setErrors(error.response.data));
       else console.error(error);

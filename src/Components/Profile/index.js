@@ -7,6 +7,7 @@ import imageNotFound from "../../assets/images/notfound.png";
 import UserInfoHeader from "./UserInfoHeader";
 import UserInfoBody from "./UserInfoBody";
 import UpdateProfileForm from "./UpdateProfileForm";
+import { Link } from "react-router-dom";
 
 class Profile extends Component {
   componentDidMount() {
@@ -22,9 +23,15 @@ class Profile extends Component {
 
       return (
         <div className="col-12 my-3 border border-primary border-top  ">
-          <a href="profile/update/" className="btn btn-primary">
-            Update Profile
-          </a>
+          <div className="">
+            <Link to="/profile/update/" className="btn btn-primary">
+              Update Profile
+            </Link>
+            <Link to="/address/create/'" className="btn btn-primary">
+              add new addresss
+            </Link>
+          </div>
+
           <div
             className="col-12 "
             style={{
@@ -32,14 +39,14 @@ class Profile extends Component {
               alignItems: "center"
             }}
           >
-            {this.props.profile.profile_image ? (
+            {this.props.profile.image ? (
               <img
                 className="col-12  "
                 style={{
                   width: "fit-content",
                   justifyContent: "center"
                 }}
-                src={this.props.profile.profile_image}
+                src={this.props.profile.image}
                 alt={imageNotFound}
               />
             ) : (

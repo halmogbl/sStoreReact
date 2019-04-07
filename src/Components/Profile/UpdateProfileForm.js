@@ -1,39 +1,67 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import * as actionCreators from "../../store/actions";
+import imageNotFound from "../../assets/images/notfound.png";
+import { Link } from "react-router-dom";
 
 class UpdateProfileForm extends Component {
+  componentDidMount() {
+    this.props.profile &&
+      this.setState({
+        image: this.props.profile.image,
+        phone_number: this.props.profile.phone_number,
+        first_name: this.props.profile.user.first_name,
+        last_name: this.props.profile.user.last_name,
+        email: this.props.profile.user.email
+      });
+  }
+
+  componentDidUpdate(prevProps) {
+    if (prevProps.profile !== this.props.profile) {
+      console.log("show your self", this.props.profile.user.first_name);
+
+      this.setState({
+        image: this.props.profile.image,
+        phone_number: this.props.profile.phone_number,
+        first_name: this.props.profile.user.first_name,
+        last_name: this.props.profile.user.last_name,
+        email: this.props.profile.user.email
+      });
+    }
+  }
   state = {
     phone_number: "",
-    profile_image: null
+    profile_image_file: "",
+    image: "",
+    first_name: "",
+    last_name: "",
+    email: "",
+    alertUpload: false
   };
 
-  submitChannel = event => {
+  submitChannel = async event => {
     event.preventDefault();
-    this.props.putProfile(this.state, this.resetForm, this.props.history);
+    this.props.updateProfile(this.state, this.props.history);
   };
-
-  resetForm = () => this.setState({ phone_number: "", profile_image: "" });
 
   onTextchange = event =>
     this.setState({ [event.target.name]: event.target.value });
 
   onImageChange = () => {
-    console.log("Hi");
     let filesSelected = document.getElementById("inputFileToLoad").files;
-    console.log(filesSelected);
     if (filesSelected.length > 0) {
       let fileToLoad = filesSelected[0];
-      this.setState({ profile_image: fileToLoad });
+      this.setState({
+        profile_image_file: fileToLoad,
+        alertUpload: true,
+        image: URL.createObjectURL(fileToLoad)
+      });
       var fileReader = new FileReader();
 
       fileReader.readAsDataURL(fileToLoad);
     }
   };
-
   render() {
-    console.log(this.props.user);
-
     return (
       <div className="container">
         <form
@@ -44,37 +72,53 @@ class UpdateProfileForm extends Component {
           <h1>Edit Profile</h1>
 
           <div className="row">
-            {/* <!-- left column --> */}
             <div className="col-md-3">
               <div className="text-center">
-                <img
-                  src={this.state.profile_image}
-                  className="avatar img-circle"
-                  alt="avatar"
-                />
+                {this.state.image ? (
+                  <img
+                    className="col-12  "
+                    style={{
+                      width: "fit-content",
+                      justifyContent: "center"
+                    }}
+                    src={this.state.image}
+                    alt={imageNotFound}
+                  />
+                ) : (
+                  <img
+                    className="col-12 "
+                    style={{
+                      width: "fit-content",
+                      justifyContent: "center",
+                      alignItems: "center"
+                    }}
+                    src={imageNotFound}
+                    alt={imageNotFound}
+                  />
+                )}
                 <h6>Upload a different photo...</h6>
 
                 <input
                   type="file"
-                  //   className="form-control"
-                  //   name="profile_image"
-                  //   //   value={this.state.profile_image}
+                  name="profile_image_file"
                   onChange={this.onImageChange}
                   id="inputFileToLoad"
                 />
               </div>
             </div>
 
-            {/* <!-- edit form column --> */}
             <div className="col-md-9 personal-info">
-              <div className="alert alert-info alert-dismissable">
-                <a className="panel-close close" data-dismiss="alert">
-                  ×
-                </a>
-                <i className="fa fa-coffee" />
-                This is an <strong>.alert</strong>. Use this to show important
-                messages to the user.
-              </div>
+              {this.state.alertUpload ? (
+                <div className="alert alert-info alert-dismissable">
+                  <a className="panel-close close" data-dismiss="alert">
+                    ×
+                  </a>
+                  <i className="fa fa-coffee" />
+                  Image <strong>Uploaded</strong> press save
+                </div>
+              ) : (
+                <></>
+              )}
               <h3>Personal info</h3>
 
               <div className="form-group">
@@ -86,24 +130,52 @@ class UpdateProfileForm extends Component {
                     name="phone_number"
                     value={this.state.phone_number}
                     onChange={this.onTextchange}
+                    placeholder={"+966"}
                   />
                 </div>
               </div>
-              {/* Rest of info goes here */}
+              <div className="form-group">
+                <label className="col-lg-3 control-label">first name:</label>
+                <div className="col-lg-8">
+                  <input
+                    className="form-control"
+                    type="text"
+                    name="first_name"
+                    value={this.state.first_name}
+                    onChange={this.onTextchange}
+                  />
+                </div>
+              </div>
+              <div className="form-group">
+                <label className="col-lg-3 control-label">last name:</label>
+                <div className="col-lg-8">
+                  <input
+                    className="form-control"
+                    type="text"
+                    name="last_name"
+                    value={this.state.last_name}
+                    onChange={this.onTextchange}
+                  />
+                </div>
+              </div>
+              <div className="form-group">
+                <label className="col-lg-3 control-label">email:</label>
+                <div className="col-lg-8">
+                  <input
+                    className="form-control"
+                    type="text"
+                    name="email"
+                    value={this.state.email}
+                    onChange={this.onTextchange}
+                  />
+                </div>
+              </div>
               <div className="form-group">
                 <label className="col-md-3 control-label" />
                 <div className="col-md-8">
-                  <input
-                    type="submit"
-                    className="btn btn-primary"
-                    value="Save Changes"
-                  />
-                  <input
-                    type="reset"
-                    className="btn btn-default"
-                    value="Cancel"
-                    onClick={this.resetForm}
-                  />
+                  <button className="btn btn-primary" type="submit">
+                    Save Changes
+                  </button>
                 </div>
               </div>
             </div>
@@ -116,14 +188,15 @@ class UpdateProfileForm extends Component {
 
 const mapStateToProps = state => {
   return {
-    user: state.auth.user
+    user: state.auth.user,
+    profile: state.profileReducer.profile
   };
 };
 
 const mapDispatchToProps = dispatch => {
   return {
-    putProfile: (updatedProfile, reset, history) =>
-      dispatch(actionCreators.putProfile(updatedProfile, reset, history)),
+    updateProfile: (updatedProfile, history) =>
+      dispatch(actionCreators.updateProfile(updatedProfile, history)),
     setErrors: () => dispatch(actionCreators.setErrors({}))
   };
 };

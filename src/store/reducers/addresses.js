@@ -1,31 +1,30 @@
 import * as actionTypes from "../actions/actionTypes";
 
 const initialState = {
-  profile: "",
   loading: true,
-  addresses: [],
-  user: ""
+  addresses: []
 };
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
-    case actionTypes.FETCH_PROFILE:
+    case actionTypes.POST_ADDRESS:
       return {
         ...state,
-        profile: action.payload,
+        addresses: action.payload,
         loading: false
       };
-
-    case actionTypes.UPDATE_PROFILE:
+    case actionTypes.UPDATE_ADDRESS:
       return {
         ...state,
-        profile: action.payload,
+        addresses: action.payload,
         loading: false
       };
-    case actionTypes.UPDATE_USER:
+    case "DELETE_ADDRESS":
       return {
         ...state,
-        user: action.payload,
+        addresses: state.addresses.filter(
+          address => action.payload !== address
+        ),
         loading: false
       };
 

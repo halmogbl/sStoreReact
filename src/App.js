@@ -11,11 +11,13 @@ import { connect } from "react-redux";
 import Home from "./Components/Home";
 import NavBar from "./Components/Navigation";
 import Footer from "./Components/Footer";
-import Profile from "./Components/Profile";
 import Shop from "./Components/Shop";
 import Login from "./Components/Login/Login";
 import Signup from "./Components/Signup/RegistrationForm";
+import Profile from "./Components/Profile";
 import UpdateProfileForm from "./Components/Profile/UpdateProfileForm";
+import CreateAddress from "./Components/Profile/CreateAddress";
+import UpdateAddress from "./Components/Profile/UpdateAddress";
 
 // import Signup from "./Components/Signup";
 import CategoryItems from "./Components/CategoryItems";
@@ -31,6 +33,7 @@ import "./assets/css/Custom.css";
 class App extends Component {
   componentDidMount() {
     this.props.fetchCategories();
+    this.props.fetchProfile();
     // this.props.checkForExpiredToken();
   }
 
@@ -42,6 +45,9 @@ class App extends Component {
           <Route path="/Login" component={Login} />
           <Route path="/home" component={Home} />
           <Route path="/profile/update" component={UpdateProfileForm} />
+          <Route path="/address/:addressID/update" component={UpdateAddress} />
+
+          <Route path="/address/create/" component={CreateAddress} />
           <Route path="/profile" component={Profile} />
           <Route path="/shop" component={Shop} />
           {/* // <Route path="/login" component={Login} /> */}
@@ -67,7 +73,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    fetchCategories: () => dispatch(actionCreators.fetchCategories())
+    fetchCategories: () => dispatch(actionCreators.fetchCategories()),
+    fetchProfile: () => dispatch(actionCreators.fetchProfile())
     // checkForExpiredToken: () => dispatch(actionCreators.checkForExpiredToken())
   };
 };
