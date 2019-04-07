@@ -53,38 +53,15 @@ export const updateProfile = (profile, history) => {
   };
 };
 
-export const postAddress = (address, history) => {
+export const updateUser = (user, userID) => {
   return async dispatch => {
     try {
-      const res = await instance.post("address/create/", address);
-      const newAddress = res.data;
+      const res = await instance.put(`user/${userID}/update/`, user);
+      const updatedUser = res.data;
       dispatch({
-        type: actionTypes.POST_ADDRESS,
-        payload: newAddress
+        type: actionTypes.UPDATE_USER,
+        payload: updatedUser
       });
-      history.push("/profile/");
-    } catch (error) {
-      if (error.response) dispatch(setErrors(error.response.data));
-      else console.error(error);
-    }
-  };
-};
-
-export const updateAddress = (address, history, addressID) => {
-  address = {
-    ...address,
-    address: [addressID]
-  };
-  return async dispatch => {
-    try {
-      const res = await instance.put(`address/${addressID}/update/`, address);
-      const updatedAddress = res.data;
-      dispatch({
-        type: actionTypes.UPDATE_ADDRESS,
-        payload: updatedAddress
-      });
-
-      history.push("/profile/");
     } catch (error) {
       if (error.response) dispatch(setErrors(error.response.data));
       else console.error(error);

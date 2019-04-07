@@ -124,7 +124,6 @@ class UpdateAddress extends Component {
                     name="street_2"
                     value={this.state.street_2}
                     onChange={this.onTextchange}
-                    placeholder={"Ex: Apt#5 , House#5"}
                   />
                 </div>
               </div>

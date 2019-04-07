@@ -1,6 +1,9 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 
+import { connect } from "react-redux";
+import * as actionCreators from "../../store/actions";
+
 class AddressesBody extends Component {
   render() {
     return (
@@ -12,11 +15,39 @@ class AddressesBody extends Component {
         <td>{this.props.address.city}</td>
         <td>{this.props.address.postal_code}</td>
         <td>
-          <Link to={`/address/${this.props.address.id}/update`}>update</Link>
+          <Link
+            className="btn btn-info"
+            to={`/address/${this.props.address.id}/update`}
+          >
+            Update
+          </Link>
+        </td>
+        <td>
+          <button
+            className="btn btn-danger"
+            onClick={() => {
+              this.props.deleteAddress(
+                this.props.address,
+                this.props.address.id
+              );
+            }}
+          >
+            DELETE
+          </button>
         </td>
       </tr>
     );
   }
 }
 
-export default AddressesBody;
+const mapDispatchToProps = dispatch => {
+  return {
+    deleteAddress: (address, addressID) =>
+      dispatch(actionCreators.deleteAddress(address, addressID))
+  };
+};
+
+export default connect(
+  null,
+  mapDispatchToProps
+)(AddressesBody);

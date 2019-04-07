@@ -12,6 +12,7 @@ class AddressesHeader extends Component {
         <th>city</th>
         <th>postal code</th>
         <th>Update</th>
+        <th>Delete</th>
       </tr>
     );
   }
