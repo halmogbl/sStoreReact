@@ -30,22 +30,21 @@ export const fetchProfile = () => {
 };
 
 export const updateProfile = (profile, history) => {
-  const formData = new FormData();
-  formData.append("phone_number", profile.phone_number);
+  const formDataProfile = new FormData();
+  formDataProfile.append("phone_number", profile.phone_number);
   if (profile.profile_image_file !== "") {
-    formData.append("image", profile.profile_image_file);
+    formDataProfile.append("image", profile.profile_image_file);
   }
-  const formDataU = new FormData();
-  formDataU.append("first_name", profile.first_name);
-  formDataU.append("last_name", profile.last_name);
-  formDataU.append("email", profile.email);
+  const formDataUser = new FormData();
+  formDataUser.append("first_name", profile.first_name);
+  formDataUser.append("last_name", profile.last_name);
+  formDataUser.append("email", profile.email);
 
-  // console.log(profile);
   return async dispatch => {
     try {
-      const res = await instance.put("profile/update/", formData);
-      const resUser = await instance.put(`user/update/`, formDataU);
-      const updatedProfile = res.data;
+      const resProfile = await instance.put("profile/update/", formDataProfile);
+      const resUser = await instance.put(`user/update/`, formDataUser);
+      const updatedProfile = resProfile.data;
       const updatedUser = resUser.data;
       dispatch({
         type: actionTypes.UPDATE_PROFILE,
@@ -63,19 +62,3 @@ export const updateProfile = (profile, history) => {
     }
   };
 };
-
-// export const updateUser = (user, userID) => {
-//   return async dispatch => {
-//     try {
-//       const res = await instance.put(`user/${userID}/update/`, user);
-//       const updatedUser = res.data;
-//       dispatch({
-//         type: actionTypes.UPDATE_USER,
-//         payload: updatedUser
-//       });
-//     } catch (error) {
-//       if (error.response) dispatch(setErrors(error.response.data));
-//       else console.error(error);
-//     }
-//   };
-// };
