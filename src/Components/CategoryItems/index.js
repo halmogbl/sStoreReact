@@ -22,7 +22,7 @@ class CategoryItems extends Component {
             margin: 10,
             padding: 20
           }}
-          className="col-sm-12 col-md-6 col-lg-3"
+          className="col-sm-12 col-md-6 col-lg-3 cardShadow"
         >
           <NavLink to={`/item/${item.id}`} key={item.id}>
             <img src={itemImage} className="card-img-top" alt="..." />
