@@ -101,14 +101,6 @@ class ItemDetail extends Component {
           </nav>
           <div className="col-9" style={{}}>
             <div className="col-12" style={{ background: "#fff", padding: 20 }}>
-              <div className="col-3" style={{ padding: 20 }}>
-                {item.image ? (
-                  <img style={{ width: "100%" }} src={item.image} />
-                ) : (
-                  <img style={{ width: "100%" }} src={imageNotFound} />
-                )}
-              </div>
-
               <div className="col-9" style={{ padding: 10 }}>
                 <h1 style={{ textAlign: "left" }}>{item.name}</h1>
                 <ul class="list-group list-group-horizontal-xl">
@@ -119,16 +111,20 @@ class ItemDetail extends Component {
                   <li class="list-group-item">Description </li>
                   <li class="list-group-item">{item.description}</li>
                 </ul>
-                {item.items.map(varaite => (
-                  <ul class="list-group list-group-horizontal-xl">
-                    <li class="list-group-item">Price </li>
-                    <li class="list-group-item">{varaite.price}</li>
-                  </ul>
-                ))}
+                {/* {item.items.map(varaite => (
+  
+                ))} */}
               </div>
               <div className="col-12">
                 {item.items.map(varaite => (
                   <div className="col-6">
+                    <div className="col-3" style={{ padding: 20 }}>
+                      {varaite.image ? (
+                        <img style={{ width: "100%" }} src={varaite.image} />
+                      ) : (
+                        <img style={{ width: "100%" }} src={imageNotFound} />
+                      )}
+                    </div>
                     <ul class="list-group list-group-horizontal-xl">
                       <li class="list-group-item">Size</li>
                       <li class="list-group-item">{varaite.size}</li>
@@ -138,6 +134,10 @@ class ItemDetail extends Component {
 
                       <li class="list-group-item">Stock</li>
                       <li class="list-group-item">{varaite.stock}</li>
+                    </ul>
+                    <ul class="list-group list-group-horizontal-xl">
+                      <li class="list-group-item">Price </li>
+                      <li class="list-group-item">{varaite.price}</li>
                     </ul>
                   </div>
                 ))}
