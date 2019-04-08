@@ -27,10 +27,10 @@ import "./assets/css/Custom.css";
 import ProfileSideBar from "./Components/ProfileSideBar";
 
 class App extends Component {
-  componentDidMount() {
-    this.props.fetchCategories();
-    this.props.fetchProfile();
-    this.props.fetchOrderes();
+  async componentDidMount() {
+    await this.props.fetchCategories();
+    await this.props.fetchProfile();
+    await this.props.fetchOrderes();
   }
 
   render() {
@@ -42,7 +42,6 @@ class App extends Component {
           <Route path="/home" component={Home} />
 
           <Route path="/Profile" component={ProfileSideBar} />
-
 
           <Route path="/shop" component={Shop} />
           <Route path="/signup" component={Signup} />
