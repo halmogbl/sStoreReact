@@ -1,10 +1,5 @@
 import React, { Component } from "react";
 import { Switch, Route, Redirect, withRouter } from "react-router-dom";
-
-// import Welcome from "./components/Welcome";
-// import RegistrationForm from "./components/RegistrationForm";
-// import Login from "./Components/Login/Login.js/index.js";
-
 import { connect } from "react-redux";
 
 //Components
@@ -19,7 +14,6 @@ import UpdateProfileForm from "./Components/Profile/UpdateProfileForm";
 import CreateAddress from "./Components/Profile/CreateAddress";
 import UpdateAddress from "./Components/Profile/UpdateAddress";
 
-// import Signup from "./Components/Signup";
 import CategoryItems from "./Components/CategoryItems";
 import ItemDetail from "./Components/ItemDetail";
 
@@ -36,7 +30,7 @@ class App extends Component {
   componentDidMount() {
     this.props.fetchCategories();
     this.props.fetchProfile();
-    // this.props.checkForExpiredToken();
+    this.props.fetchOrderes();
   }
 
   render() {
@@ -46,15 +40,11 @@ class App extends Component {
         <Switch>
           <Route path="/Login" component={Login} />
           <Route path="/home" component={Home} />
+
           <Route path="/Profile" component={ProfileSideBar} />
 
-          {/* <Route path="/profile/update" component={UpdateProfileForm} />
-          <Route path="/address/:addressID/update" component={UpdateAddress} />
 
-          <Route path="/address/create/" component={CreateAddress} />
-          <Route path="/profile" component={Profile} /> */}
           <Route path="/shop" component={Shop} />
-          {/* // <Route path="/login" component={Login} /> */}
           <Route path="/signup" component={Signup} />
 
           <Route path="/item/:itemID" component={ItemDetail} />
@@ -78,8 +68,8 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     fetchCategories: () => dispatch(actionCreators.fetchCategories()),
-    fetchProfile: () => dispatch(actionCreators.fetchProfile())
-    // checkForExpiredToken: () => dispatch(actionCreators.checkForExpiredToken())
+    fetchProfile: () => dispatch(actionCreators.fetchProfile()),
+    fetchOrderes: () => dispatch(actionCreators.fetchOrderes())
   };
 };
 export default withRouter(
