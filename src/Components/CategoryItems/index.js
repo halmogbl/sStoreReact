@@ -16,16 +16,42 @@ class CategoryItems extends Component {
     } else {
       let items = category.items.map(item => (
         <div
-          style={{ border: "1px solid black" }}
+          style={{
+            border: "1px solid #dee2e6",
+            background: "#fff",
+            margin: 10,
+            padding: 20
+          }}
           className="col-sm-12 col-md-6 col-lg-3"
         >
           <NavLink to={`/item/${item.id}`} key={item.id}>
             <img src={itemImage} className="card-img-top" alt="..." />
             <div className="card-body">
-              <h5 className="card-title">{item.name}</h5>
+              <span
+                className="card-title col-5"
+                style={{ color: "#000", fontWeight: 200 }}
+              >
+                {item.name}
+              </span>
+              <span
+                className="card-title col-7"
+                style={{ color: "#000", fontWeight: 200, textAlign: "right" }}
+              >
+                {item.items[0].price}{" "}
+                <span style={{ color: "#28a745" }}>SAR</span>
+              </span>
             </div>
           </NavLink>
-          <a href="#" className="btn btn-primary" style={{ width: "100%" }}>
+          <a
+            href="#"
+            className="btn btn-primary"
+            style={{
+              width: "100%",
+              background: "#40a9c3",
+              color: "#fff",
+              borderColor: "#40a9c3"
+            }}
+          >
             Add To Cart
           </a>
         </div>

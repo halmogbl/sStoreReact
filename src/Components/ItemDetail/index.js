@@ -3,16 +3,49 @@ import { connect } from "react-redux";
 import * as actionCreators from "../../store/actions";
 import Loading from "../Loading";
 import imageNotFound from "../../assets/images/notfound.png";
+import { Link } from "react-router-dom";
+
 class ItemDetail extends Component {
+  state = {
+    quantity: 1
+  };
+  IncrementItem = () => {
+    this.setState(prevState => {
+      if (prevState.quantity < 9) {
+        return {
+          quantity: prevState.quantity + 1
+        };
+      } else {
+        return null;
+      }
+    });
+  };
+  DecreaseItem = () => {
+    this.setState(prevState => {
+      if (prevState.quantity > 1) {
+        return {
+          quantity: prevState.quantity - 1
+        };
+      } else {
+        return null;
+      }
+    });
+  };
+
   componentDidMount() {
     this.props.fetchItemDetail(this.props.match.params.itemID);
+    // this.props.categoriesItems();
   }
   render() {
     const itemID = this.props.match.params.itemID;
     const item = this.props.item;
     const loading = this.props.loading;
+    // console.log("show royrelf", this.props.categories);
+    let MyCat = this.props.categories.find(
+      cat => cat.items.find(itemOb => itemOb.id === item.id) && cat
+    );
 
-    console.log(item.image);
+    console.log("dont hide please", MyCat);
 
     if (loading) {
       return (
@@ -22,18 +55,90 @@ class ItemDetail extends Component {
       );
     } else {
       return (
-        <div className="col-12">
-          <h1>{item.name}</h1>
-          {item.image ? <img src={item.image} /> : <img src={imageNotFound} />}
+        <>
+          <nav aria-label="breadcrumb" className="col-12">
+            <ol class="breadcrumb">
+              <li class="breadcrumb-item">
+                <Link to="/home">Home</Link>
+              </li>
+              <li class="breadcrumb-item">
+                <Link to={`/category/${MyCat && MyCat.id}`}>
+                  {MyCat && MyCat.name}
+                </Link>
+              </li>
+              <li class="breadcrumb-item" aria-current="page">
+                {item.name}
+              </li>
+            </ol>
+          </nav>
+          <div className="col-12" style={{ background: "#fff", padding: 20 }}>
+            <div className="col-3" style={{ padding: 20 }}>
+              {item.image ? (
+                <img src={item.image} />
+              ) : (
+                <img src={imageNotFound} />
+              )}
+            </div>
+            <div className="col-9" style={{ padding: 10 }}>
+              <h1 style={{ textAlign: "left" }}>{item.name}</h1>
+              <h4>{item.description}</h4>
+              <h4>{item.brand.name}</h4>
+              {item.items.map(varaite => (
+                <h4 class="">{varaite.price}</h4>
+              ))}
+            </div>
+            <div className="col-12">
+              {item.items.map(varaite => (
+                <div className="col-4">
+                  <ul class="list-group list-group-horizontal-xl">
+                    <li class="list-group-item">Size</li>
+                    <li class="list-group-item">{varaite.size}</li>
 
-          <h4>{item.item_description}</h4>
-          <h4>{item.item_brand.brand_name}</h4>
-          <div>
-            {item.variaton_items.map(varaite => (
-              <h5>{varaite.price}</h5>
-            ))}
+                    <li class="list-group-item">Color</li>
+                    <li class="list-group-item">{varaite.color}</li>
+
+                    <li class="list-group-item">Stock</li>
+                    <li class="list-group-item">{varaite.stock}</li>
+                  </ul>
+                </div>
+              ))}
+              <div className="col-3">
+                <a
+                  href="#"
+                  className="btn btn-primary  m-1"
+                  style={{
+                    width: "40%",
+                    background: "#40a9c3",
+                    color: "#fff",
+                    borderColor: "#40a9c3"
+                  }}
+                >
+                  Add To Cart
+                </a>
+              </div>
+              <div className="col-3">
+                <button
+                  className="btn btn-success m-1"
+                  onClick={this.IncrementItem}
+                >
+                  +
+                </button>
+                <input
+                  style={{ width: "20%", textAlign: "center" }}
+                  className="inputne m-1"
+                  value={this.state.quantity}
+                  onChange={this.handleChange}
+                />
+                <button
+                  className="btn btn-danger m-1"
+                  onClick={this.DecreaseItem}
+                >
+                  -
+                </button>
+              </div>
+            </div>
           </div>
-        </div>
+        </>
       );
     }
   }
@@ -42,13 +147,16 @@ class ItemDetail extends Component {
 const mapStateToProps = state => {
   return {
     item: state.itemReducer.item,
-    loading: state.itemReducer.loading
+    loading: state.itemReducer.loading,
+    categories: state.categoriesReducer.categories
+    // allItems: state.filterVariablesReducer.Items
   };
 };
 
 const mapDispatchToProps = dispatch => {
   return {
-    fetchItemDetail: id => dispatch(actionCreators.fetchItemDetail(id))
+    fetchItemDetail: id => dispatch(actionCreators.fetchItemDetail(id)),
+    categoriesItems: () => dispatch(actionCreators.categoriesItems())
   };
 };
 
