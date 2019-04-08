@@ -41,12 +41,10 @@ class ItemDetail extends Component {
     });
   };
 
-
-//   onSubmit = event => {
-//     event.preventDefault();
-//     this.props.createOrder(this.state);
-//   };
-
+  //   onSubmit = event => {
+  //     event.preventDefault();
+  //     this.props.createOrder(this.state);
+  //   };
 
   async componentDidMount() {
     await this.props.fetchItemDetail(this.props.match.params.itemID);
@@ -56,7 +54,6 @@ class ItemDetail extends Component {
     if (this.props.item.id !== +this.props.match.params.itemID) {
       this.props.fetchItemDetail(this.props.match.params.itemID);
     }
-
   }
   render() {
     const itemID = this.props.match.params.itemID;
@@ -67,8 +64,9 @@ class ItemDetail extends Component {
     let MyCat = this.props.categories.find(
       cat => cat.items.find(itemOb => itemOb.id === item.id) && cat
     );
+
     let nextItems = this.props.brands.find(
-      brand => brand.name === item.brand.name
+      brand => brand.name && brand.name === item.brand.name && item.brand.name
     );
 
     let RelatedItemsO =
@@ -177,40 +175,39 @@ class ItemDetail extends Component {
                     -
                   </button>
                 </div>
-              ))}
-              <div className="col-3">
-                <button
-                  className="btn btn-primary  m-1"
-                  style={{
-                    width: "40%",
-                    background: "#40a9c3",
-                    color: "#fff",
-                    borderColor: "#40a9c3"
-                  }}
-                >
-                  Add To Cart
-                </button>
-              </div>
-              <div className="col-3">
-                <button
-                  className="btn btn-success m-1"
-                  onClick={this.IncrementItem}
-                >
-                  +
-                </button>
-                <input
-                  style={{ width: "20%", textAlign: "center" }}
-                  className="inputne m-1"
-                  value={this.state.quantity}
-                  onChange={this.handleChange}
-                />
-                <button
-                  className="btn btn-danger m-1"
-                  onClick={this.DecreaseItem}
-                >
-                  -
-                </button>
-
+                <div className="col-3">
+                  <button
+                    className="btn btn-primary  m-1"
+                    style={{
+                      width: "40%",
+                      background: "#40a9c3",
+                      color: "#fff",
+                      borderColor: "#40a9c3"
+                    }}
+                  >
+                    Add To Cart
+                  </button>
+                </div>
+                <div className="col-3">
+                  <button
+                    className="btn btn-success m-1"
+                    onClick={this.IncrementItem}
+                  >
+                    +
+                  </button>
+                  <input
+                    style={{ width: "20%", textAlign: "center" }}
+                    className="inputne m-1"
+                    value={this.state.quantity}
+                    onChange={this.handleChange}
+                  />
+                  <button
+                    className="btn btn-danger m-1"
+                    onClick={this.DecreaseItem}
+                  >
+                    -
+                  </button>
+                </div>
               </div>
             </div>
           </div>
