@@ -32,7 +32,7 @@ class Shop extends Component {
     let items = this.props.filteredItems.map(item => (
       <div
         style={{ border: "1px solid #dee2e6", background: "#fff", padding: 10 }}
-        className="col-sm-12 col-md-6 col-lg-3"
+        className="col-sm-12 col-md-6 col-lg-3 Shadow"
       >
         <NavLink to={`/item/${item.id}`} key={item.id}>
           <img src={itemImage} className="card-img-top" alt="..." />

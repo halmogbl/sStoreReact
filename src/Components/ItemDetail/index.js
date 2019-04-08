@@ -4,7 +4,7 @@ import * as actionCreators from "../../store/actions";
 import Loading from "../Loading";
 import imageNotFound from "../../assets/images/notfound.png";
 import { Link } from "react-router-dom";
-
+import RelatedItems from "./RelatedItem";
 class ItemDetail extends Component {
   // componentDidMount() {}
   // componentDidUpdate() {
@@ -41,25 +41,41 @@ class ItemDetail extends Component {
     });
   };
 
-  onSubmit = event => {
-    event.preventDefault();
-    this.props.createOrder(this.state);
-  };
 
-  componentDidMount() {
-    this.props.fetchItemDetail(this.props.match.params.itemID);
-    // this.props.categoriesItems();
+//   onSubmit = event => {
+//     event.preventDefault();
+//     this.props.createOrder(this.state);
+//   };
+
+
+  async componentDidMount() {
+    await this.props.fetchItemDetail(this.props.match.params.itemID);
+    await this.props.fetchBrands();
+  }
+  componentDidUpdate() {
+    if (this.props.item.id !== +this.props.match.params.itemID) {
+      this.props.fetchItemDetail(this.props.match.params.itemID);
+    }
+
   }
   render() {
     const itemID = this.props.match.params.itemID;
     const item = this.props.item;
     const loading = this.props.loading;
     // console.log("show royrelf", this.props.categories);
+
     let MyCat = this.props.categories.find(
       cat => cat.items.find(itemOb => itemOb.id === item.id) && cat
     );
+    let nextItems = this.props.brands.find(
+      brand => brand.name === item.brand.name
+    );
 
-    console.log("dont hide please", MyCat);
+    let RelatedItemsO =
+      nextItems &&
+      nextItems.brands
+        .filter(itemOb => itemOb.id !== item.id)
+        .map(nextItems => <RelatedItems item={nextItems} />);
 
     if (loading) {
       return (
@@ -85,40 +101,85 @@ class ItemDetail extends Component {
               </li>
             </ol>
           </nav>
-          <div className="col-12" style={{ background: "#fff", padding: 20 }}>
-            <div className="col-3" style={{ padding: 20 }}>
-              {item.image ? (
-                <img src={item.image} />
-              ) : (
-                <img src={imageNotFound} />
-              )}
-            </div>
-            <div className="col-9" style={{ padding: 10 }}>
-              <h1 style={{ textAlign: "left" }}>{item.name}</h1>
-              <h4>{item.description}</h4>
-              <h4>{item.brand.name}</h4>
-              {item.items.map(varaite => (
-                <h4 class="">{varaite.price}</h4>
-              ))}
-            </div>
-            <div className="col-12">
-              {item.items.map(varaite => (
-                <div className="col-4">
+          <div className="col-9" style={{}}>
+            <div className="col-12" style={{ background: "#fff", padding: 20 }}>
+              <div className="col-3" style={{ padding: 20 }}>
+                {item.image ? (
+                  <img style={{ width: "100%" }} src={item.image} />
+                ) : (
+                  <img style={{ width: "100%" }} src={imageNotFound} />
+                )}
+              </div>
+
+              <div className="col-9" style={{ padding: 10 }}>
+                <h1 style={{ textAlign: "left" }}>{item.name}</h1>
+                <ul class="list-group list-group-horizontal-xl">
+                  <li class="list-group-item">Brand</li>
+                  <li class="list-group-item">{item.brand.name}</li>
+                </ul>
+                <ul class="list-group list-group-horizontal-xl">
+                  <li class="list-group-item">Description </li>
+                  <li class="list-group-item">{item.description}</li>
+                </ul>
+                {item.items.map(varaite => (
                   <ul class="list-group list-group-horizontal-xl">
-                    <li class="list-group-item">Size</li>
-                    <li class="list-group-item">{varaite.size}</li>
-
-                    <li class="list-group-item">Color</li>
-                    <li class="list-group-item">{varaite.color}</li>
-
-                    <li class="list-group-item">Stock</li>
-                    <li class="list-group-item">{varaite.stock}</li>
+                    <li class="list-group-item">Price </li>
+                    <li class="list-group-item">{varaite.price}</li>
                   </ul>
+                ))}
+              </div>
+              <div className="col-12">
+                {item.items.map(varaite => (
+                  <div className="col-6">
+                    <ul class="list-group list-group-horizontal-xl">
+                      <li class="list-group-item">Size</li>
+                      <li class="list-group-item">{varaite.size}</li>
+
+                      <li class="list-group-item">Color</li>
+                      <li class="list-group-item">{varaite.color}</li>
+
+                      <li class="list-group-item">Stock</li>
+                      <li class="list-group-item">{varaite.stock}</li>
+                    </ul>
+                  </div>
+                ))}
+                <div className="col-3">
+                  <a
+                    href="#"
+                    className="btn btn-primary  m-1"
+                    style={{
+                      width: "60%",
+                      background: "#40a9c3",
+                      color: "#fff",
+                      borderColor: "#40a9c3"
+                    }}
+                  >
+                    Add To Cart
+                  </a>
+                </div>
+                <div className="col-3">
+                  <button
+                    className="btn btn-success m-1"
+                    onClick={this.IncrementItem}
+                  >
+                    +
+                  </button>
+                  <input
+                    style={{ width: "20%", textAlign: "center" }}
+                    className="inputne m-1"
+                    value={this.state.quantity}
+                    onChange={this.handleChange}
+                  />
+                  <button
+                    className="btn btn-danger m-1"
+                    onClick={this.DecreaseItem}
+                  >
+                    -
+                  </button>
                 </div>
               ))}
               <div className="col-3">
                 <button
-                  onClick={this.onSubmit}
                   className="btn btn-primary  m-1"
                   style={{
                     width: "40%",
@@ -149,9 +210,11 @@ class ItemDetail extends Component {
                 >
                   -
                 </button>
+
               </div>
             </div>
           </div>
+          <div className="col-3">{RelatedItemsO}</div>
         </>
       );
     }
@@ -164,8 +227,8 @@ const mapStateToProps = state => {
     loading: state.itemReducer.loading,
     categories: state.categoriesReducer.categories,
     orderes: state.orderesReducer.orderes,
-    profile: state.profileReducer.profile
-    // allItems: state.filterVariablesReducer.Items
+    profile: state.profileReducer.profile,
+    brands: state.brandsReducer.brands
   };
 };
 
@@ -173,7 +236,7 @@ const mapDispatchToProps = dispatch => {
   return {
     fetchItemDetail: id => dispatch(actionCreators.fetchItemDetail(id)),
     categoriesItems: () => dispatch(actionCreators.categoriesItems()),
-    createOrder: item => dispatch(actionCreators.createOrder(item))
+    fetchBrands: () => dispatch(actionCreators.fetchBrands())
   };
 };
 

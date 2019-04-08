@@ -19,7 +19,10 @@ class Menu extends Component {
       return <Loading />;
     } else {
       return (
-        <div style={{ background: "#343f47", padding: 10 }} className="col-12">
+        <div
+          style={{ background: "#343f47", padding: 10 }}
+          className="col-12 Shadow"
+        >
           <button
             className="btn btn-default dropdown-toggle col-lg-2 col-sm-6"
             type="button"
