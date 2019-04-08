@@ -55,7 +55,7 @@ export const updateProfile = (profile, history) => {
         payload: updatedUser
       });
 
-      history.push("/profile/");
+      history.push("/profile/home");
     } catch (error) {
       if (error.response) dispatch(setErrors(error.response.data));
       else console.error(error);
