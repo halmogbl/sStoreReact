@@ -6,6 +6,7 @@ import UpdateProfileForm from "../Profile/UpdateProfileForm";
 import UpdateAddress from "../Profile/UpdateAddress";
 import CreateAddress from "../Profile/CreateAddress";
 import Profile from "../Profile";
+import Welcome from "./Welcome";
 
 class ProfileSideBar extends Component {
   render() {
@@ -28,9 +29,5 @@ class ProfileSideBar extends Component {
     );
   }
 }
-
-const mapStateToProps = state => {
-  return {};
-};
 
 export default withRouter(connect(null)(ProfileSideBar));

@@ -5,7 +5,11 @@ import "../../index.css";
 class Sidebar extends Component {
   render() {
     return (
-      <div id="sidebar" className="col-3">
+      <div
+        id="sidebar"
+        className="col-3"
+        style={{ marginTop: 20, background: "#fff" }}
+      >
         <section>
           <h5>
             <NavLink
