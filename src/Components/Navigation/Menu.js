@@ -19,19 +19,27 @@ class Menu extends Component {
       return <Loading />;
     } else {
       return (
-        <div style={{}} className="col-12">
+        <div style={{ background: "#343f47", padding: 10 }} className="col-12">
           <button
-            class="btn btn-default dropdown-toggle col-lg-2 col-sm-6"
+            className="btn btn-default dropdown-toggle col-lg-2 col-sm-6"
             type="button"
             data-toggle="dropdown"
             data-hover="dropdown"
+            style={{ color: "#fff" }}
           >
             Category <span class="caret" />
           </button>
           <NavLink
             className="col-lg-2 col-sm-6"
+            to={`/home`}
+            style={{ textAlign: "center", color: "#adb5bd" }}
+          >
+            Home
+          </NavLink>
+          <NavLink
+            className="col-lg-2 col-sm-6"
             to={`/shop`}
-            style={{ textAlign: "center" }}
+            style={{ textAlign: "center", color: "#adb5bd" }}
           >
             Shop
           </NavLink>

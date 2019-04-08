@@ -1,5 +1,35 @@
 import * as actionTypes from "./actionTypes";
 
+// import { setErrors } from "./errors";
+
+import axios from "axios";
+
+const instance = axios.create({
+  baseURL: "http://127.0.0.1:8000/api/"
+});
+
+export const categoriesItems = () => {
+  return async dispatch => {
+    try {
+      // to fetch from api
+      let response = await instance.get(`item/list/`);
+      // to get data from object reponse
+      let items = response.data;
+      console.log("itemslist----from-actions", items);
+      //to send to reducer
+      // console.log(categories);
+
+      dispatch({
+        type: actionTypes.CATEGORIESITEMS,
+        payload: items
+      });
+    } catch (error) {
+      //incase there is an error
+      console.error(error);
+      console.log("there is an error feching the brands");
+    }
+  };
+};
 export const getBrand = brand => {
   return async dispatch => {
     dispatch({
@@ -52,12 +82,12 @@ export const applyFilter = appliedFilters => {
   };
 };
 
-export const categoriesItems = items => {
-  console.log("from-actions", items);
-  return async dispatch => {
-    dispatch({
-      type: actionTypes.CATEGORIESITEMS,
-      payload: items
-    });
-  };
-};
+// export const categoriesItems = items => {
+//   console.log("from-actions", items);
+//   return async dispatch => {
+//     dispatch({
+//       type: actionTypes.CATEGORIESITEMS,
+//       payload: items
+//     });
+//   };
+// };

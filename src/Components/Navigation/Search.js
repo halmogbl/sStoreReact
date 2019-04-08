@@ -4,7 +4,7 @@ class Search extends Component {
   render() {
     return (
       <input
-        style={{ borderRadius: 20 }}
+        style={{}}
         type="Search"
         className="form-control"
         id="search"

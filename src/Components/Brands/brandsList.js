@@ -25,10 +25,8 @@ export class BrandsList extends Component {
     } else {
       return (
         <div>
-          <h4>Brands</h4>
-          <div className="form-check col-12">
+          <div className="form-check col-12" style={{ paddingLeft: 30 }}>
             {brands.map(brand => (
-
               <label className="form-check-label col-12">
                 <input
                   className="form-check-input col-10"
@@ -41,12 +39,11 @@ export class BrandsList extends Component {
                 <span className="col-10"> {brand.name}</span>
               </label>
 
-//               <li>
-//                 <Link to={`/brand/list/${brand.id}`} key={brand.id}>
-//                   {brand.name}
-//                 </Link>
-//               </li>
-
+              //               <li>
+              //                 <Link to={`/brand/list/${brand.id}`} key={brand.id}>
+              //                   {brand.name}
+              //                 </Link>
+              //               </li>
             ))}
           </div>
         </div>
