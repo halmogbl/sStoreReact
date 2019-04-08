@@ -1,8 +1,7 @@
 import * as actionTypes from "../actions/actionTypes";
 
 const initialState = {
-  categoriesItems: [],
-  itemList: [],
+  Items: [],
   filteredItems: [],
   brand: "",
   color: "",
@@ -39,25 +38,67 @@ const reducer = (state = initialState, action) => {
         priceTo: action.payload
       };
     case actionTypes.CATEGORIESITEMS:
-      let items = state.categoriesItems.map(item => item);
-      let allItem = items.map(item => ({ items: item.items }));
-      allItem.forEach(item =>
-        item.items.map(item => state.itemList.push(item))
-      );
-      console.log("lovly list", state.itemList);
+      // let items = state.categoriesItems.map(item => item);
+      // let allItem = items.map(item => ({ items: item.items }));
+      // allItem.forEach(item =>
+      //   item.items.map(item => state.itemList.push(item))
+      // );
+      // console.log("lovly list", state.itemList);
       return {
         ...state,
-        categoriesItems: action.payload
+        Items: action.payload
       };
     case actionTypes.APPLYFILTER:
       let filter = action.payload;
-      let list = state.itemList;
-      console.log("haaaay", list);
-      if (filter.color === list)
-        return {
-          ...state,
-          filteredItems: []
-        };
+      console.log(filter);
+      // let list = state.itemList;
+      // console.log("if this global", filter.brand);
+
+      // state.Items.map(item =>
+      //   // console.log("try", ...item.items.map(variation => variation.color))
+      // );
+      // console.log(state.Items[0].items[0].color);
+
+      let variationFilt = state.Items.filter(item => {
+        if (item.items.length) {
+          if (
+            item.brand.name === filter.brand &&
+            (item.items[0].color === filter.color ||
+              item.items[0].size === filter.size ||
+              filter.priceFrom <= item.items[0].price <= filter.priceTo)
+          ) {
+            return item.items[0];
+          }
+        }
+      });
+      console.log("Variation", variationFilt);
+      // let filterdColors = state.Items.map(item =>
+      //   item.items.map(variation => variation.color)
+      // );
+      // let filterdSizes = state.Items.map(item =>
+      //   item.items.map(variation => variation.size)
+      // );
+
+      // let filterdPrices = state.Items.map(item =>
+      //   item.items.map(variation => variation.price)
+      // );
+
+      // console.log("my color", filterdColors);
+      // console.log("my sizes", filterdSizes);
+      // console.log("my price", filterdPrices);
+
+      let filtered = state.Items.filter(
+        item =>
+          item.brand.name === filter.brand &&
+          item.items.map(variation => variation.color) === filter.color
+      );
+      console.log("final-reducaer", filtered);
+
+      // if (filter.color === list)
+      return {
+        ...state,
+        filteredItems: variationFilt
+      };
 
     default:
       return state;

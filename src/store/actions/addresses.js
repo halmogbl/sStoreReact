@@ -40,7 +40,7 @@ export const updateAddress = (address, history, addressID) => {
         payload: updatedAddress
       });
 
-      history.push("/profile/");
+      history.push("/profile/home");
     } catch (error) {
       if (error.response) dispatch(setErrors(error.response.data));
       else console.error(error);

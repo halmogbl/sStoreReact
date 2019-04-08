@@ -64,7 +64,7 @@ class NavList extends Component {
                   style={{ textAlign: "center", padding: 5 }}
                 >
                   <NavLink
-                    style={{ color: "#fff" }}
+                    style={{ color: "#adb5bd" }}
                     className=""
                     to={`/profile`}
                   >

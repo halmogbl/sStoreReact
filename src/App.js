@@ -1,10 +1,5 @@
 import React, { Component } from "react";
 import { Switch, Route, Redirect, withRouter } from "react-router-dom";
-
-// import Welcome from "./components/Welcome";
-// import RegistrationForm from "./components/RegistrationForm";
-// import Login from "./Components/Login/Login.js/index.js";
-
 import { connect } from "react-redux";
 
 //Components
@@ -18,9 +13,7 @@ import Profile from "./Components/Profile";
 import UpdateProfileForm from "./Components/Profile/UpdateProfileForm";
 import CreateAddress from "./Components/Profile/CreateAddress";
 import UpdateAddress from "./Components/Profile/UpdateAddress";
-// import Cart from "./Components/Cart/Orderes";
 
-// import Signup from "./Components/Signup";
 import CategoryItems from "./Components/CategoryItems";
 import ItemDetail from "./Components/ItemDetail";
 
@@ -31,12 +24,13 @@ import * as actionCreators from "./store/actions";
 import "./assets/css/GridSystem.css";
 import "./assets/css/Custom.css";
 
+import ProfileSideBar from "./Components/ProfileSideBar";
+
 class App extends Component {
   componentDidMount() {
     this.props.fetchCategories();
     this.props.fetchProfile();
     this.props.fetchOrderes();
-    // this.props.checkForExpiredToken();
   }
 
   render() {
@@ -46,14 +40,11 @@ class App extends Component {
         <Switch>
           <Route path="/Login" component={Login} />
           <Route path="/home" component={Home} />
-          {/* <Route path="/Cart" component={Cart} /> */}
-          <Route path="/profile/update" component={UpdateProfileForm} />
-          <Route path="/address/:addressID/update" component={UpdateAddress} />
 
-          <Route path="/address/create/" component={CreateAddress} />
-          <Route path="/profile" component={Profile} />
+          <Route path="/Profile" component={ProfileSideBar} />
+
+
           <Route path="/shop" component={Shop} />
-          {/* // <Route path="/login" component={Login} /> */}
           <Route path="/signup" component={Signup} />
 
           <Route path="/item/:itemID" component={ItemDetail} />
@@ -79,7 +70,6 @@ const mapDispatchToProps = dispatch => {
     fetchCategories: () => dispatch(actionCreators.fetchCategories()),
     fetchProfile: () => dispatch(actionCreators.fetchProfile()),
     fetchOrderes: () => dispatch(actionCreators.fetchOrderes())
-    // checkForExpiredToken: () => dispatch(actionCreators.checkForExpiredToken())
   };
 };
 export default withRouter(

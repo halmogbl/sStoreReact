@@ -17,7 +17,7 @@ class AddressesBody extends Component {
         <td>
           <Link
             className="btn btn-info"
-            to={`/address/${this.props.address.id}/update`}
+            to={`/profile/address/${this.props.address.id}/update`}
           >
             Update
           </Link>

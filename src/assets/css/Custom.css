@@ -1,0 +1,6 @@
+body {
+  background-color: #eaeded;
+}
+.active {
+  border: 1px solid rgb(173, 181, 189);
+}
