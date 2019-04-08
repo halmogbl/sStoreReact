@@ -6,6 +6,15 @@ import imageNotFound from "../../assets/images/notfound.png";
 import { Link } from "react-router-dom";
 
 class ItemDetail extends Component {
+  // componentDidMount() {}
+  // componentDidUpdate() {
+  // const orderID = this.props.orderes.find(
+  //   order =>
+  //     order.status === "NO_ORDER" &&
+  //     this.props.profile.user.username === order.profile.user.username
+  // );
+  //   console.log("orderList", orderID);
+  // }
   state = {
     quantity: 1
   };
@@ -30,6 +39,11 @@ class ItemDetail extends Component {
         return null;
       }
     });
+  };
+
+  onSubmit = event => {
+    event.preventDefault();
+    this.props.createOrder(this.state);
   };
 
   componentDidMount() {
@@ -103,8 +117,8 @@ class ItemDetail extends Component {
                 </div>
               ))}
               <div className="col-3">
-                <a
-                  href="#"
+                <button
+                  onClick={this.onSubmit}
                   className="btn btn-primary  m-1"
                   style={{
                     width: "40%",
@@ -114,7 +128,7 @@ class ItemDetail extends Component {
                   }}
                 >
                   Add To Cart
-                </a>
+                </button>
               </div>
               <div className="col-3">
                 <button
@@ -148,7 +162,9 @@ const mapStateToProps = state => {
   return {
     item: state.itemReducer.item,
     loading: state.itemReducer.loading,
-    categories: state.categoriesReducer.categories
+    categories: state.categoriesReducer.categories,
+    orderes: state.orderesReducer.orderes,
+    profile: state.profileReducer.profile
     // allItems: state.filterVariablesReducer.Items
   };
 };
@@ -156,7 +172,8 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     fetchItemDetail: id => dispatch(actionCreators.fetchItemDetail(id)),
-    categoriesItems: () => dispatch(actionCreators.categoriesItems())
+    categoriesItems: () => dispatch(actionCreators.categoriesItems()),
+    createOrder: item => dispatch(actionCreators.createOrder(item))
   };
 };
 

@@ -1,7 +1,7 @@
 import axios from "axios";
 import jwt_decode from "jwt-decode";
 import * as actionTypes from "./actionTypes";
-
+import { fetchOrderes } from "./orderes";
 import { setErrors } from "./errors";
 
 const instance = axios.create({
@@ -33,6 +33,7 @@ export const checkForExpiredToken = () => {
         setAuthToken(token);
         //to store the user locally in the reducer
         dispatch(setCurrentUser(user));
+        dispatch(fetchOrderes(user));
       } else {
         dispatch(logout());
       }
