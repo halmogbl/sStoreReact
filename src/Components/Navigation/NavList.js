@@ -48,7 +48,11 @@ class NavList extends Component {
                   className="col-6"
                   style={{ textAlign: "center", padding: 5 }}
                 >
-                  <NavLink style={{ color: "#fff" }} className="" to={`/login`}>
+                  <NavLink
+                    style={{ color: "#fff" }}
+                    className=""
+                    to={`/signup`}
+                  >
                     Signup
                   </NavLink>
                 </div>

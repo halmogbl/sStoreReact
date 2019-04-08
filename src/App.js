@@ -30,6 +30,8 @@ import * as actionCreators from "./store/actions";
 import "./assets/css/GridSystem.css";
 import "./assets/css/Custom.css";
 
+import ProfileSideBar from "./Components/ProfileSideBar";
+
 class App extends Component {
   componentDidMount() {
     this.props.fetchCategories();
@@ -44,11 +46,13 @@ class App extends Component {
         <Switch>
           <Route path="/Login" component={Login} />
           <Route path="/home" component={Home} />
-          <Route path="/profile/update" component={UpdateProfileForm} />
+          <Route path="/Profile" component={ProfileSideBar} />
+
+          {/* <Route path="/profile/update" component={UpdateProfileForm} />
           <Route path="/address/:addressID/update" component={UpdateAddress} />
 
           <Route path="/address/create/" component={CreateAddress} />
-          <Route path="/profile" component={Profile} />
+          <Route path="/profile" component={Profile} /> */}
           <Route path="/shop" component={Shop} />
           {/* // <Route path="/login" component={Login} /> */}
           <Route path="/signup" component={Signup} />

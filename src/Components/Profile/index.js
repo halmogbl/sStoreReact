@@ -22,16 +22,10 @@ class Profile extends Component {
       ));
 
       return (
-        <div className="col-12 my-3 border border-primary border-top  ">
-          <div className="">
-            <Link to="/profile/update/" className="btn btn-primary">
-              Update Profile
-            </Link>
-            <Link to="/address/create/'" className="btn btn-primary">
-              add new addresss
-            </Link>
-          </div>
-
+        <div
+          className="col-12 my-3 border border-primary border-top  "
+          style={{ marginTop: 20, background: "#fff" }}
+        >
           <div
             className="col-12 "
             style={{
