@@ -9,7 +9,6 @@ export const SET_CURRENT_USER = "SET_CURRENT_USER";
 export const FETCH_BRANDS = "FETCH_BRANDS";
 export const FETCH_VARIATONS = "FETCH_VARIATONS";
 
-
 export const FETCH_PROFILE = "FETCH_PROFILE";
 export const UPDATE_PROFILE = "UPDATE_PROFILE";
 
@@ -26,3 +25,9 @@ export const GETPRICEFROM = "GETPRICEFROM";
 export const GETPRICETO = "GETPRICETO";
 export const APPLYFILTER = "APPLYFILTER";
 export const CATEGORIESITEMS = "CATEGORIESITEMS";
+
+export const FETCH_ORDERES = "FETCH_ORDERES";
+export const ADD_TO_CART = "ADD_TO_CART";
+export const REMOVE_ITEM = "REMOVE_ITEM";
+export const SUB_QUANTITY = "SUB_QUANTITY";
+export const ADD_QUANTITY = "ADD_QUANTITY";

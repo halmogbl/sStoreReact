@@ -18,6 +18,7 @@ import Profile from "./Components/Profile";
 import UpdateProfileForm from "./Components/Profile/UpdateProfileForm";
 import CreateAddress from "./Components/Profile/CreateAddress";
 import UpdateAddress from "./Components/Profile/UpdateAddress";
+// import Cart from "./Components/Cart/Orderes";
 
 // import Signup from "./Components/Signup";
 import CategoryItems from "./Components/CategoryItems";
@@ -34,6 +35,7 @@ class App extends Component {
   componentDidMount() {
     this.props.fetchCategories();
     this.props.fetchProfile();
+    this.props.fetchOrderes();
     // this.props.checkForExpiredToken();
   }
 
@@ -44,6 +46,7 @@ class App extends Component {
         <Switch>
           <Route path="/Login" component={Login} />
           <Route path="/home" component={Home} />
+          {/* <Route path="/Cart" component={Cart} /> */}
           <Route path="/profile/update" component={UpdateProfileForm} />
           <Route path="/address/:addressID/update" component={UpdateAddress} />
 
@@ -74,7 +77,8 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     fetchCategories: () => dispatch(actionCreators.fetchCategories()),
-    fetchProfile: () => dispatch(actionCreators.fetchProfile())
+    fetchProfile: () => dispatch(actionCreators.fetchProfile()),
+    fetchOrderes: () => dispatch(actionCreators.fetchOrderes())
     // checkForExpiredToken: () => dispatch(actionCreators.checkForExpiredToken())
   };
 };
