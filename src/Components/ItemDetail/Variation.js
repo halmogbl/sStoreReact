@@ -44,16 +44,21 @@ class Variation extends Component {
     } else {
       return (
         <div className="col-12">
-          <div class="form-check">
+          <div
+            className="form-check"
+            style={{
+              padding: 20
+            }}
+          >
             <input
-              class="form-check-input"
+              className="form-check-input"
               type="radio"
               name="varaition"
               id={`Radios-${varaite.id}`}
               value={`option-${varaite.id}`}
               onChange={() => this.onVaraiteChange(varaite.id)}
             />
-            <label class="form-check-label" for="exampleRadios1">
+            <label className="form-check-label" for="exampleRadios1">
               <div className="col-12">
                 <div className="col-3" style={{}}>
                   {varaite.image ? (
@@ -65,22 +70,41 @@ class Variation extends Component {
                 <ul className="list-group list-group-horizontal-sm col-9">
                   <li className="list-group-item col-6">
                     <ul className="list-group list-group-horizontal-sm">
-                      <li className="list-group-item">Size:</li>
-                      <li className="list-group-item">{varaite.size}</li>
+                      <li className="list-group-item" style={{ width: "50%" }}>
+                        Size:
+                      </li>
+                      <li className="list-group-item " style={{ width: "50%" }}>
+                        {varaite.size}
+                      </li>
                     </ul>
                     <ul className="list-group list-group-horizontal-sm">
-                      <li className="list-group-item">Color</li>
-                      <li className="list-group-item">{varaite.color}</li>
+                      <li className="list-group-item" style={{ width: "50%" }}>
+                        Color
+                      </li>
+                      <li className="list-group-item" style={{ width: "50%" }}>
+                        {varaite.color}
+                      </li>
                     </ul>
                   </li>
                   <li className="list-group-item col-6">
                     <ul className="list-group list-group-horizontal-sm">
-                      <li className="list-group-item">Stock</li>
-                      <li className="list-group-item">{varaite.stock}</li>
+                      <li className="list-group-item" style={{ width: "100%" }}>
+                        Price
+                      </li>
                     </ul>
-                    <ul className="list-group list-group-horizontal-sm">
-                      <li className="list-group-item">Price </li>
-                      <li className="list-group-item">{varaite.price}</li>
+                    <ul className="list-group list-group-horizontal-sm col-12">
+                      <li
+                        className="list-group-item "
+                        style={{ width: "100%", fontWeight: 400 }}
+                      >
+                        {varaite.price}{" "}
+                        <span
+                          className="text-success"
+                          style={{ fontWeight: 800 }}
+                        >
+                          SAR
+                        </span>
+                      </li>
                     </ul>
                   </li>
                 </ul>

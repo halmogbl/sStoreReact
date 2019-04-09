@@ -4,8 +4,11 @@ import { connect } from "react-redux";
 class Home extends Component {
   render() {
     return (
-      <div className="col-12">
-        <div className="col-9">
+      <div
+        className="col-12"
+        style={{ paddingTop: 20, paddingLeft: 30, paddingRight: 30 }}
+      >
+        <div className="col-12">
           <div class="bd-example">
             <div
               id="carouselExampleCaptions"
@@ -24,7 +27,7 @@ class Home extends Component {
               <div class="carousel-inner">
                 <div class="carousel-item active">
                   <img
-                    src="https://boygeniusreport.files.wordpress.com/2018/11/iphone-xs-eraser-wallpaper.jpg?quality=98&strip=all&w=1200"
+                    src="https://apexgadgetstories.com/wp-content/uploads/2019/02/honor-8x-5-1024x480-1024x585.jpg"
                     class="d-block w-100"
                     alt="..."
                     style={{
@@ -42,7 +45,7 @@ class Home extends Component {
                 </div>
                 <div class="carousel-item">
                   <img
-                    src="https://previews.123rf.com/images/arrow/arrow1508/arrow150800028/43966988-online-shopping-e-commerce-concept-background.jpg"
+                    src="https://ae01.alicdn.com/kf/HTB1fTxZKxWYBuNjy1zkq6xGGpXaC.jpg"
                     class="d-block w-100"
                     alt="..."
                     style={{
@@ -99,7 +102,7 @@ class Home extends Component {
             </div>
           </div>
         </div>
-        <div className="col-3">
+        {/* <div className="col-3">
           <div className="col-12">
             <div class="bd-example">
               <div
@@ -302,7 +305,7 @@ class Home extends Component {
               </div>
             </div>
           </div>
-        </div>
+        </div> */}
       </div>
     );
   }

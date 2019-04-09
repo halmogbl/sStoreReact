@@ -122,7 +122,7 @@ export class Variatons extends Component {
             id="inlineFormCustomSelect"
           >
             <option value={maxPrice} selected>
-              {maxPrice}
+              Choose Max Price
             </option>
             {PriceOptions}
           </select>
