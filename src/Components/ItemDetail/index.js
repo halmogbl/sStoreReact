@@ -118,15 +118,15 @@ class ItemDetail extends Component {
               <div className="col-12">
                 {item.items.map(varaite => (
                   <div className="col-12">
-                    <div className="col-3" style={{ padding: 20 }}>
-                      {varaite.image ? (
-                        <img style={{ width: "100%" }} src={varaite.image} />
-                      ) : (
-                        <img style={{ width: "100%" }} src={imageNotFound} />
-                      )}
-                    </div>
-                    <div className="col-4">
-                      <ul className="list-group list-group-horizontal-sm col-12">
+                    <div className="col-6">
+                      <div className="col-3" style={{ padding: 20 }}>
+                        {varaite.image ? (
+                          <img style={{ width: "100%" }} src={varaite.image} />
+                        ) : (
+                          <img style={{ width: "100%" }} src={imageNotFound} />
+                        )}
+                      </div>
+                      <ul className="list-group list-group-horizontal-sm col-9">
                         <li className="list-group-item col-6">
                           <ul className="list-group list-group-horizontal-sm">
                             <li className="list-group-item">Size:</li>
@@ -149,8 +149,8 @@ class ItemDetail extends Component {
                         </li>
                       </ul>
                     </div>
-                    <div className="col-5">
-                      <div className="col-6">
+                    <div className="col-12">
+                      <div className="col-3">
                         <button
                           className="btn btn-success m-1"
                           onClick={this.IncrementItem}
@@ -170,12 +170,12 @@ class ItemDetail extends Component {
                           -
                         </button>
                       </div>
-                      <div className="col-12">
+                      <div className="col-4">
                         <a
                           href="#"
                           className="btn btn-primary  m-1"
                           style={{
-                            width: "60%",
+                            width: "100%",
                             background: "#40a9c3",
                             color: "#fff",
                             borderColor: "#40a9c3"
