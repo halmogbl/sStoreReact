@@ -23,6 +23,7 @@ import * as actionCreators from "./store/actions";
 //CSS
 import "./assets/css/GridSystem.css";
 import "./assets/css/Custom.css";
+import "./assets/css/animation.css";
 
 import ProfileSideBar from "./Components/ProfileSideBar";
 

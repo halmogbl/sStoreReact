@@ -31,39 +31,37 @@ class Shop extends Component {
   render() {
     let items = this.props.filteredItems.map(item => (
       <div
-        style={{ border: "1px solid #dee2e6", background: "#fff", padding: 10 }}
-        className="col-sm-12 col-md-6 col-lg-3 Shadow"
+        style={{
+          border: "1px solid #dee2e6",
+          background: "#fff",
+          padding: 10,
+          borderRadius: 20
+        }}
+        className="col-sm-12 col-md-6 col-lg-3 Shadow "
       >
         <NavLink to={`/item/${item.id}`} key={item.id}>
           <img src={itemImage} className="card-img-top" alt="..." />
           <div className="card-body">
             <span
-              className="card-title col-6"
-              style={{ color: "#000", fontWeight: 200 }}
+              className="card-title col-12"
+              style={{
+                color: "#000",
+                fontWeight: 200,
+                textAlign: "center",
+                fontSize: 20
+              }}
             >
               {item.name}
             </span>
-            <span
+            {/* <span
               className="card-title col-6"
               style={{ color: "#000", fontWeight: 200, textAlign: "right" }}
             >
               {item.items[0].price}{" "}
               <span style={{ color: "#28a745" }}>SAR</span>
-            </span>
+            </span> */}
           </div>
         </NavLink>
-        <a
-          href="#"
-          className="btn btn-primary"
-          style={{
-            width: "100%",
-            background: "#40a9c3",
-            color: "#fff",
-            borderColor: "#40a9c3"
-          }}
-        >
-          Add To Cart
-        </a>
       </div>
     ));
     return (

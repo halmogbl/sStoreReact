@@ -42,7 +42,7 @@ class ItemDetail extends Component {
     );
 
     let nextItems = this.props.brands.find(
-      brand => brand.name && brand.name === item.brand.name && item.brand.name
+      brand => brand.name === item.brand.name
     );
 
     let RelatedItemsO =
@@ -75,30 +75,54 @@ class ItemDetail extends Component {
               </li>
             </ol>
           </nav>
-          <div className="col-8" style={{}}>
-            <div className="col-12" style={{ background: "#fff", padding: 20 }}>
-              <div className="col-9" style={{ padding: 10 }}>
-                <h1 style={{ textAlign: "left" }}>{item.name}</h1>
-                <ul class="list-group list-group-horizontal-xl">
-                  <li class="list-group-item">Brand</li>
-                  <li class="list-group-item">{item.brand.name}</li>
-                </ul>
-                <ul class="list-group list-group-horizontal-xl">
-                  <li class="list-group-item">Description </li>
-                  <li class="list-group-item">{item.description}</li>
-                </ul>
-                {/* {item.items.map(varaite => (
+          <div style={{ padding: 20 }}>
+            <div
+              className="col-12"
+              style={{ background: "#fff", borderRadius: 20 }}
+            >
+              <div className="col-8" style={{}}>
+                <div className="col-12" style={{ padding: 20 }}>
+                  <div className="col-9" style={{ padding: 10 }}>
+                    <h1 style={{ textAlign: "left" }}>{item.name}</h1>
+                    <ul class="list-group list-group-horizontal-xl">
+                      <li class="list-group-item">Brand</li>
+                      <li class="list-group-item">
+                        <img
+                          style={{ width: 30, height: 30 }}
+                          src={item.brand.image}
+                          alt=".."
+                        />
+                      </li>
+                    </ul>
+                    <ul class="list-group list-group-horizontal-xl">
+                      <li class="list-group-item">Description </li>
+                      <li class="list-group-item">{item.description}</li>
+                    </ul>
+                    {/* {item.items.map(varaite => (
   
                 ))} */}
+                  </div>
+                </div>
+              </div>
+              <div
+                className="col-4"
+                style={{ height: 350, overflow: "scroll" }}
+              >
+                {item.items.map(varaite => (
+                  <Variation key={varaite.id} varaite={varaite} />
+                ))}
               </div>
             </div>
           </div>
-          <div className="col-4">
-            {item.items.map(varaite => (
-              <Variation key={varaite.id} varaite={varaite} />
-            ))}
+          <div className="col-12" style={{ padding: 20, marginTop: 10 }}>
+            <div
+              className="col-12"
+              style={{ padding: 20, background: "#fff", borderRadius: 20 }}
+            >
+              <h4>Related Items:</h4>
+              <div className="col-12">{RelatedItemsO}</div>
+            </div>
           </div>
-          <div className="col-12">{RelatedItemsO}</div>
         </>
       );
     }
