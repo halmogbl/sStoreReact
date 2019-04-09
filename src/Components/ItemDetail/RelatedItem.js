@@ -12,17 +12,17 @@ class RelatedItem extends Component {
       return <div className="col-12">There is no related Items</div>;
     } else {
       return (
-        <div className="list-group">
+        <div className="list-group col-2">
           <Link
             to={`/item/${item.id}`}
             className="list-group-item list-group-item-action"
+            style={{ borderRadius: "20" }}
           >
             <div className="d-flex w-100 justify-content-between">
               <h5 className="mb-1">{item.name}</h5>
-              <small className="text-muted">..</small>
             </div>
 
-            {item.items.map(varaite => (
+            {/* {item.items.map(varaite => (
               <>
                 <p className="">
                   <span>Color:</span>
@@ -32,7 +32,7 @@ class RelatedItem extends Component {
                   {varaite.price}
                 </p>
               </>
-            ))}
+            ))} */}
           </Link>
         </div>
       );

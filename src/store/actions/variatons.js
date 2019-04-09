@@ -29,3 +29,12 @@ export const fetchVariatons = () => {
     }
   };
 };
+
+export const setVaraition = id => {
+  return async dispatch => {
+    dispatch({
+      type: actionTypes.SET_VARIATON,
+      payload: id
+    });
+  };
+};
