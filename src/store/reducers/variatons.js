@@ -2,7 +2,8 @@ import * as actionTypes from "../actions/actionTypes";
 
 const initialState = {
   variatons: [],
-  loading: true
+  loading: true,
+  variaton: null
 };
 
 const reducer = (state = initialState, action) => {
@@ -13,7 +14,11 @@ const reducer = (state = initialState, action) => {
         variatons: action.payload,
         loading: false
       };
-
+    case actionTypes.SET_VARIATON:
+      return {
+        ...state,
+        variaton: action.payload
+      };
     default:
       return state;
   }

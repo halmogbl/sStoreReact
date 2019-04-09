@@ -2,9 +2,10 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import * as actionCreators from "../../store/actions";
 import Loading from "../Loading";
-import imageNotFound from "../../assets/images/notfound.png";
 import { Link } from "react-router-dom";
 import RelatedItems from "./RelatedItem";
+import Variation from "./Variation";
+
 class ItemDetail extends Component {
   // componentDidMount() {}
   // componentDidUpdate() {
@@ -15,31 +16,6 @@ class ItemDetail extends Component {
   // );
   //   console.log("orderList", orderID);
   // }
-  state = {
-    quantity: 1
-  };
-  IncrementItem = () => {
-    this.setState(prevState => {
-      if (prevState.quantity < 9) {
-        return {
-          quantity: prevState.quantity + 1
-        };
-      } else {
-        return null;
-      }
-    });
-  };
-  DecreaseItem = () => {
-    this.setState(prevState => {
-      if (prevState.quantity > 1) {
-        return {
-          quantity: prevState.quantity - 1
-        };
-      } else {
-        return null;
-      }
-    });
-  };
 
   //   onSubmit = event => {
   //     event.preventDefault();
@@ -99,7 +75,7 @@ class ItemDetail extends Component {
               </li>
             </ol>
           </nav>
-          <div className="col-9" style={{}}>
+          <div className="col-8" style={{}}>
             <div className="col-12" style={{ background: "#fff", padding: 20 }}>
               <div className="col-9" style={{ padding: 10 }}>
                 <h1 style={{ textAlign: "left" }}>{item.name}</h1>
@@ -115,82 +91,14 @@ class ItemDetail extends Component {
   
                 ))} */}
               </div>
-              <div className="col-12">
-                {item.items.map(varaite => (
-                  <div className="col-12">
-                    <div className="col-6">
-                      <div className="col-3" style={{ padding: 20 }}>
-                        {varaite.image ? (
-                          <img style={{ width: "100%" }} src={varaite.image} />
-                        ) : (
-                          <img style={{ width: "100%" }} src={imageNotFound} />
-                        )}
-                      </div>
-                      <ul className="list-group list-group-horizontal-sm col-9">
-                        <li className="list-group-item col-6">
-                          <ul className="list-group list-group-horizontal-sm">
-                            <li className="list-group-item">Size:</li>
-                            <li className="list-group-item">{varaite.size}</li>
-                          </ul>
-                          <ul className="list-group list-group-horizontal-sm">
-                            <li className="list-group-item">Color</li>
-                            <li className="list-group-item">{varaite.color}</li>
-                          </ul>
-                        </li>
-                        <li className="list-group-item col-6">
-                          <ul className="list-group list-group-horizontal-sm">
-                            <li className="list-group-item">Stock</li>
-                            <li className="list-group-item">{varaite.stock}</li>
-                          </ul>
-                          <ul className="list-group list-group-horizontal-sm">
-                            <li className="list-group-item">Price </li>
-                            <li className="list-group-item">{varaite.price}</li>
-                          </ul>
-                        </li>
-                      </ul>
-                    </div>
-                    <div className="col-12">
-                      <div className="col-3">
-                        <button
-                          className="btn btn-success m-1"
-                          onClick={this.IncrementItem}
-                        >
-                          +
-                        </button>
-                        <input
-                          style={{ width: "20%", textAlign: "center" }}
-                          className="inputne m-1"
-                          value={this.state.quantity}
-                          onChange={this.handleChange}
-                        />
-                        <button
-                          className="btn btn-danger m-1"
-                          onClick={this.DecreaseItem}
-                        >
-                          -
-                        </button>
-                      </div>
-                      <div className="col-4">
-                        <a
-                          href="#"
-                          className="btn btn-primary  m-1"
-                          style={{
-                            width: "100%",
-                            background: "#40a9c3",
-                            color: "#fff",
-                            borderColor: "#40a9c3"
-                          }}
-                        >
-                          Add To Cart
-                        </a>
-                      </div>
-                    </div>
-                  </div>
-                ))}
-              </div>
             </div>
           </div>
-          <div className="col-3">{RelatedItemsO}</div>
+          <div className="col-4">
+            {item.items.map(varaite => (
+              <Variation key={varaite.id} varaite={varaite} />
+            ))}
+          </div>
+          <div className="col-12">{RelatedItemsO}</div>
         </>
       );
     }
