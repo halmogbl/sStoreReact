@@ -117,7 +117,7 @@ class ItemDetail extends Component {
               </div>
               <div className="col-12">
                 {item.items.map(varaite => (
-                  <div className="col-6">
+                  <div className="col-12">
                     <div className="col-3" style={{ padding: 20 }}>
                       {varaite.image ? (
                         <img style={{ width: "100%" }} src={varaite.image} />
@@ -125,89 +125,68 @@ class ItemDetail extends Component {
                         <img style={{ width: "100%" }} src={imageNotFound} />
                       )}
                     </div>
-                    <ul class="list-group list-group-horizontal-xl">
-                      <li class="list-group-item">Size</li>
-                      <li class="list-group-item">{varaite.size}</li>
-
-                      <li class="list-group-item">Color</li>
-                      <li class="list-group-item">{varaite.color}</li>
-
-                      <li class="list-group-item">Stock</li>
-                      <li class="list-group-item">{varaite.stock}</li>
-                    </ul>
-                    <ul class="list-group list-group-horizontal-xl">
-                      <li class="list-group-item">Price </li>
-                      <li class="list-group-item">{varaite.price}</li>
-                    </ul>
+                    <div className="col-4">
+                      <ul className="list-group list-group-horizontal-sm col-12">
+                        <li className="list-group-item col-6">
+                          <ul className="list-group list-group-horizontal-sm">
+                            <li className="list-group-item">Size:</li>
+                            <li className="list-group-item">{varaite.size}</li>
+                          </ul>
+                          <ul className="list-group list-group-horizontal-sm">
+                            <li className="list-group-item">Color</li>
+                            <li className="list-group-item">{varaite.color}</li>
+                          </ul>
+                        </li>
+                        <li className="list-group-item col-6">
+                          <ul className="list-group list-group-horizontal-sm">
+                            <li className="list-group-item">Stock</li>
+                            <li className="list-group-item">{varaite.stock}</li>
+                          </ul>
+                          <ul className="list-group list-group-horizontal-sm">
+                            <li className="list-group-item">Price </li>
+                            <li className="list-group-item">{varaite.price}</li>
+                          </ul>
+                        </li>
+                      </ul>
+                    </div>
+                    <div className="col-5">
+                      <div className="col-6">
+                        <button
+                          className="btn btn-success m-1"
+                          onClick={this.IncrementItem}
+                        >
+                          +
+                        </button>
+                        <input
+                          style={{ width: "20%", textAlign: "center" }}
+                          className="inputne m-1"
+                          value={this.state.quantity}
+                          onChange={this.handleChange}
+                        />
+                        <button
+                          className="btn btn-danger m-1"
+                          onClick={this.DecreaseItem}
+                        >
+                          -
+                        </button>
+                      </div>
+                      <div className="col-12">
+                        <a
+                          href="#"
+                          className="btn btn-primary  m-1"
+                          style={{
+                            width: "60%",
+                            background: "#40a9c3",
+                            color: "#fff",
+                            borderColor: "#40a9c3"
+                          }}
+                        >
+                          Add To Cart
+                        </a>
+                      </div>
+                    </div>
                   </div>
                 ))}
-                <div className="col-3">
-                  <a
-                    href="#"
-                    className="btn btn-primary  m-1"
-                    style={{
-                      width: "60%",
-                      background: "#40a9c3",
-                      color: "#fff",
-                      borderColor: "#40a9c3"
-                    }}
-                  >
-                    Add To Cart
-                  </a>
-                </div>
-                <div className="col-3">
-                  <button
-                    className="btn btn-success m-1"
-                    onClick={this.IncrementItem}
-                  >
-                    +
-                  </button>
-                  <input
-                    style={{ width: "20%", textAlign: "center" }}
-                    className="inputne m-1"
-                    value={this.state.quantity}
-                    onChange={this.handleChange}
-                  />
-                  <button
-                    className="btn btn-danger m-1"
-                    onClick={this.DecreaseItem}
-                  >
-                    -
-                  </button>
-                </div>
-                <div className="col-3">
-                  <button
-                    className="btn btn-primary  m-1"
-                    style={{
-                      width: "40%",
-                      background: "#40a9c3",
-                      color: "#fff",
-                      borderColor: "#40a9c3"
-                    }}
-                  >
-                    Add To Cart
-                  </button>
-                </div>
-                <div className="col-3">
-                  <button
-                    className="btn btn-success m-1"
-                    onClick={this.IncrementItem}
-                  >
-                    +
-                  </button>
-                  <input
-                    style={{ width: "20%", textAlign: "center" }}
-                    className="inputne m-1"
-                    value={this.state.quantity}
-                    onChange={this.handleChange}
-                  />
-                  <button
-                    className="btn btn-danger m-1"
-                    onClick={this.DecreaseItem}
-                  >
-                    -
-                  </button>
-                </div>
               </div>
             </div>
           </div>
