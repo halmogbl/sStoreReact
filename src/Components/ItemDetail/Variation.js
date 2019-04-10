@@ -39,6 +39,8 @@ class Variation extends Component {
 
   render() {
     const varaite = this.props.varaite;
+    const { user } = this.props.user;
+    const { orderes } = this.props.orderesReducer;
     if (!varaite) {
       return <div className="col-12">There is no variation</div>;
     } else {
@@ -133,8 +135,8 @@ class Variation extends Component {
                     </button>
                   </div>
                   <div className="col-4">
-                    <a
-                      href="#"
+                    <button
+                      onClick={() => orderes ? this.props.setOrderItem(orderes.id , {variaton:varaite.id,quantity:this.state.quantity}, user.username) : this.props.setCart({variaton:varaite.id,quantity:this.state.quantity}, user.username)}
                       className="btn btn-primary  m-1"
                       style={{
                         width: "100%",
@@ -144,7 +146,7 @@ class Variation extends Component {
                       }}
                     >
                       Add To Cart
-                    </a>
+                    </button>
                   </div>
                 </div>
               )}
@@ -158,12 +160,16 @@ class Variation extends Component {
 
 const mapStateToProps = state => {
   return {
-    variaton: state.variatonsReducer.variaton
+    variaton: state.variatonsReducer.variaton,
+    user: state.auth,
+    orderesReducer:state.orderesReducer,
   };
 };
 
 const mapDispatchToProps = dispatch => {
   return {
+    setCart: (orderItem, username) => dispatch(actionCreators.setCart(orderItem, username)),
+    setOrderItem: (orderesid, orderItem, username) => dispatch(actionCreators.setOrderItem(orderesid, orderItem, username)),
     setVaraition: id => dispatch(actionCreators.setVaraition(id))
   };
 };

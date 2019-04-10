@@ -38,3 +38,14 @@ export const setVaraition = id => {
     });
   };
 };
+
+export const setVaraitionCart = (id,quantity) => {
+  let variaton = {id: id, quantity: quantity}
+  console.log("variaton ===> ", variaton)
+  return async dispatch => {
+    dispatch({
+      type: actionTypes.SET_VARIATON_CART,
+      payload: variaton
+    });
+  };
+};

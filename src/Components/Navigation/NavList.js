@@ -8,6 +8,7 @@ import Search from "./Search";
 
 class NavList extends Component {
   render() {
+    const {orderes} = this.props.orderesReducer
     return (
       <div
         className="col-12"
@@ -90,8 +91,11 @@ class NavList extends Component {
             className="col-4 col-lg-3 col-md-3 col-sm-3"
             style={{ textAlign: "center", padding: 5 }}
           >
+          
             <span style={{ fontSize: 20 }}>
-              <i style={{ margin: 2 }} className="fas fa-shopping-cart" />0
+            <Link to="/cart" style={{color:"white"}}>
+              <i style={{ margin: 2 }} className="fas fa-shopping-cart" />{orderes && orderes.order_Items.length}
+              </Link>
             </span>
           </div>
         </div>
@@ -102,7 +106,8 @@ class NavList extends Component {
 
 const mapStateToProps = state => {
   return {
-    user: state.auth.user
+    user: state.auth.user,
+    orderesReducer: state.orderesReducer
   };
 };
 const mapDispatchToProps = dispatch => ({
