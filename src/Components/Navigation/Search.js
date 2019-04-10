@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import { Link } from "react-router-dom";
 import * as actionCreators from "../../store/actions";
 class Search extends Component {
   handleChange = event => {
@@ -18,14 +19,30 @@ class Search extends Component {
           placeholder="Search"
           onChange={this.handleChange}
         />
-
-        {this.props.searchfiltered.length > 0 && this.state.query.length > 0 ? (
-          <div className="searchBar" style={{}}>
-            {this.props.searchfiltered.map(item => item.name)}
-          </div>
-        ) : (
-          <div />
-        )}
+        <dic>
+          {this.props.searchfiltered.length > 0 &&
+          this.state.query.length > 0 ? (
+            <div
+              className=" col-12 searchBar animated fadeInDown Shadow "
+              style={{}}
+            >
+              {this.props.searchfiltered.map(item => (
+                <Link className="col-12" to={`/item/${item.id}`} key={item.id}>
+                  <div
+                    className="hoverSearch col-12"
+                    style={{ padding: 10, borderBottom: "1px solid #e7e7e7" }}
+                  >
+                    {" "}
+                    {item.name}
+                  </div>
+                  {/* <div className="col-1">1</div> */}
+                </Link>
+              ))}
+            </div>
+          ) : (
+            <div />
+          )}
+        </dic>
       </>
     );
   }
