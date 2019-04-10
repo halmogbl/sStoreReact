@@ -8,16 +8,26 @@ import "../../assets/css/Auth.css";
 class Login extends Component {
   state = {
     username: "",
-    password: ""
+    password: "",
+    loginalertUsername: false,
+    loginalertPassword: false
   };
 
   changeHandler = e => {
     this.setState({ [e.target.name]: e.target.value });
   };
 
-  submitHandler = e => {
-    console.log("HIIIIIIIIII");
+  submitHandler = async e => {
     e.preventDefault();
+    if (this.props.username && this.props.passsword) {
+      await this.setState({
+        loginalertUsername: false,
+        loginalertPassword: false
+      });
+      this.props.login(this.state, this.props.history);
+    } else {
+      this.setState({ loginalertUsername: true, loginalertPassword: true });
+    }
     this.props.login(this.state, this.props.history);
   };
 
@@ -27,6 +37,13 @@ class Login extends Component {
         <div className="create_account_form">
           <h3>Login</h3>
           <form onSubmit={this.submitHandler}>
+            {this.state.loginalertUsername ? (
+              <div class="alert alert-danger" role="alert">
+                Wrong Username
+              </div>
+            ) : (
+              <></>
+            )}
             <label htmlFor="userName">User Name</label>
             <Input
               text="User Name"
@@ -36,6 +53,13 @@ class Login extends Component {
               onChange={this.changeHandler}
               //   emptyMessage="User Name can't be empty"
             />
+            {this.state.loginalertPassword ? (
+              <div class="alert alert-danger" role="alert">
+                Password Dont Match
+              </div>
+            ) : (
+              <></>
+            )}
 
             <div className="password">
               <label htmlFor="Password">Password</label>
