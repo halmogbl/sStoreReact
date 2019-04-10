@@ -11,7 +11,6 @@ export { postAddress, updateAddress, deleteAddress } from "./addresses";
 
 export { fetchSearchItems } from "./search";
 
-
 export {
   getBrand,
   getColor,

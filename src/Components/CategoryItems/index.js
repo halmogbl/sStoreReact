@@ -5,6 +5,7 @@ import Loading from "../../Components/Loading";
 import * as actionCreators from "../../store/actions";
 import { NavLink } from "react-router-dom";
 import itemImage from "../../assets/images/notfound.png";
+
 class CategoryItems extends Component {
   render() {
     const categoryID = this.props.match.params.categoryID;
