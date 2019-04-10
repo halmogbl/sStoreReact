@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import * as actionCreators from "../../store/actions";
 import { Link } from "react-router-dom";
 import imageNotFound from "../../assets/images/notfound.png";
+var QRCode = require("qrcode.react");
 
 class VariationDetail extends Component {
   state = {};
@@ -108,7 +109,9 @@ class VariationDetail extends Component {
                   </ul>
                 </li>
               </ul>
-              <div className="col-9">hiQcode</div>
+              <div className="col-9">
+                <QRCode value={`127.0.0.0.1:3000/variation/${varaite.id}`} />
+              </div>
             </div>
             {/* <div className="col-12 animated fadeInRight">
                 <div className="col-7">
