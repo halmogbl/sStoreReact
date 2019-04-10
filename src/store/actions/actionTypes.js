@@ -27,7 +27,5 @@ export const APPLYFILTER = "APPLYFILTER";
 export const CATEGORIESITEMS = "CATEGORIESITEMS";
 
 export const FETCH_ORDERES = "FETCH_ORDERES";
-export const ADD_TO_CART = "ADD_TO_CART";
-export const REMOVE_ITEM = "REMOVE_ITEM";
-export const SUB_QUANTITY = "SUB_QUANTITY";
-export const ADD_QUANTITY = "ADD_QUANTITY";
+export const SEARCH_ITEMS = "SEARCH_ITEMS";
+export const FILTER_ITEMS = "FILTER_ITEMS";

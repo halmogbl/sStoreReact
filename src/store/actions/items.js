@@ -28,6 +28,12 @@ export const fetchItemDetail = id => {
     }
   };
 };
+export const filterItems = query => {
+  return {
+    type: actionTypes.FILTER_ITEMS,
+    payload: query.toLowerCase()
+  };
+};
 
 // export const filterCategories = query => {
 //   return {

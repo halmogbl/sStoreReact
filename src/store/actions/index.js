@@ -1,14 +1,14 @@
 export { login, logout, signup, checkForExpiredToken } from "./authentication";
 export { setErrors } from "./errors";
 
-export { fetchItemDetail } from "./items";
+export { fetchItemDetail, filterItems } from "./items";
 export { fetchCategories } from "./categories";
 export { fetchBrands } from "./brands";
 export { fetchVariatons } from "./variatons";
 export { fetchProfile, updateProfile } from "./profile";
 export { fetchOrderes } from "./orderes";
 export { postAddress, updateAddress, deleteAddress } from "./addresses";
-
+export { fetchSearchItems } from "./search";
 export {
   getBrand,
   getColor,

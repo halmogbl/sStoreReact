@@ -31,6 +31,7 @@ class App extends Component {
     this.props.fetchCategories();
     this.props.fetchProfile();
     this.props.fetchOrderes();
+    this.props.fetchSearchItems();
   }
 
   render() {
@@ -42,7 +43,6 @@ class App extends Component {
           <Route path="/home" component={Home} />
 
           <Route path="/Profile" component={ProfileSideBar} />
-
 
           <Route path="/shop" component={Shop} />
           <Route path="/signup" component={Signup} />
@@ -69,7 +69,8 @@ const mapDispatchToProps = dispatch => {
   return {
     fetchCategories: () => dispatch(actionCreators.fetchCategories()),
     fetchProfile: () => dispatch(actionCreators.fetchProfile()),
-    fetchOrderes: () => dispatch(actionCreators.fetchOrderes())
+    fetchOrderes: () => dispatch(actionCreators.fetchOrderes()),
+    fetchSearchItems: () => dispatch(actionCreators.fetchSearchItems())
   };
 };
 export default withRouter(
