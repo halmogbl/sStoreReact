@@ -44,6 +44,15 @@ class Sidebar extends Component {
               Profile Update
             </NavLink>
           </h5>
+          <h5>
+            <NavLink
+              exact
+              activeClassName="menu-item active"
+              to="/profile/order_history"
+            >
+              Order History
+            </NavLink>
+          </h5>
         </section>
       </div>
     );

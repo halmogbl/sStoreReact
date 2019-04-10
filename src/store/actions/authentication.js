@@ -102,10 +102,15 @@ export const getCartList = (username) => {
       let response = await instance.get("orderes/list/");
       let orderes = response.data;
       let orderLogedInUser = orderes.filter(order => order.profile.user.username === username && order.status === "NO_ORDER" && order)
+      let orderHistoryLogedInUser = orderes.filter(order => order.profile.user.username === username && order.status === "ORDERED" && order)
       // console.log("orderLogedInUser  ====> ", orderLogedInUser)
+      let allOrder = {
+        NO_ORDER: orderLogedInUser,
+        ORDERED:orderHistoryLogedInUser
+      }
       dispatch({
         type: actionTypes.GET_ORDERES,
-        payload: orderLogedInUser
+        payload: allOrder
       });
     } catch (error) {
       dispatch({
