@@ -6,6 +6,7 @@ import UpdateProfileForm from "../Profile/UpdateProfileForm";
 import UpdateAddress from "../Profile/UpdateAddress";
 import CreateAddress from "../Profile/CreateAddress";
 import Profile from "../Profile";
+import OrderHistory from "../Profile/orderHistoyList";
 import Welcome from "./Welcome";
 
 class ProfileSideBar extends Component {
@@ -19,7 +20,7 @@ class ProfileSideBar extends Component {
               path="/profile/address/:addressID/update"
               component={UpdateAddress}
             />
-
+            <Route path="/profile/order_history" component={OrderHistory}/>
             <Route path="/profile/address/create/" component={CreateAddress} />
             <Route path="/profile/home" component={Profile} />
           </Switch>

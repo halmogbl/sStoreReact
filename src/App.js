@@ -17,6 +17,7 @@ import UpdateAddress from "./Components/Profile/UpdateAddress";
 import CategoryItems from "./Components/CategoryItems";
 import ItemDetail from "./Components/ItemDetail";
 
+import Cart from "./Components/Cart"
 // Actions
 import * as actionCreators from "./store/actions";
 
@@ -32,8 +33,8 @@ class App extends Component {
   async componentDidMount() {
     await this.props.fetchCategories();
     await this.props.fetchProfile();
-    await this.props.fetchOrderes();
-    await this.props.fetchSearchItems();
+    await this.props.checkForExpiredToken();
+
   }
 
   render() {
@@ -48,9 +49,11 @@ class App extends Component {
 
           <Route path="/shop" component={Shop} />
           <Route path="/signup" component={Signup} />
-
+          
           <Route path="/item/:itemID" component={ItemDetail} />
           <Route path="/category/:categoryID" component={CategoryItems} />
+
+          <Route path="/cart" component={Cart}/>
           <Route path="/variation/:varaiteID" component={VariationDetail} />
           <Redirect to="/home" />
         </Switch>
@@ -71,7 +74,7 @@ const mapDispatchToProps = dispatch => {
   return {
     fetchCategories: () => dispatch(actionCreators.fetchCategories()),
     fetchProfile: () => dispatch(actionCreators.fetchProfile()),
-    fetchOrderes: () => dispatch(actionCreators.fetchOrderes()),
+    checkForExpiredToken: () => dispatch(actionCreators.checkForExpiredToken()),
     fetchSearchItems: () => dispatch(actionCreators.fetchSearchItems())
   };
 };

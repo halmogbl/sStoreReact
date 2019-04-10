@@ -1,31 +1,29 @@
 import * as actionTypes from "../actions/actionTypes";
 const initialState = {
   orderes: null,
-  order_Items: [],
-  loading: true
+  orderHistory:null,
 };
 const reducer = (state = initialState, action) => {
   switch (action.type) {
-    case actionTypes.FETCH_ORDERES:
+    case actionTypes.GET_ORDERES:
+    
+    let newCart = action.payload.NO_ORDER.find(cart=> cart.status === "NO_ORDER")
+    let orderHis = action.payload.ORDERED
       return {
         ...state,
-        orderes: action.payload,
-        loading: false
+        orderes: newCart,
+        orderHistory:orderHis
       };
-    case actionTypes.CREATE_ORDER:
-      return {
-        ...state,
-        orderes: state.orderes.concat(action.payload),
-        loading: false
-      };
-    case actionTypes.CREATE_ORDER_ITEM:
-      return {
-        ...state,
-        order_Items: action.payload,
-        loading: false
-      };
+    case actionTypes.SET_VARIATON_CART:
+        let orderItem = state.orderes.order_Items.find(order => order.id === action.payload.id)
+        orderItem.quantity = action.payload.quantity
+        return {
+          ...state,
+          orderes: state.orderes
+        };
     default:
       return state;
   }
 };
+
 export default reducer;
