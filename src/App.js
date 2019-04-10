@@ -23,15 +23,19 @@ import * as actionCreators from "./store/actions";
 //CSS
 import "./assets/css/GridSystem.css";
 import "./assets/css/Custom.css";
+import "./assets/css/animation.css";
 
 import ProfileSideBar from "./Components/ProfileSideBar";
 
 class App extends Component {
-  componentDidMount() {
-    this.props.fetchCategories();
-    this.props.fetchProfile();
-    this.props.fetchOrderes();
-    this.props.fetchSearchItems();
+
+  async componentDidMount() {
+    await this.props.fetchCategories();
+    await this.props.fetchProfile();
+    await this.props.fetchOrderes();
+    await this.props.fetchSearchItems();
+
+
   }
 
   render() {

@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, Link } from "react-router-dom";
 import { connect } from "react-redux";
 import * as actionCreators from "../../store/actions";
 import { withRouter } from "react-router-dom";
@@ -12,7 +12,7 @@ class NavList extends Component {
       <div
         className="col-12"
         style={{
-          background: "#343f48",
+          background: "#212629",
           color: "#fff",
           //position: "fixed",
           top: 0,
@@ -25,9 +25,9 @@ class NavList extends Component {
           className="col-lg-1 col-md-3 col-sm-4"
           style={{ textAlign: "center", padding: 6 }}
         >
-          <NavLink style={{ color: "#fff" }} className="" to={`/home`}>
-            Home
-          </NavLink>
+          <Link style={{ color: "#fff" }} className="" to={`/home`}>
+            FHMM
+          </Link>
         </div>
         <div className="col-lg-8 col-md-5 col-sm-4">
           <Search />

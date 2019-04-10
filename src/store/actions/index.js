@@ -4,11 +4,14 @@ export { setErrors } from "./errors";
 export { fetchItemDetail, filterItems } from "./items";
 export { fetchCategories } from "./categories";
 export { fetchBrands } from "./brands";
-export { fetchVariatons } from "./variatons";
+export { fetchVariatons, setVaraition } from "./variatons";
 export { fetchProfile, updateProfile } from "./profile";
-export { fetchOrderes } from "./orderes";
+export { fetchOrderes, createOrder, createOrderItem } from "./orderes";
 export { postAddress, updateAddress, deleteAddress } from "./addresses";
+
 export { fetchSearchItems } from "./search";
+
+
 export {
   getBrand,
   getColor,

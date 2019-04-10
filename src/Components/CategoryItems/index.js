@@ -20,40 +20,40 @@ class CategoryItems extends Component {
             border: "1px solid #dee2e6",
             background: "#fff",
             margin: 10,
-            padding: 20
+            padding: 20,
+            borderRadius: 20
           }}
-          className="col-sm-12 col-md-6 col-lg-3"
+          className="col-sm-12 col-md-6 col-lg-3 cardShadow"
         >
           <NavLink to={`/item/${item.id}`} key={item.id}>
             <img src={itemImage} className="card-img-top" alt="..." />
             <div className="card-body">
               <span
-                className="card-title col-5"
-                style={{ color: "#000", fontWeight: 200 }}
+                className="card-title col-12"
+                style={{
+                  color: "#000",
+                  fontWeight: 200,
+                  textAlign: "center",
+                  fontSize: 20
+                }}
               >
                 {item.name}
               </span>
-              <span
+              {/* <span
                 className="card-title col-7"
                 style={{ color: "#000", fontWeight: 200, textAlign: "right" }}
               >
                 {item.items[0].price}{" "}
                 <span style={{ color: "#28a745" }}>SAR</span>
-              </span>
+              </span> */}
+              {/* <span
+                className="card-title col-7"
+                style={{ color: "#000", fontWeight: 200, textAlign: "right" }}
+              >
+                {item.brand.image} <span style={{ color: "#28a745" }}>SAR</span>
+              </span> */}
             </div>
           </NavLink>
-          <a
-            href="#"
-            className="btn btn-primary"
-            style={{
-              width: "100%",
-              background: "#40a9c3",
-              color: "#fff",
-              borderColor: "#40a9c3"
-            }}
-          >
-            Add To Cart
-          </a>
         </div>
       ));
       return <div className="col-12">{items}</div>;

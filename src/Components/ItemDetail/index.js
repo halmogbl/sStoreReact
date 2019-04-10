@@ -2,50 +2,54 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import * as actionCreators from "../../store/actions";
 import Loading from "../Loading";
-import imageNotFound from "../../assets/images/notfound.png";
 import { Link } from "react-router-dom";
+import RelatedItems from "./RelatedItem";
+import Variation from "./Variation";
 
 class ItemDetail extends Component {
-  state = {
-    quantity: 1
-  };
-  IncrementItem = () => {
-    this.setState(prevState => {
-      if (prevState.quantity < 9) {
-        return {
-          quantity: prevState.quantity + 1
-        };
-      } else {
-        return null;
-      }
-    });
-  };
-  DecreaseItem = () => {
-    this.setState(prevState => {
-      if (prevState.quantity > 1) {
-        return {
-          quantity: prevState.quantity - 1
-        };
-      } else {
-        return null;
-      }
-    });
-  };
+  // componentDidMount() {}
+  // componentDidUpdate() {
+  // const orderID = this.props.orderes.find(
+  //   order =>
+  //     order.status === "NO_ORDER" &&
+  //     this.props.profile.user.username === order.profile.user.username
+  // );
+  //   console.log("orderList", orderID);
+  // }
 
-  componentDidMount() {
-    this.props.fetchItemDetail(this.props.match.params.itemID);
-    // this.props.categoriesItems();
+  //   onSubmit = event => {
+  //     event.preventDefault();
+  //     this.props.createOrder(this.state);
+  //   };
+
+  async componentDidMount() {
+    await this.props.fetchItemDetail(this.props.match.params.itemID);
+    await this.props.fetchBrands();
+  }
+  componentDidUpdate() {
+    if (this.props.item.id !== +this.props.match.params.itemID) {
+      this.props.fetchItemDetail(this.props.match.params.itemID);
+    }
   }
   render() {
     const itemID = this.props.match.params.itemID;
     const item = this.props.item;
     const loading = this.props.loading;
     // console.log("show royrelf", this.props.categories);
+
     let MyCat = this.props.categories.find(
       cat => cat.items.find(itemOb => itemOb.id === item.id) && cat
     );
 
-    console.log("dont hide please", MyCat);
+    let nextItems = this.props.brands.find(
+      brand => brand.name === item.brand.name
+    );
+
+    let RelatedItemsO =
+      nextItems &&
+      nextItems.brands
+        .filter(itemOb => itemOb.id !== item.id)
+        .map(nextItems => <RelatedItems item={nextItems} />);
 
     if (loading) {
       return (
@@ -71,71 +75,52 @@ class ItemDetail extends Component {
               </li>
             </ol>
           </nav>
-          <div className="col-12" style={{ background: "#fff", padding: 20 }}>
-            <div className="col-3" style={{ padding: 20 }}>
-              {item.image ? (
-                <img src={item.image} />
-              ) : (
-                <img src={imageNotFound} />
-              )}
-            </div>
-            <div className="col-9" style={{ padding: 10 }}>
-              <h1 style={{ textAlign: "left" }}>{item.name}</h1>
-              <h4>{item.description}</h4>
-              <h4>{item.brand.name}</h4>
-              {item.items.map(varaite => (
-                <h4 class="">{varaite.price}</h4>
-              ))}
-            </div>
-            <div className="col-12">
-              {item.items.map(varaite => (
-                <div className="col-4">
-                  <ul class="list-group list-group-horizontal-xl">
-                    <li class="list-group-item">Size</li>
-                    <li class="list-group-item">{varaite.size}</li>
-
-                    <li class="list-group-item">Color</li>
-                    <li class="list-group-item">{varaite.color}</li>
-
-                    <li class="list-group-item">Stock</li>
-                    <li class="list-group-item">{varaite.stock}</li>
-                  </ul>
+          <div style={{ padding: 20 }}>
+            <div
+              className="col-12"
+              style={{ background: "#fff", borderRadius: 20 }}
+            >
+              <div className="col-8" style={{}}>
+                <div className="col-12" style={{ padding: 20 }}>
+                  <div className="col-9" style={{ padding: 10 }}>
+                    <h1 style={{ textAlign: "left" }}>{item.name}</h1>
+                    <ul class="list-group list-group-horizontal-xl">
+                      <li class="list-group-item">Brand</li>
+                      <li class="list-group-item">
+                        <img
+                          style={{ width: 30, height: 30 }}
+                          src={item.brand.image}
+                          alt=".."
+                        />
+                      </li>
+                    </ul>
+                    <ul class="list-group list-group-horizontal-xl">
+                      <li class="list-group-item">Description </li>
+                      <li class="list-group-item">{item.description}</li>
+                    </ul>
+                    {/* {item.items.map(varaite => (
+  
+                ))} */}
+                  </div>
                 </div>
-              ))}
-              <div className="col-3">
-                <a
-                  href="#"
-                  className="btn btn-primary  m-1"
-                  style={{
-                    width: "40%",
-                    background: "#40a9c3",
-                    color: "#fff",
-                    borderColor: "#40a9c3"
-                  }}
-                >
-                  Add To Cart
-                </a>
               </div>
-              <div className="col-3">
-                <button
-                  className="btn btn-success m-1"
-                  onClick={this.IncrementItem}
-                >
-                  +
-                </button>
-                <input
-                  style={{ width: "20%", textAlign: "center" }}
-                  className="inputne m-1"
-                  value={this.state.quantity}
-                  onChange={this.handleChange}
-                />
-                <button
-                  className="btn btn-danger m-1"
-                  onClick={this.DecreaseItem}
-                >
-                  -
-                </button>
+              <div
+                className="col-4"
+                style={{ height: 350, overflow: "scroll" }}
+              >
+                {item.items.map(varaite => (
+                  <Variation key={varaite.id} varaite={varaite} />
+                ))}
               </div>
+            </div>
+          </div>
+          <div className="col-12" style={{ padding: 20, marginTop: 10 }}>
+            <div
+              className="col-12"
+              style={{ padding: 20, background: "#fff", borderRadius: 20 }}
+            >
+              <h4>Related Items:</h4>
+              <div className="col-12">{RelatedItemsO}</div>
             </div>
           </div>
         </>
@@ -148,15 +133,18 @@ const mapStateToProps = state => {
   return {
     item: state.itemReducer.item,
     loading: state.itemReducer.loading,
-    categories: state.categoriesReducer.categories
-    // allItems: state.filterVariablesReducer.Items
+    categories: state.categoriesReducer.categories,
+    orderes: state.orderesReducer.orderes,
+    profile: state.profileReducer.profile,
+    brands: state.brandsReducer.brands
   };
 };
 
 const mapDispatchToProps = dispatch => {
   return {
     fetchItemDetail: id => dispatch(actionCreators.fetchItemDetail(id)),
-    categoriesItems: () => dispatch(actionCreators.categoriesItems())
+    categoriesItems: () => dispatch(actionCreators.categoriesItems()),
+    fetchBrands: () => dispatch(actionCreators.fetchBrands())
   };
 };
 
