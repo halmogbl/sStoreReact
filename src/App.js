@@ -26,16 +26,14 @@ import "./assets/css/Custom.css";
 import "./assets/css/animation.css";
 
 import ProfileSideBar from "./Components/ProfileSideBar";
+import VariationDetail from "./Components/ItemDetail/VariationDetail";
 
 class App extends Component {
-
   async componentDidMount() {
     await this.props.fetchCategories();
     await this.props.fetchProfile();
     await this.props.fetchOrderes();
     await this.props.fetchSearchItems();
-
-
   }
 
   render() {
@@ -53,7 +51,7 @@ class App extends Component {
 
           <Route path="/item/:itemID" component={ItemDetail} />
           <Route path="/category/:categoryID" component={CategoryItems} />
-
+          <Route path="/variation/:varaiteID" component={VariationDetail} />
           <Redirect to="/home" />
         </Switch>
         <Footer />
