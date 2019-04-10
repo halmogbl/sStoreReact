@@ -62,7 +62,10 @@ class UpdateAddress extends Component {
 
   render() {
     return (
-      <div className="container">
+      <div
+        className="col-12"
+        style={{ marginTop: 20, padding: 20, background: "#fff" }}
+      >
         <form
           className="form-horizontal"
           role="form"
@@ -70,96 +73,92 @@ class UpdateAddress extends Component {
         >
           <h1>Update My Address</h1>
 
-          <div className="row">
-            {/* <!-- left column --> */}
+          {/* <!-- left column --> */}
 
-            {/* <!-- edit form column --> */}
-            <div className="col-md-12 personal-info">
-              {this.state.alertUpload ? (
-                <div className="alert alert-info alert-dismissable">
-                  <a className="panel-close close" data-dismiss="alert">
-                    ×
-                  </a>
-                  <i className="fa fa-coffee" />
-                  all fields with <strong> * </strong> are required
-                </div>
-              ) : (
-                <></>
-              )}
+          {/* <!-- edit form column --> */}
+          <div className="col-md-12 personal-info">
+            {this.state.alertUpload ? (
+              <div className="alert alert-info alert-dismissable">
+                <a className="panel-close close" data-dismiss="alert">
+                  ×
+                </a>
+                <i className="fa fa-coffee" />
+                all fields with <strong> * </strong> are required
+              </div>
+            ) : (
+              <></>
+            )}
 
-              <div className="form-group">
-                <label className="col-lg-3 control-label">
-                  * Address Name:
-                </label>
-                <div className="col-lg-8">
-                  <input
-                    className="form-control"
-                    type="text"
-                    name="name"
-                    value={this.state.name}
-                    onChange={this.onTextchange}
-                    placeholder={"Ex: Home , Worke , Friends'House"}
-                  />
-                </div>
+            <div className="form-group">
+              <label className="col-lg-3 control-label">* Address Name:</label>
+              <div className="col-lg-8">
+                <input
+                  className="form-control"
+                  type="text"
+                  name="name"
+                  value={this.state.name}
+                  onChange={this.onTextchange}
+                  placeholder={"Ex: Home , Worke , Friends'House"}
+                />
               </div>
-              <div className="form-group">
-                <label className="col-lg-3 control-label">* Street 1:</label>
-                <div className="col-lg-8">
-                  <input
-                    className="form-control"
-                    type="text"
-                    name="street_1"
-                    value={this.state.street_1}
-                    onChange={this.onTextchange}
-                    placeholder={"Ex: 1234 King Abdullah St."}
-                  />
-                </div>
+            </div>
+            <div className="form-group">
+              <label className="col-lg-3 control-label">* Street 1:</label>
+              <div className="col-lg-8">
+                <input
+                  className="form-control"
+                  type="text"
+                  name="street_1"
+                  value={this.state.street_1}
+                  onChange={this.onTextchange}
+                  placeholder={"Ex: 1234 King Abdullah St."}
+                />
               </div>
-              <div className="form-group">
-                <label className="col-lg-3 control-label">Street 2:</label>
-                <div className="col-lg-8">
-                  <input
-                    className="form-control"
-                    type="text"
-                    name="street_2"
-                    value={this.state.street_2}
-                    onChange={this.onTextchange}
-                  />
-                </div>
+            </div>
+            <div className="form-group">
+              <label className="col-lg-3 control-label">Street 2:</label>
+              <div className="col-lg-8">
+                <input
+                  className="form-control"
+                  type="text"
+                  name="street_2"
+                  value={this.state.street_2}
+                  onChange={this.onTextchange}
+                />
               </div>
-              <div className="form-group">
-                <label className="col-lg-3 control-label">* City:</label>
-                <div className="col-lg-8">
-                  <input
-                    className="form-control"
-                    type="text"
-                    name="city"
-                    value={this.state.city}
-                    onChange={this.onTextchange}
-                    placeholder={"Ex: Jubail, Riyadh, Jeddah"}
-                  />
-                </div>
+            </div>
+            <div className="form-group">
+              <label className="col-lg-3 control-label">* City:</label>
+              <div className="col-lg-8">
+                <input
+                  className="form-control"
+                  type="text"
+                  name="city"
+                  value={this.state.city}
+                  onChange={this.onTextchange}
+                  placeholder={"Ex: Jubail, Riyadh, Jeddah"}
+                />
               </div>
-              <div className="form-group">
-                <label className="col-lg-3 control-label">* Postal code:</label>
-                <div className="col-lg-8">
-                  <input
-                    className="form-control"
-                    type="text"
-                    name="postal_code"
-                    value={this.state.postal_code}
-                    onChange={this.onTextchange}
-                    placeholder={"Ex: 35412, 15419, 35427"}
-                  />
-                </div>
+            </div>
+            <div className="form-group">
+              <label className="col-lg-3 control-label">* Postal code:</label>
+              <div className="col-lg-8">
+                <input
+                  className="form-control"
+                  type="text"
+                  name="postal_code"
+                  value={this.state.postal_code}
+                  onChange={this.onTextchange}
+                  placeholder={"Ex: 35412, 15419, 35427"}
+                />
               </div>
+            </div>
 
-              <div className="form-group">
-                <div className="col-md-8">
-                  <button className="btn btn-primary" type="submit">
-                    Save My Address
-                  </button>
-                </div>
+            <div className="form-group">
+              <div className="col-md-8">
+                <button className="btn btn-primary" type="submit">
+                  Save My Address
+                </button>
               </div>
             </div>
           </div>

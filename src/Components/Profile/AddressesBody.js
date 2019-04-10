@@ -15,25 +15,27 @@ class AddressesBody extends Component {
         <td>{this.props.address.city}</td>
         <td>{this.props.address.postal_code}</td>
         <td>
-          <Link
-            className="btn btn-info"
-            to={`/profile/address/${this.props.address.id}/update`}
-          >
-            Update
-          </Link>
-        </td>
-        <td>
-          <button
-            className="btn btn-danger"
-            onClick={() => {
-              this.props.deleteAddress(
-                this.props.address,
-                this.props.address.id
-              );
-            }}
-          >
-            DELETE
-          </button>
+          <span style={{ padding: 5 }}>
+            <Link
+              className="btn btn-info"
+              to={`/profile/address/${this.props.address.id}/update`}
+            >
+              Update
+            </Link>
+          </span>
+          <span style={{ padding: 5 }}>
+            <button
+              className="btn btn-danger"
+              onClick={() => {
+                this.props.deleteAddress(
+                  this.props.address,
+                  this.props.address.id
+                );
+              }}
+            >
+              DELETE
+            </button>
+          </span>
         </td>
       </tr>
     );

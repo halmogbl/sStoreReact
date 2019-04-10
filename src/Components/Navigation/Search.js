@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import * as actionCreators from "../../store/actions";
 class Search extends Component {
   state = {
+    query: "",
     flag: false
   };
   handleChange = event => {
@@ -14,7 +15,6 @@ class Search extends Component {
     this.setState({ flag: false });
   };
   render() {
-    console.log(this.props.searchfiltered);
     return (
       <>
         <input

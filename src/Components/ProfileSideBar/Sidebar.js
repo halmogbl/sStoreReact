@@ -8,10 +8,16 @@ class Sidebar extends Component {
       <div
         id="sidebar"
         className="col-3"
-        style={{ marginTop: 20, background: "#fff" }}
+        style={{ marginTop: 20, background: "#fff", padding: 20 }}
       >
         <section>
-          <h5>
+          <div
+            className="col-12"
+            style={{
+              padding: 5,
+              borderBottom: "1px solid #e7e7e7"
+            }}
+          >
             <NavLink
               exact
               activeClassName="menu-item active "
@@ -19,23 +25,30 @@ class Sidebar extends Component {
             >
               Profile Page
             </NavLink>
-          </h5>
-          <h5>
+          </div>
+          <div
+            className="col-12"
+            style={{
+              padding: 5,
+              borderBottom: "1px solid #e7e7e7"
+            }}
+          >
             <NavLink
               exact
               activeClassName="menu-item active"
               to="/profile/address/create/"
               className="hover"
-              style={{
-                padding: 5,
-                border: "1px solid #e7e7e7",
-                borderRadius: 10
-              }}
             >
               Create Address
             </NavLink>
-          </h5>
-          <h5>
+          </div>
+          <div
+            className="col-12"
+            style={{
+              padding: 5,
+              borderBottom: "1px solid #e7e7e7"
+            }}
+          >
             <NavLink
               exact
               activeClassName="menu-item active"
@@ -43,8 +56,14 @@ class Sidebar extends Component {
             >
               Profile Update
             </NavLink>
-          </h5>
-          <h5>
+          </div>
+          <div
+            className="col-12"
+            style={{
+              padding: 5,
+              borderBottom: "1px solid #e7e7e7"
+            }}
+          >
             <NavLink
               exact
               activeClassName="menu-item active"
@@ -52,7 +71,7 @@ class Sidebar extends Component {
             >
               Order History
             </NavLink>
-          </h5>
+          </div>
         </section>
       </div>
     );

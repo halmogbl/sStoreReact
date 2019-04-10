@@ -52,14 +52,14 @@ class VariationDetail extends Component {
               padding: 20
             }}
           >
-            <input
+            {/* <input
               className="form-check-input"
               type="radio"
               name="varaition"
               id={`Radios-${varaite.id}`}
               value={`option-${varaite.id}`}
               onChange={() => this.onVaraiteChange(varaite.id)}
-            />
+            /> */}
             <div className="col-12">
               <div className="col-3" style={{}}>
                 {varaite.image ? (
