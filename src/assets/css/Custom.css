@@ -4,7 +4,7 @@ body {
 }
 .active {
   /* border: 1px solid rgb(173, 181, 189); */
-  color: #fcb70c !important;
+  color: #2fb8e9 !important;
 }
 
 .Shadow {
@@ -23,4 +23,17 @@ body {
 }
 .create_account_screen {
   height: 90vh;
+}
+
+.searchBar {
+  position: absolute !important;
+
+  background: #fff;
+  color: #000;
+  z-index: 1;
+  /* border-radius: 0px; */
+  font-size: 14px;
+}
+.hoverSearch:hover {
+  background: #e9ecef6b;
 }

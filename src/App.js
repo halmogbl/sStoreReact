@@ -27,12 +27,14 @@ import "./assets/css/Custom.css";
 import "./assets/css/animation.css";
 
 import ProfileSideBar from "./Components/ProfileSideBar";
+import VariationDetail from "./Components/ItemDetail/VariationDetail";
 
 class App extends Component {
   async componentDidMount() {
     await this.props.fetchCategories();
     await this.props.fetchProfile();
     await this.props.checkForExpiredToken();
+
   }
 
   render() {
@@ -52,7 +54,7 @@ class App extends Component {
           <Route path="/category/:categoryID" component={CategoryItems} />
 
           <Route path="/cart" component={Cart}/>
-
+          <Route path="/variation/:varaiteID" component={VariationDetail} />
           <Redirect to="/home" />
         </Switch>
         <Footer />
@@ -73,6 +75,7 @@ const mapDispatchToProps = dispatch => {
     fetchCategories: () => dispatch(actionCreators.fetchCategories()),
     fetchProfile: () => dispatch(actionCreators.fetchProfile()),
     checkForExpiredToken: () => dispatch(actionCreators.checkForExpiredToken()),
+    fetchSearchItems: () => dispatch(actionCreators.fetchSearchItems())
   };
 };
 export default withRouter(

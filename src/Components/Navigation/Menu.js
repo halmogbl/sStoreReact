@@ -48,7 +48,7 @@ class Menu extends Component {
           </NavLink>
           <ul
             className="col-lg-4 col-md-3 col-sm-2 dropdown-menu dropdown-menu-right"
-            style={{ borderRadius: 20 }}
+            style={{}}
           >
             {categories.map(category => (
               <li style={{ padding: 10 }}>

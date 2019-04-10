@@ -14,14 +14,6 @@ const reducer = (state = initialState, action) => {
         loading: false
       };
 
-    // case actionTypes.FILTER_CATEGORIES:
-    //   return {
-    //     ...state,
-    //     filteredCategories: state.categories.filter(category => {
-    //       return `${category.name} `.toLowerCase().includes(action.payload);
-    //     })
-    //   };
-
     default:
       return state;
   }

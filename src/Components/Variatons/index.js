@@ -84,7 +84,7 @@ export class Variatons extends Component {
             id="inlineFormCustomSelect"
             onChange={this.handleColorChange}
           >
-            <option selected>Choose...</option>
+            <option selected>Choose Color</option>
             {ColorOptions}
           </select>
 
@@ -96,7 +96,7 @@ export class Variatons extends Component {
             class="custom-select mr-sm-2"
             id="inlineFormCustomSelect"
           >
-            <option selected>Choose...</option>
+            <option selected>Choose Size</option>
             {SizeOptions}
           </select>
 
@@ -108,9 +108,10 @@ export class Variatons extends Component {
             className="custom-select mr-sm-2"
             id="inlineFormCustomSelect"
           >
-            <option value="0" selected>
-              0
+            <option value="" selected>
+              Choose Min Price
             </option>
+            <option value="0">0</option>
             {PriceOptions}
           </select>
           <label className="form-check-label" for="inlineFormCustomSelect">

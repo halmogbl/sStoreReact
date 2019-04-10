@@ -29,6 +29,9 @@ export const CATEGORIESITEMS = "CATEGORIESITEMS";
 // export const FETCH_ORDERES = "FETCH_ORDERES";
 // export const CREATE_ORDER = "CREATE_ORDER";
 // export const CREATE_ORDER_ITEM = "CREATE_ORDER_ITEM";
+
+export const SEARCH_ITEMS = "SEARCH_ITEMS";
+export const FILTER_ITEMS = "FILTER_ITEMS";
 export const SET_VARIATON = "SET_VARIATON";
 export const SET_VARIATON_CART = "SET_VARIATON_CART";
 
