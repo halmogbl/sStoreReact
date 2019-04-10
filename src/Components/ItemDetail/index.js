@@ -77,10 +77,10 @@ class ItemDetail extends Component {
           </nav>
           <div style={{ padding: 20 }}>
             <div
-              className="col-12"
+              className="col-12 animated fadeIn"
               style={{ background: "#fff", borderRadius: 20 }}
             >
-              <div className="col-8" style={{}}>
+              <div className="col-8 " style={{}}>
                 <div className="col-12" style={{ padding: 20 }}>
                   <div className="col-9" style={{ padding: 10 }}>
                     <h1 style={{ textAlign: "left" }}>{item.name}</h1>
@@ -120,7 +120,7 @@ class ItemDetail extends Component {
               style={{ padding: 20, background: "#fff", borderRadius: 20 }}
             >
               <h4>Related Items:</h4>
-              <div className="col-12">{RelatedItemsO}</div>
+              <div className="col-12 animated fadeIn">{RelatedItemsO}</div>
             </div>
           </div>
         </>

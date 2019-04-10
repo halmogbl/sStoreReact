@@ -111,7 +111,7 @@ class Variation extends Component {
               </div>
 
               {this.props.variaton === varaite.id && (
-                <div className="col-12">
+                <div className="col-12 animated fadeInRight">
                   <div className="col-7">
                     <button
                       className="btn btn-success m-1"
