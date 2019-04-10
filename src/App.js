@@ -28,10 +28,14 @@ import "./assets/css/animation.css";
 import ProfileSideBar from "./Components/ProfileSideBar";
 
 class App extends Component {
+
   async componentDidMount() {
     await this.props.fetchCategories();
     await this.props.fetchProfile();
     await this.props.fetchOrderes();
+    await this.props.fetchSearchItems();
+
+
   }
 
   render() {
@@ -69,7 +73,8 @@ const mapDispatchToProps = dispatch => {
   return {
     fetchCategories: () => dispatch(actionCreators.fetchCategories()),
     fetchProfile: () => dispatch(actionCreators.fetchProfile()),
-    fetchOrderes: () => dispatch(actionCreators.fetchOrderes())
+    fetchOrderes: () => dispatch(actionCreators.fetchOrderes()),
+    fetchSearchItems: () => dispatch(actionCreators.fetchSearchItems())
   };
 };
 export default withRouter(

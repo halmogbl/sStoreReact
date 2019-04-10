@@ -38,12 +38,6 @@ const reducer = (state = initialState, action) => {
         priceTo: action.payload
       };
     case actionTypes.CATEGORIESITEMS:
-      // let items = state.categoriesItems.map(item => item);
-      // let allItem = items.map(item => ({ items: item.items }));
-      // allItem.forEach(item =>
-      //   item.items.map(item => state.itemList.push(item))
-      // );
-      // console.log("lovly list", state.itemList);
       return {
         ...state,
         Items: action.payload
@@ -51,14 +45,6 @@ const reducer = (state = initialState, action) => {
     case actionTypes.APPLYFILTER:
       let filter = action.payload;
       console.log(filter);
-      // let list = state.itemList;
-      // console.log("if this global", filter.brand);
-
-      // state.Items.map(item =>
-      //   // console.log("try", ...item.items.map(variation => variation.color))
-      // );
-      // console.log(state.Items[0].items[0].color);
-
       let variationFilt = state.Items.filter(item => {
         if (item.items.length) {
           if (
@@ -72,20 +58,6 @@ const reducer = (state = initialState, action) => {
         }
       });
       console.log("Variation", variationFilt);
-      // let filterdColors = state.Items.map(item =>
-      //   item.items.map(variation => variation.color)
-      // );
-      // let filterdSizes = state.Items.map(item =>
-      //   item.items.map(variation => variation.size)
-      // );
-
-      // let filterdPrices = state.Items.map(item =>
-      //   item.items.map(variation => variation.price)
-      // );
-
-      // console.log("my color", filterdColors);
-      // console.log("my sizes", filterdSizes);
-      // console.log("my price", filterdPrices);
 
       let filtered = state.Items.filter(
         item =>
