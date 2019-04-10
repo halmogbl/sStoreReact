@@ -22,55 +22,63 @@ class Profile extends Component {
       ));
 
       return (
-        <div
-          className="col-12 my-3 border border-primary border-top  "
-          style={{ marginTop: 20, background: "#fff" }}
-        >
+        <div className="col-12 " style={{ paddingTop: 20 }}>
           <div
-            className="col-12 "
+            className="col-12"
             style={{
               justifyContent: "center",
-              alignItems: "center"
+              alignItems: "center",
+              background: "#fff",
+              padding: 20
             }}
           >
-            {this.props.profile.image ? (
-              <img
-                className="col-12  "
-                style={{
-                  width: "fit-content",
-                  justifyContent: "center"
-                }}
-                src={this.props.profile.image}
-                alt={imageNotFound}
-              />
-            ) : (
-              <img
-                style={{
-                  width: "fit-content",
-                  justifyContent: "center",
-                  alignItems: "center"
-                }}
-                src={imageNotFound}
-                alt={imageNotFound}
-              />
-            )}
-            <h5>Profile</h5>
-            <table
-              className="table border   "
+            {/* <div className="col-2">
+              {this.props.profile.image ? (
+                <img
+                  className="col-12"
+                  style={{
+                    width: 120,
+                    height: 120,
+                    justifyContent: "center",
+                    alignItems: "center"
+                  }}
+                  src={this.props.profile.image}
+                  alt={imageNotFound}
+                />
+              ) : (
+                <img
+                  style={{
+                    width: 120,
+                    height: 120,
+                    justifyContent: "center",
+                    alignItems: "center"
+                  }}
+                  src={imageNotFound}
+                  alt={imageNotFound}
+                />
+              )}
+            </div> */}
+            <div
+              className=""
               style={{
                 textAlign: "center",
                 width: "-webkit-fill-available"
               }}
             >
-              <thead>
-                <UserInfoHeader />
-              </thead>
-              <tbody>
-                <UserInfoBody />
-              </tbody>
-            </table>
+              <UserInfoBody image={this.props.profile.image} />
+            </div>
 
-            <h5>Addresses</h5>
+            <div
+              className="col-12"
+              style={{
+                textAlign: "center",
+                fontWeight: 500,
+                fontSize: 25,
+                padding: 10
+              }}
+            >
+              Addresses
+            </div>
             <table
               className="table table-striped "
               style={{ textAlign: "center", width: "-webkit-fill-available" }}

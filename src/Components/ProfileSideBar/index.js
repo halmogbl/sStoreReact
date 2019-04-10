@@ -12,7 +12,9 @@ import Welcome from "./Welcome";
 class ProfileSideBar extends Component {
   render() {
     return (
-      <div>
+      <div style={{ padding: 20 }}>
+        <Sidebar />
+
         <div className="col-9">
           <Switch>
             <Route path="/profile/update" component={UpdateProfileForm} />
@@ -20,12 +22,11 @@ class ProfileSideBar extends Component {
               path="/profile/address/:addressID/update"
               component={UpdateAddress}
             />
-            <Route path="/profile/order_history" component={OrderHistory}/>
+            <Route path="/profile/order_history" component={OrderHistory} />
             <Route path="/profile/address/create/" component={CreateAddress} />
             <Route path="/profile/home" component={Profile} />
           </Switch>
         </div>
-        <Sidebar />
       </div>
     );
   }

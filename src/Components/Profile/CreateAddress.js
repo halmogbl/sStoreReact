@@ -23,20 +23,20 @@ class CreateAddress extends Component {
 
   render() {
     return (
-      <div className="container">
+      <div className="col-12" style={{ paddingTop: 20 }}>
         <form
-          className="form-horizontal"
+          className="col-12"
+          style={{ background: "#fff", padding: 20 }}
           role="form"
           onSubmit={this.submitAddress}
         >
-          <h1>My addresses</h1>
+          <h1>Create Address</h1>
 
-          <div className="row">
+          <div className="col-12">
             {/* <!-- left column --> */}
-            <div className="col-md-3" />
 
             {/* <!-- edit form column --> */}
-            <div className="col-md-9 personal-info">
+            <div className="col-md-12 personal-info">
               {this.state.alertUpload ? (
                 <div className="alert alert-info alert-dismissable">
                   <a className="panel-close close" data-dismiss="alert">
