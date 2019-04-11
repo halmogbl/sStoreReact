@@ -19,14 +19,18 @@ class Login extends Component {
 
   submitHandler = async e => {
     e.preventDefault();
-    if (this.props.username && this.props.passsword) {
+    if (this.state.username && this.state.passsword) {
       await this.setState({
         loginalertUsername: false,
         loginalertPassword: false
       });
-      this.props.login(this.state, this.props.history);
     } else {
-      this.setState({ loginalertUsername: true, loginalertPassword: true });
+      if (!this.state.username) {
+        this.setState({ loginalertUsername: true });
+        if (!this.state.password) {
+          this.setState({ loginalertPassword: true });
+        }
+      }
     }
     this.props.login(this.state, this.props.history);
   };
@@ -38,7 +42,7 @@ class Login extends Component {
           <h3>Login</h3>
           <form onSubmit={this.submitHandler}>
             {this.state.loginalertUsername ? (
-              <div class="alert alert-danger" role="alert">
+              <div class="col-12 alert alert-danger" role="alert">
                 Wrong Username
               </div>
             ) : (
@@ -54,8 +58,12 @@ class Login extends Component {
               //   emptyMessage="User Name can't be empty"
             />
             {this.state.loginalertPassword ? (
-              <div class="alert alert-danger" role="alert">
-                Password Dont Match
+              <div
+                style={{ marginTop: 20 }}
+                class="col-12 alert alert-danger"
+                role="alert"
+              >
+                Wrong Password
               </div>
             ) : (
               <></>

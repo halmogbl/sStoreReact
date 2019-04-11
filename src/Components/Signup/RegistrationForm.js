@@ -102,7 +102,11 @@ class RegistationForm extends Component {
           <p>YOUR INFORMATION.</p>
           <form onSubmit={this.submitHandler}>
             {this.state.alertUsername ? (
-              <div class="alert alert-danger" role="alert">
+              <div
+                style={{ marginTop: 20 }}
+                class="col-12 alert alert-danger"
+                role="alert"
+              >
                 Please input a username
               </div>
             ) : (
@@ -155,7 +159,11 @@ class RegistationForm extends Component {
               />
             </div>
             {this.state.alertPassword ? (
-              <div class="alert alert-danger" role="alert">
+              <div
+                style={{ marginTop: 20 }}
+                class="col-12 alert alert-danger"
+                role="alert"
+              >
                 Passwords dont match or no password inputed
               </div>
             ) : (

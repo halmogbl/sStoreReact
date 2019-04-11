@@ -110,7 +110,9 @@ class VariationDetail extends Component {
                 </li>
               </ul>
               <div className="col-9">
-                <QRCode value={`127.0.0.0.1:3000/variation/${varaite.id}`} />
+                <QRCode
+                  value={`http://127.0.0.0.1:3000/variation/${varaite.id}`}
+                />
               </div>
             </div>
             {/* <div className="col-12 animated fadeInRight">

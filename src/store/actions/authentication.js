@@ -82,7 +82,6 @@ export const setCart = (orderItem, username) => {
     try {
       let response = await instance.post("orderes/create/");
       let order = response.data;
-      console.log("order line 85  ==> ", order);
       dispatch(setOrderItem(order.id, orderItem, username));
       dispatch(getCartList(username));
     } catch (error) {
@@ -153,6 +152,7 @@ export const checkoutOrder = (orderesid, username) => {
     try {
       await instance.put("orderes/" + orderesid + "/update/", changeStatus);
       dispatch(getCartList(username));
+      window.location.replace(`http://127.0.0.1:8000/api/pay/${orderesid}`);
     } catch (err) {
       console.error("Error while fetching categories", err);
     }
@@ -171,6 +171,7 @@ export const deleteOrderItem = (orderItemId, username) => {
     }
   };
 };
+
 
 export const logout = history => {
   setAuthToken();
