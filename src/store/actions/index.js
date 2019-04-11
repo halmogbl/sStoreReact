@@ -1,4 +1,13 @@
-export { login, logout, signup, checkForExpiredToken, setOrderItem , checkoutOrder, setCart } from "./authentication";
+export {
+  login,
+  logout,
+  signup,
+  checkForExpiredToken,
+  setOrderItem,
+  checkoutOrder,
+  setCart,
+  deleteOrderItem
+} from "./authentication";
 export { setErrors } from "./errors";
 
 export { fetchItemDetail, filterItems } from "./items";

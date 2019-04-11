@@ -57,7 +57,7 @@ class App extends Component {
           <Route path="/variation/:varaiteID" component={VariationDetail} />
           <Redirect to="/home" />
         </Switch>
-        <Footer />
+        {/* <Footer /> */}
       </div>
     );
   }

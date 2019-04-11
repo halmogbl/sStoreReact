@@ -23,10 +23,10 @@ class CreateAddress extends Component {
 
   render() {
     return (
-      <div className="col-12" style={{ paddingTop: 20 }}>
+      <div className="col-12" style={{ padding: 20 }}>
         <form
           className="col-12"
-          style={{ background: "#fff", padding: 20 }}
+          style={{ background: "#fff", padding: 20, borderRadius: 20 }}
           role="form"
           onSubmit={this.submitAddress}
         >

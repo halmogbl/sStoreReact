@@ -136,7 +136,28 @@ class Variation extends Component {
                   </div>
                   <div className="col-4">
                     <button
-                      onClick={() => orderes ? this.props.setOrderItem(orderes.id , {variaton:varaite.id,quantity:this.state.quantity}, user.username) : this.props.setCart({variaton:varaite.id,quantity:this.state.quantity}, user.username)}
+                      onClick={() =>
+                        user
+                          ? orderes
+                            ? this.props.setOrderItem(
+                                orderes.id,
+                                {
+                                  variaton: varaite.id,
+                                  quantity: this.state.quantity
+                                },
+                                user.username
+                              )
+                            : this.props.setCart(
+                                {
+                                  variaton: varaite.id,
+                                  quantity: this.state.quantity
+                                },
+                                user.username
+                              )
+                          : alert(
+                              "you need to sign in to add the product to your cart"
+                            )
+                      }
                       className="btn btn-primary  m-1"
                       style={{
                         width: "100%",
@@ -162,14 +183,16 @@ const mapStateToProps = state => {
   return {
     variaton: state.variatonsReducer.variaton,
     user: state.auth,
-    orderesReducer:state.orderesReducer,
+    orderesReducer: state.orderesReducer
   };
 };
 
 const mapDispatchToProps = dispatch => {
   return {
-    setCart: (orderItem, username) => dispatch(actionCreators.setCart(orderItem, username)),
-    setOrderItem: (orderesid, orderItem, username) => dispatch(actionCreators.setOrderItem(orderesid, orderItem, username)),
+    setCart: (orderItem, username) =>
+      dispatch(actionCreators.setCart(orderItem, username)),
+    setOrderItem: (orderesid, orderItem, username) =>
+      dispatch(actionCreators.setOrderItem(orderesid, orderItem, username)),
     setVaraition: id => dispatch(actionCreators.setVaraition(id))
   };
 };

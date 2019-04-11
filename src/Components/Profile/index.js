@@ -22,14 +22,15 @@ class Profile extends Component {
       ));
 
       return (
-        <div className="col-12 " style={{ paddingTop: 20 }}>
+        <div className="col-12 " style={{ padding: 20 }}>
           <div
             className="col-12"
             style={{
               justifyContent: "center",
               alignItems: "center",
               background: "#fff",
-              padding: 20
+              padding: 20,
+              borderRadius: 20
             }}
           >
             {/* <div className="col-2">

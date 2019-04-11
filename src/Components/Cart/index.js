@@ -30,7 +30,16 @@ class Orderes extends Component {
       );
     } else {
       if (!orderes) {
-        return <div>You dont have Cart Shop Now</div>;
+        return (
+          <div className="col-12" style={{ padding: 20 }}>
+            <div
+              className="col-12"
+              style={{ background: "#fff", padding: 20, borderRadius: 10 }}
+            >
+              You dont have Cart Shop Now
+            </div>
+          </div>
+        );
       } else {
         let cartItem = [];
         if (orderes.order_Items.length)
@@ -38,18 +47,43 @@ class Orderes extends Component {
             <OrderItem OrderItem={orderitem} key={orderitem.id} />
           ));
         return (
-          <div>
-            <div className="col-12">
-              <div className="col-6">
-                {`total : ${orderes && orderes.total}`}
+          <div style={{ padding: 50 }} className="col-12">
+            <div
+              className="col-12"
+              style={{ padding: 20, background: "#fff", borderRadius: 20 }}
+            >
+              <div className="col-12">
+                {/* <div className="col-6">
+                  {`user : ${orderes && orderes.profile.user.username}`}
+                </div> */}
               </div>
-              <div className="col-6">
-                {`user : ${orderes && orderes.profile.user.username}`}
+              <div
+                className="col-12"
+                style={{
+                  background: "#e7e7e7",
+                  padding: 10,
+                  borderRadius: 10,
+                  marginBottom: 10
+                }}
+              >
+                <div className="col-10">Order Information:</div>
+                <div className="col-2">
+                  <span>Total: </span>
+                  <span className="text-success" style={{}}>
+                    {`${orderes && orderes.total}`} SAR
+                  </span>
+                </div>
               </div>
-            </div>
-            <div className="col-9">Your order :</div>
-            <div className="col-3">
+              {/* <div className="col-3" /> */}
+              <div className="col-12">{cartItem}</div>
               <button
+                className="col-12"
+                style={{
+                  background: "rgb(52, 63, 71)",
+                  color: "#fff",
+                  padding: 10,
+                  borderRadius: 10
+                }}
                 onClick={() =>
                   this.props.checkoutOrder(orderes.id, user.username)
                 }
@@ -57,7 +91,6 @@ class Orderes extends Component {
                 CheckOut
               </button>
             </div>
-            <div className="col-12">{cartItem}</div>
           </div>
         );
       }

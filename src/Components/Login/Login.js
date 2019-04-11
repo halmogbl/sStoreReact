@@ -73,8 +73,12 @@ class Login extends Component {
                 onChange={this.changeHandler}
               />
             </div>
-            <div className="Login">
-              <button type="submit" className="button">
+            <div className="col-12">
+              <button
+                style={{ padding: 9 }}
+                type="submit"
+                className="btn btn-success col-12"
+              >
                 Login
               </button>
             </div>
