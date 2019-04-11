@@ -1,7 +1,4 @@
-export const circleStyle = {
-  // padding: "5px 10px 5px 10px",
-  // margin: "5px"
-};
+export const circleStyle = {};
 
 export const navli = {
   // listStyle: "none"

@@ -63,9 +63,9 @@ class UpdateProfileForm extends Component {
   };
   render() {
     return (
-      <div className="col-12" style={{ paddingTop: 20 }}>
+      <div className="col-12" style={{ padding: 20 }}>
         <form
-          style={{ background: "#fff", padding: 20 }}
+          style={{ background: "#fff", padding: 20, borderRadius: 20 }}
           className="col-12"
           role="form"
           onSubmit={this.submitChannel}

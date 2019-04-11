@@ -23,6 +23,28 @@ class Menu extends Component {
           style={{ background: "#343f47", padding: 10 }}
           className="col-12 Shadow"
         >
+          <NavLink
+            className="col-lg-2 col-sm-6"
+            to={`/home`}
+            style={{
+              textAlign: "center",
+              color: "#adb5bd",
+              textDecoration: "none"
+            }}
+          >
+            Home
+          </NavLink>
+          <NavLink
+            className="col-lg-2 col-sm-6"
+            to={`/shop`}
+            style={{
+              textAlign: "center",
+              color: "#adb5bd",
+              textDecoration: "none"
+            }}
+          >
+            Shop
+          </NavLink>
           <button
             className="btn btn-default dropdown-toggle col-lg-2 col-sm-6"
             type="button"
@@ -32,34 +54,22 @@ class Menu extends Component {
           >
             Category <span class="caret" />
           </button>
-          <NavLink
-            className="col-lg-2 col-sm-6"
-            to={`/home`}
-            style={{ textAlign: "center", color: "#adb5bd" }}
-          >
-            Home
-          </NavLink>
-          <NavLink
-            className="col-lg-2 col-sm-6"
-            to={`/shop`}
-            style={{ textAlign: "center", color: "#adb5bd" }}
-          >
-            Shop
-          </NavLink>
           <ul
-            className="col-lg-4 col-md-3 col-sm-2 dropdown-menu dropdown-menu-right"
-            style={{}}
+            className="col-lg-4 col-md-3 col-sm-2 dropdown-menu dropdown-menu-right ulcate"
+            style={{
+              height: 320,
+              overflow: "scroll"
+            }}
           >
             {categories.map(category => (
-              <li style={{ padding: 10 }}>
-                <Link
-                  to={`/category/${category.id}`}
-                  key={category.id}
-                  style={categoryStyle.circleStyle}
-                >
-                  {category.name}
-                </Link>
-              </li>
+              <Link
+                className="col-12 hoverCat"
+                to={`/category/${category.id}`}
+                key={category.id}
+                style={{ border: "1px solid #e7e7e7" }}
+              >
+                <li style={{ padding: 10 }}>{category.name}</li>
+              </Link>
             ))}
           </ul>
         </div>

@@ -82,7 +82,6 @@ export const setCart = (orderItem, username) => {
     try {
       let response = await instance.post("orderes/create/");
       let order = response.data;
-      console.log("order ==> ", order);
       dispatch(setOrderItem(order.id, orderItem, username));
       dispatch(getCartList(username));
     } catch (error) {
@@ -159,6 +158,20 @@ export const checkoutOrder = (orderesid, username) => {
     }
   };
 };
+
+export const deleteOrderItem = (orderItemId, username) => {
+  return async dispatch => {
+    try {
+      await axios.delete(
+        "http://127.0.0.1:8000/api/orderItem/" + orderItemId + "/delete/"
+      );
+      dispatch(getCartList(username));
+    } catch (err) {
+      console.error("Error while fetching categories", err);
+    }
+  };
+};
+
 
 export const logout = history => {
   setAuthToken();

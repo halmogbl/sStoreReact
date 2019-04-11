@@ -13,38 +13,53 @@ class OrderHistory extends Component {
     const { OrderHistory } = this.props;
     const { user } = this.props.user;
     let orderHistory = [];
-        if (OrderHistory.order_Items.length)
-        orderHistory =  OrderHistory.order_Items.map(orderitem => (
+    if (OrderHistory.order_Items.length)
+      orderHistory = OrderHistory.order_Items.map(orderitem => (
         <OrderHistoryItem OrderItem={orderitem} key={orderitem.id} />
       ));
-      return (
-        <div>
-          <div className="col-12">
-            <div className="col-6">
-              {`total : ${OrderHistory && OrderHistory.total}`}
-            </div>
-            <div className="col-6">
-              {`user : ${OrderHistory && OrderHistory.profile.user.username}`}
-            </div>
+    return (
+      <div style={{ padding: 20, marginBottom: 30 }}>
+        <div
+          className="col-12"
+          style={{
+            borderBottom: "1px solid #343f47"
+          }}
+        >
+          <div
+            style={{
+              textAlign: "center",
+              fontSize: 20,
+              fontWeight: 250,
+              background: "#212629",
+              color: "#fff",
+              borderRadius: 20,
+              marginTop: 20
+            }}
+            className="col-12"
+          >
+            {`Order #${OrderHistory && OrderHistory.id}`}
           </div>
+          {/* <div className="col-1">
+            {`user : ${OrderHistory && OrderHistory.profile.user.username}`}
+          </div> */}
           <div className="col-9">
-            Your order :
+            {`total : ${OrderHistory && OrderHistory.total}`}
           </div>
           <div className="col-3">
             {`status : ${OrderHistory && OrderHistory.status}`}
           </div>
-          <div className="col-12">
-            {orderHistory}
-          </div>
         </div>
-      );
+
+        <div className="col-12">{orderHistory}</div>
+      </div>
+    );
   }
 }
 const mapStateToProps = state => {
   return {
     orderesReducer: state.orderesReducer,
     loading: state.orderesReducer.loading,
-    user: state.auth,
+    user: state.auth
   };
 };
 export default connect(mapStateToProps)(OrderHistory);

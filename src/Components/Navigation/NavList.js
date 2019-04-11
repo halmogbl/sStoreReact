@@ -8,7 +8,7 @@ import Search from "./Search";
 
 class NavList extends Component {
   render() {
-    const {orderes} = this.props.orderesReducer
+    const { orderes } = this.props.orderesReducer;
     return (
       <div
         className="col-12"
@@ -41,7 +41,11 @@ class NavList extends Component {
                   className="col-6"
                   style={{ textAlign: "center", padding: 5 }}
                 >
-                  <NavLink style={{ color: "#fff" }} className="" to={`/login`}>
+                  <NavLink
+                    style={{ color: "#fff", textDecoration: "none" }}
+                    className=""
+                    to={`/login`}
+                  >
                     Login
                   </NavLink>
                 </div>
@@ -50,7 +54,7 @@ class NavList extends Component {
                   style={{ textAlign: "center", padding: 5 }}
                 >
                   <NavLink
-                    style={{ color: "#fff" }}
+                    style={{ color: "#fff", textDecoration: "none" }}
                     className=""
                     to={`/signup`}
                   >
@@ -65,7 +69,7 @@ class NavList extends Component {
                   style={{ textAlign: "center", padding: 5 }}
                 >
                   <NavLink
-                    style={{ color: "#adb5bd" }}
+                    style={{ color: "#adb5bd", textDecoration: "none" }}
                     className=""
                     to={`/profile`}
                   >
@@ -91,10 +95,23 @@ class NavList extends Component {
             className="col-4 col-lg-3 col-md-3 col-sm-3"
             style={{ textAlign: "center", padding: 5 }}
           >
-          
             <span style={{ fontSize: 20 }}>
-            <Link to="/cart" style={{color:"white"}}>
-              <i style={{ margin: 2 }} className="fas fa-shopping-cart" />{orderes && orderes.order_Items.length}
+              <Link
+                to="/cart"
+                style={{ color: "white", textDecoration: "none" }}
+              >
+                <i style={{ margin: 2 }} className="fas fa-shopping-cart" />
+                {this.props.user && orderes && (
+                  <span
+                    style={{
+                      background: "#2fb8e9",
+                      padding: "1px 5px 1px 5px",
+                      borderRadius: "50%"
+                    }}
+                  >
+                    {orderes && orderes.order_Items.length}
+                  </span>
+                )}
               </Link>
             </span>
           </div>

@@ -35,12 +35,17 @@ class Shop extends Component {
           border: "1px solid #dee2e6",
           background: "#fff",
           padding: 10,
-          borderRadius: 20
+          borderRadius: 20,
+          margin: 10
         }}
         className="col-sm-12 col-md-6 col-lg-3 Shadow "
       >
         <NavLink to={`/item/${item.id}`} key={item.id}>
-          <img src={itemImage} className="card-img-top" alt="..." />
+          {item.image ? (
+            <img src={item.image} className="card-img-top" alt="..." />
+          ) : (
+            <img src={itemImage} className="card-img-top" alt="..." />
+          )}{" "}
           <div className="card-body">
             <span
               className="card-title col-12"

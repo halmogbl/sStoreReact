@@ -11,13 +11,13 @@
   content: "";
   clear: both;
   display: table;
-  border: 1px solid red;
+  /* border: 1px solid red; */
 }
 
 [class*="col-"] {
   float: left;
   padding: 0px;
-  border: 1px solid red;
+  /* border: 1px solid red; */
 }
 
 .col-1 {

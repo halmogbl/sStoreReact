@@ -6,7 +6,7 @@ class UserInfoBody extends Component {
   render() {
     return (
       <>
-        <div class="col-12">
+        <div className="col-12">
           <div class="panel panel-default">
             <div class="panel-heading">
               <h1>User Profile</h1>

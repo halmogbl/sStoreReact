@@ -8,70 +8,79 @@ class Sidebar extends Component {
       <div
         id="sidebar"
         className="col-3"
-        style={{ marginTop: 20, background: "#fff", padding: 20 }}
+        style={{
+          marginTop: 20,
+          background: "#fff",
+          padding: 20,
+          borderRadius: 20
+        }}
       >
         <section>
-          <div
-            className="col-12"
-            style={{
-              padding: 5,
-              borderBottom: "1px solid #e7e7e7"
-            }}
+          <NavLink
+            exact
+            activeClassName="menu-item active "
+            to="/profile/home"
+            style={{ textDecoration: "none" }}
           >
-            <NavLink
-              exact
-              activeClassName="menu-item active "
-              to="/profile/home"
+            <div
+              className="col-12 hoverProfile"
+              style={{
+                padding: 5,
+                borderBottom: "1px solid #e7e7e7"
+              }}
             >
               Profile Page
-            </NavLink>
-          </div>
-          <div
-            className="col-12"
-            style={{
-              padding: 5,
-              borderBottom: "1px solid #e7e7e7"
-            }}
+            </div>
+          </NavLink>
+          <NavLink
+            exact
+            activeClassName="menu-item active"
+            to="/profile/address/create/"
+            className="hover"
+            style={{ textDecoration: "none" }}
           >
-            <NavLink
-              exact
-              activeClassName="menu-item active"
-              to="/profile/address/create/"
-              className="hover"
+            <div
+              className="col-12 hoverProfile"
+              style={{
+                padding: 5,
+                borderBottom: "1px solid #e7e7e7"
+              }}
             >
               Create Address
-            </NavLink>
-          </div>
-          <div
-            className="col-12"
-            style={{
-              padding: 5,
-              borderBottom: "1px solid #e7e7e7"
-            }}
+            </div>
+          </NavLink>
+          <NavLink
+            exact
+            activeClassName="menu-item active"
+            to="/profile/update/"
+            style={{ textDecoration: "none" }}
           >
-            <NavLink
-              exact
-              activeClassName="menu-item active"
-              to="/profile/update/"
+            <div
+              className="col-12 hoverProfile"
+              style={{
+                padding: 5,
+                borderBottom: "1px solid #e7e7e7"
+              }}
             >
               Profile Update
-            </NavLink>
-          </div>
-          <div
-            className="col-12"
-            style={{
-              padding: 5,
-              borderBottom: "1px solid #e7e7e7"
-            }}
+            </div>
+          </NavLink>
+          <NavLink
+            exact
+            activeClassName="menu-item active"
+            to="/profile/order_history"
+            style={{ textDecoration: "none" }}
           >
-            <NavLink
-              exact
-              activeClassName="menu-item active"
-              to="/profile/order_history"
+            <div
+              className="col-12 hoverProfile"
+              style={{
+                padding: 5,
+                borderBottom: "1px solid #e7e7e7"
+              }}
             >
               Order History
-            </NavLink>
-          </div>
+            </div>
+          </NavLink>
         </section>
       </div>
     );

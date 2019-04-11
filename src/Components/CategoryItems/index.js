@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { Switch, Route, Redirect, withRouter } from "react-router-dom";
 import Loading from "../../Components/Loading";
 import * as actionCreators from "../../store/actions";
-import { NavLink } from "react-router-dom";
+import { NavLink, Link } from "react-router-dom";
 import itemImage from "../../assets/images/notfound.png";
 
 class CategoryItems extends Component {
@@ -27,7 +27,11 @@ class CategoryItems extends Component {
           className="col-sm-12 col-md-6 col-lg-3 cardShadow"
         >
           <NavLink to={`/item/${item.id}`} key={item.id}>
-            <img src={itemImage} className="card-img-top" alt="..." />
+            {item.image ? (
+              <img src={item.image} className="card-img-top" alt="..." />
+            ) : (
+              <img src={itemImage} className="card-img-top" alt="..." />
+            )}
             <div className="card-body">
               <span
                 className="card-title col-12"
@@ -57,7 +61,23 @@ class CategoryItems extends Component {
           </NavLink>
         </div>
       ));
-      return <div className="col-12">{items}</div>;
+      return (
+        <div className="col-12">
+          <div className="col-12">
+            <nav aria-label="breadcrumb" className="col-12">
+              <ol class="breadcrumb">
+                <li class="breadcrumb-item">
+                  <Link to="/home">Home</Link>
+                </li>
+                <li class="breadcrumb-item">
+                  <Link to={`/category/`}>{category.name}</Link>
+                </li>
+              </ol>
+            </nav>
+          </div>
+          {items}
+        </div>
+      );
     }
   }
 }

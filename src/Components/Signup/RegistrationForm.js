@@ -196,8 +196,12 @@ class RegistationForm extends Component {
               value={this.state.confirmpasssword}
               onChange={this.changeHandler}
             />
-            <div className="createAccount">
-              <button type="submit" className="button ">
+            <div className="col-12">
+              <button
+                style={{ padding: 9, marginTop: 20 }}
+                type="submit"
+                className="btn btn-success col-12 "
+              >
                 CREATE ACCOUNT
               </button>
             </div>
