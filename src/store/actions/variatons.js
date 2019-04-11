@@ -4,7 +4,7 @@ import * as actionTypes from "./actionTypes";
 import axios from "axios";
 
 const instance = axios.create({
-  baseURL: "http://127.0.0.1:8000/api/"
+  baseURL: "http://134.209.247.1/api/"
 });
 
 export const fetchVariatons = () => {
@@ -39,9 +39,9 @@ export const setVaraition = id => {
   };
 };
 
-export const setVaraitionCart = (id,quantity) => {
-  let variaton = {id: id, quantity: quantity}
-  console.log("variaton ===> ", variaton)
+export const setVaraitionCart = (id, quantity) => {
+  let variaton = { id: id, quantity: quantity };
+  console.log("variaton ===> ", variaton);
   return async dispatch => {
     dispatch({
       type: actionTypes.SET_VARIATON_CART,
