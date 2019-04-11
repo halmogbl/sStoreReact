@@ -35,15 +35,19 @@ class ItemDetail extends Component {
     const itemID = this.props.match.params.itemID;
     const item = this.props.item;
     const loading = this.props.loading;
+    console.log(
+      "[ItemDetail.js] this.props.brands.length > 0",
+      this.props.brands.length > 0
+    );
     // console.log("show royrelf", this.props.categories);
 
     let MyCat = this.props.categories.find(
       cat => cat.items.find(itemOb => itemOb.id === item.id) && cat
     );
 
-    let nextItems = this.props.brands.find(
-      brand => brand.name === item.brand.name
-    );
+    let nextItems =
+      !this.props.brands.length &&
+      this.props.brands.find(brand => brand.name === item.brand.name); // THINK ABOUT THIS!!!!!!!!
 
     let RelatedItemsO =
       nextItems &&

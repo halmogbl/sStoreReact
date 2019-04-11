@@ -4,7 +4,7 @@ import * as actionTypes from "./actionTypes";
 import { setErrors } from "./errors";
 
 const instance = axios.create({
-  baseURL: "http://127.0.0.1:8000/api/"
+  baseURL: "http://134.209.247.1/api/"
 });
 
 const setAuthToken = token => {
@@ -152,7 +152,7 @@ export const checkoutOrder = (orderesid, username) => {
     try {
       await instance.put("orderes/" + orderesid + "/update/", changeStatus);
       dispatch(getCartList(username));
-      window.location.replace(`http://127.0.0.1:8000/api/pay/${orderesid}`);
+      window.location.replace(`http://134.209.247.1/api/pay/${orderesid}`);
     } catch (err) {
       console.error("Error while fetching categories", err);
     }
@@ -163,7 +163,7 @@ export const deleteOrderItem = (orderItemId, username) => {
   return async dispatch => {
     try {
       await axios.delete(
-        "http://127.0.0.1:8000/api/orderItem/" + orderItemId + "/delete/"
+        "http://134.209.247.1/api/orderItem/" + orderItemId + "/delete/"
       );
       dispatch(getCartList(username));
     } catch (err) {
@@ -171,7 +171,6 @@ export const deleteOrderItem = (orderItemId, username) => {
     }
   };
 };
-
 
 export const logout = history => {
   setAuthToken();
