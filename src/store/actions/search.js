@@ -4,7 +4,7 @@ import * as actionTypes from "./actionTypes";
 import axios from "axios";
 
 const instance = axios.create({
-  baseURL: "http://134.209.247.1/api/"
+  baseURL: "https://134.209.247.1/api/"
 });
 
 export const fetchSearchItems = () => {
