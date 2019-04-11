@@ -11,13 +11,13 @@ class Rating extends Component {
   render() {
     return (
       <Ratings
-        // rating={this.state.rating}
-        changeRating={this.changeRating}
+      // rating={this.state.rating}
+      // changeRating={this.changeRating}
       >
         <Ratings.Widget />
         <Ratings.Widget />
         <Ratings.Widget />
-        <Ratings.Widget />
+        {/* <Ratings.Widget /> */}
       </Ratings>
     );
   }
