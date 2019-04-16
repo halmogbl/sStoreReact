@@ -59,7 +59,7 @@ class Home extends Component {
                       }}
                     />
                     <div class="carousel-caption d-none d-md-block">
-                      <h5>First slide label</h5>
+                      <h5>coool Mobile</h5>
                       <p>
                         Nulla vitae elit libero, a pharetra augue mollis
                         interdum.

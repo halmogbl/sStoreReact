@@ -36,7 +36,7 @@ class Orderes extends Component {
               className="col-12"
               style={{ background: "#fff", padding: 20, borderRadius: 10 }}
             >
-              You dont have Cart Shop Now
+              Cart is empty
             </div>
           </div>
         );

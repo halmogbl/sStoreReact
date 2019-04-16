@@ -28,7 +28,12 @@ class CategoryItems extends Component {
         >
           <NavLink to={`/item/${item.id}`} key={item.id}>
             {item.image ? (
-              <img src={item.image} className="card-img-top" alt="..." />
+              <img
+                style={{ width: 120, height: 120 }}
+                src={item.image}
+                className="card-img-top"
+                alt="..."
+              />
             ) : (
               <img src={itemImage} className="card-img-top" alt="..." />
             )}
